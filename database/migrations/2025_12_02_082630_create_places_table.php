@@ -16,8 +16,8 @@ return new class extends Migration {
             $table->foreign('category_id')->references('id')->on('categories');
             $table->string("name");
             $table->string("address");
-            $table->string("phonenumber");
-            $table->string("p_email");
+            $table->string("phonenumber")->nullable()->unique();
+            $table->string("p_email")->nullable()->unique();
             $table->longText("summary");
             $table->string("longitude")->nullable();
             $table->string("lattitude")->nullable();
