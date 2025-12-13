@@ -11,8 +11,8 @@
         <a href="/culture">KULTÚRA</a>
         <a href="/other">EGYÉB</a>
         <div class="buttons">
-            <button class="btn-signin buttons">BELÉPEK!</button>
-            <button class="btn-register buttons">REGISZTRÁLOK!</button>
+            <button class="btn-signin buttons" href="/users">BELÉPEK!</button>
+            <button class="btn-register buttons" href="{{ route('users.create') }}">REGISZTRÁLOK!</button>
         </div>
     </nav>
 </header>
