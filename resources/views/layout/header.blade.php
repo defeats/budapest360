@@ -1,19 +1,56 @@
-<div class="container"></div>
-<header>
-    <div class="logo"><img src={{asset("bp360logo.png")}}></div>
-    <nav>
-        <a href="/featured">NÉPSZERŰ</a>
-        <a href="/restaurants">ÉTTERMEK</a>
-        <a href="/sights">LÁTNIVALÓK</a>
-        <a href="/nightlife">ÉJSZAKAI ÉLET</a>
-        <a href="/accomodations">SZÁLLÁSOK</a>
-        <a href="/malls">BEVÁSÁRLÓKÖZPONTOK</a>
-        <a href="/culture">KULTÚRA</a>
-        <a href="/other">EGYÉB</a>
-        <div class="buttons">
-            <button class="btn-signin buttons" href="/users">BELÉPEK!</button>
-            <button class="btn-register buttons" href="{{ route('users.create') }}">REGISZTRÁLOK!</button>
-        </div>
-    </nav>
+<header class="main-header">
+    <div class="container header-container">
+        <a href="/" class="logo">
+            <img src="{{ asset('bp360logo.png') }}" alt="Budapest360 Logo">
+        </a>
+
+        <button class="mobile-menu-btn" id="mobile-menu-btn">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+
+        <nav class="nav-links">
+            <div class="nav-items">
+                <a href="/featured">Népszerű</a>
+                <a href="/restaurants">Éttermek</a>
+                <a href="/sights">Látnivalók</a>
+                <a href="/nightlife">Éjszakai Élet</a>
+                <a href="/accomodations">Szállások</a>
+                <a href="/malls">Plázák</a>
+                <a href="/culture">Kultúra</a>
+            </div>
+
+            <div class="nav-auth">
+                @guest
+                    <a href="{{ route('login')}}" class="btn btn-outline">Belépés</a>
+                    <a href="{{ route('register') }}" class="btn btn-primary">Regisztráció</a>
+                @endguest
+
+                @auth
+                    <div class="user-menu-container">
+                        <button class="user-btn" onclick="toggleDropdown()">
+                            <i class="fa-solid fa-user-circle"></i> 
+                            <span>{{ Auth::user()->name ?? 'Profil' }}</span>
+                            <i class="fa-solid fa-chevron-down text-xs"></i>
+                        </button>
+                        
+                        <div class="dropdown-menu" id="profileDropdown">
+                            <a href="/profile" class="dropdown-item">
+                                <i class="fa-solid fa-id-card"></i> Adataim
+                            </a>
+                            <a href="/favorites" class="dropdown-item">
+                                <i class="fa-solid fa-heart"></i> Kedvencek
+                            </a>
+                            <div class="divider"></div>
+                            <form action="{{ route('logout') }}" method="POST">
+                                @csrf
+                                <button type="submit" class="dropdown-item text-danger">
+                                    <i class="fa-solid fa-right-from-bracket"></i> Kijelentkezés
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                @endauth
+            </div>
+        </nav>
+    </div>
 </header>
-</div>
