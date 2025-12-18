@@ -28,11 +28,11 @@
                 @auth
                     <div class="user-menu-container">
                         <button class="user-btn" onclick="toggleDropdown()">
-                            <i class="fa-solid fa-user-circle"></i> 
+                            <i class="fa-solid fa-user-circle"></i>
                             <span>{{ Auth::user()->name ?? 'Profil' }}</span>
                             <i class="fa-solid fa-chevron-down text-xs"></i>
                         </button>
-                        
+
                         <div class="dropdown-menu" id="profileDropdown">
                             <a href="/profile" class="dropdown-item">
                                 <i class="fa-solid fa-id-card"></i> Adataim
