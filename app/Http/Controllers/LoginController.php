@@ -17,11 +17,11 @@ class LoginController extends Controller
         if (Auth::attempt($credentials, $request->boolean('remember'))) {
             $request->session()->regenerate();
  
-            return redirect()->intended('dashboard');
+            return redirect()->intended('welcome');
         }
  
         return back()->withErrors([
-            'email' => 'The provided credentials do not match our records.',
+            'email' => 'A megadott hitelesítő adatok nem egyeznek a nyilvántartásunkkal.',
         ])->onlyInput('email');
     }
 }

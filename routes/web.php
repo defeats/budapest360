@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Session;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('welcome');
 
 Route::view('dashboard', 'dashboard')->name('dashboard')->middleware('auth');
 

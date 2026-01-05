@@ -15,15 +15,18 @@ return new class extends Migration {
             $table->unsignedBigInteger('category_id');
             $table->foreign('category_id')->references('id')->on('categories');
             $table->string("name");
+            $table->string('slug')->unique();
+            $table->string("old_name")->nullable();
             $table->integer('post_code');
             $table->string("address");
             $table->string("phone")->nullable()->unique();
             $table->string("email")->nullable()->unique();
-            $table->longText("description");
+            $table->string("website")->nullable()->unique();
+            $table->longText("description")->nullable();
             $table->string("longitude")->nullable();
-            $table->string("lattitude")->nullable();
-            $table->
-            //TODO opening/closing times
+            $table->string("latitude")->nullable();
+            $table->string("outdoor_seating")->nullable();
+            $table->integer("views");
             $table->softDeletes();
             $table->timestamps();
         });
