@@ -1,3 +1,5 @@
+/* TODO: rendszerezese (kategorizalni, atlathatova tenni) */
+
 :root {
     --bg-dark: #1a1a1a;
     --bg-card: #232323;
@@ -452,6 +454,319 @@ body {
     border-color: var(--primary);
     background: rgba(255, 149, 0, 0.05);
     box-shadow: 0 0 10px rgba(255, 149, 0, 0.2);
+}
+
+/* PLACES */
+
+.place-gallery {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: 200px 200px;
+    gap: 10px;
+    margin: 2rem 0;
+}
+
+.gallery-item.main-image {
+    grid-row: span 2;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.review-card {
+    background: var(--bg-card);
+    padding: 1.5rem;
+    border-radius: 12px;
+    margin-bottom: 1rem;
+    border: 1px solid var(--border-color);
+}
+
+.stars { color: var(--primary); }
+
+/* PROFILE */
+
+/* --- PROFILE PAGE STYLING --- */
+.profile-container {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+}
+
+.profile-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.profile-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    align-items: start;
+}
+
+.profile-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 15px;
+    padding: 2rem;
+    box-shadow: var(--shadow-glow);
+}
+
+.card-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    padding-bottom: 1rem;
+}
+
+.card-header i {
+    color: var(--primary);
+    font-size: 1.5rem;
+}
+
+.card-header h3 {
+    font-size: 1.3rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.info-item {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1.2rem;
+}
+
+.info-item .label {
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+}
+
+.info-item .value {
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+.card-actions {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.btn-full {
+    width: 100%;
+    text-align: center;
+}
+
+.mt-1 { margin-top: 1rem; }
+
+/* Stats boxok */
+.stats-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.stat-box {
+    background: rgba(255, 149, 0, 0.05);
+    border: 1px solid var(--border-color);
+    padding: 1.5rem;
+    border-radius: 12px;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.stat-box:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 149, 0, 0.1);
+}
+
+.stat-number {
+    display: block;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--primary);
+}
+
+.stat-label {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .profile-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .profile-header h1 {
+        font-size: 2.5rem;
+    }
+}
+
+/* --- FAVORITES PAGE STYLING --- */
+.favorites-container {
+    padding-top: 4rem;
+    padding-bottom: 6rem;
+}
+
+.page-header {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+/* Grid Elrendezés */
+.favorites-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 2.5rem;
+}
+
+/* Kártya Design */
+.favorite-card {
+    background: var(--bg-card);
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+.favorite-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--border-color);
+    box-shadow: var(--shadow-glow);
+}
+
+/* Kép rész */
+.card-image {
+    height: 200px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+.category-tag {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background: var(--primary);
+    color: black;
+    padding: 4px 12px;
+    border-radius: 50px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.remove-favorite {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: rgba(0, 0, 0, 0.6);
+    border: none;
+    color: var(--primary);
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
+    backdrop-filter: blur(4px);
+}
+
+.remove-favorite:hover {
+    background: #ff4b2b;
+    color: white;
+    transform: scale(1.1);
+}
+
+/* Tartalom rész */
+.card-content {
+    padding: 1.5rem;
+}
+
+.card-content h3 {
+    margin-bottom: 0.5rem;
+    font-size: 1.25rem;
+}
+
+.card-content p {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 1.5rem;
+}
+
+.card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid rgba(255,255,255,0.05);
+    padding-top: 1rem;
+}
+
+.rating {
+    color: var(--primary);
+    font-weight: 600;
+}
+
+.btn-link {
+    color: var(--text-main);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: color 0.2s;
+}
+
+.btn-link:hover {
+    color: var(--primary);
+}
+
+/* Üres állapot stílusa */
+.empty-favorites {
+    grid-column: 1 / -1; /* Kitölti az egész sort */
+    text-align: center;
+    padding: 5rem 1rem;
+}
+
+.empty-icon {
+    font-size: 4rem;
+    color: var(--text-muted);
+    margin-bottom: 1.5rem;
+    opacity: 0.3;
+}
+
+.empty-favorites h2 {
+    margin-bottom: 1rem;
+}
+
+.empty-favorites p {
+    color: var(--text-muted);
+    margin-bottom: 2rem;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Reszponzivitás */
+@media (max-width: 480px) {
+    .favorites-grid {
+        grid-template-columns: 1fr;
+    }
 }
 
 /* Options & Footer */

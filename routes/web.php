@@ -14,8 +14,6 @@ Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
 
-Route::view('dashboard', 'dashboard')->name('dashboard')->middleware('auth');
-
 /* REGISTER */
 
 Route::get('register', function () {
@@ -32,6 +30,18 @@ Route::get('login', function () {
 
 Route::post("login", LoginController::class)->name('login.attempt')->middleware('throttle:5,1');
 
+/* PROFILE */
+
+Route::get('/profile', function () {
+    return view('users.profile');
+})->middleware('auth')->name('profile');
+
+/* FAVORITES */
+
+Route::get('/favorites', function () {
+    return view('users.favorites');
+})->middleware('auth')->name('favorites');
+
 /* LOGOUT */
 
 Route::post('logout', function () {
@@ -43,12 +53,17 @@ Route::post('logout', function () {
     return redirect('/');
 })->name('logout');
 
-/* RESOURCES */
+/* CATEGORIES */
 
-Route::resource('places', PlaceController::class);
+//Route::resource('places', PlaceController::class);
 
-Route::resource('categories', CategoryController::class);
+//Route::resource('categories', CategoryController::class);
 
 Route::resource('multimedia', MultimediaController::class);
 
 Route::resource('reviews', ReviewController::class);
+
+Route::get('/places/{slug}', [PlaceController::class, 'show'])->name('place.show');
+
+Route::get('/{slug}', [CategoryController::class, 'show'])->name('categories.show');
+

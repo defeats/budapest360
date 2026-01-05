@@ -11,5 +11,10 @@ class Category extends Model
     /** @use HasFactory<\Database\Factories\CategoryFactory> */
     use HasFactory, SoftDeletes;
 
-    protected $fillable = [ "name" ];
+    protected $fillable = ['name', 'slug'];
+
+    public function places()
+    {
+        return $this->hasMany(Place::class); /* egy a tobbhoz kapcsolat a helyekkel */
+    }
 }

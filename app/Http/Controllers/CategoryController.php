@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Http\Requests\StoreCategoryRequest;
 use App\Http\Requests\UpdateCategoryRequest;
+use App\Models\Place;
 
 class CategoryController extends Controller
 {
@@ -22,7 +23,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view("categories.create");
+        //
     }
 
     /**
@@ -36,9 +37,14 @@ class CategoryController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Category $category)
+    public function show($slug)
     {
-        //
+        $category = Category::where('slug', $slug)->firstOrFail();
+
+        $places = Place::where('category_id', $category->id)
+                    ->get();
+
+        return view('categories.show', ['category' => $category, 'places' => $places]);
     }
 
     /**

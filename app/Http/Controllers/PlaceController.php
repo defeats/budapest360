@@ -13,7 +13,8 @@ class PlaceController extends Controller
      */
     public function index()
     {
-        $places = Place::with(['category'])->get();
+        $places = Place::with(['category'/*, 'coverImage'*/])->get(); /*TODO: multimedia (kepek, coverek) optimalizalasa*/
+        
         return view('places.index', ['places' => $places]);
     }
 
@@ -36,9 +37,13 @@ class PlaceController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Place $place)
+    public function show($slug)
     {
-        //
+        $place = Place::where('slug', $slug)
+            ->with(['multimedia', 'category', 'reviews.user']) /*velemenyek mellett a usert is betoltjuk*/ /*TODO: Reviewt megcsinalni es optimalizalni*/
+            ->firstOrFail();
+
+        return view('places.show', ['place' => $place]);
     }
 
     /**

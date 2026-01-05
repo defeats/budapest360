@@ -26,7 +26,7 @@ return new class extends Migration {
             $table->string("longitude")->nullable();
             $table->string("latitude")->nullable();
             $table->string("outdoor_seating")->nullable();
-            $table->integer("views");
+            $table->integer("views")->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

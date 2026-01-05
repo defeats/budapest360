@@ -13,6 +13,22 @@ class CategorySeeder extends Seeder
      */
     public function run(): void
     {
-        Category::factory(10)->create();
+        $categories = [
+            ['name' => 'Éttermek', 'slug' => 'restaurants'],
+            ['name' => 'Látnivalók', 'slug' => 'sights'],
+            ['name' => 'Éjszakai Élet', 'slug' => 'nightlife'],
+            ['name' => 'Szállások', 'slug' => 'accomodations'],
+            ['name' => 'Bevásárlóközpontok', 'slug' => 'malls'],
+            ['name' => 'Kultúra', 'slug' => 'culture'],
+            ['name' => 'Népszerű', 'slug' => 'featured'],
+            ['name' => 'Egyéb', 'slug' => 'other']
+        ];
+
+        foreach ($categories as $c) {
+            Category::updateOrCreate( //ha letezik akkor csak frissiti
+                ['slug' => $c['slug']],
+                ['name' => $c['name']]   
+            );
+        }
     }
 }
