@@ -10,7 +10,7 @@
     <div class="favorites-grid">
         @forelse($places ?? [] as $place)
             <div class="favorite-card">
-                <div class="card-image" style="background-image: url('{{ $place->image_url }}');">
+                <div class="card-image" style="background-image: url('{{ $place->image_url ?? 'placeholder.jpg' }}');">
                     <div class="category-tag">{{ $category->name }}</div>
                 </div>
                 <div class="card-content">

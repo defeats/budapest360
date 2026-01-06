@@ -14,18 +14,21 @@
         </div>
     </div>
 
+    <div class="info-content">
+        <h3>A helyről</h3>
+        <p>{{ $place->description ?? 'Ehhez a helyhez még nincs leírás.' }}</p>
+    </div>
+
     <div class="place-gallery">
         @foreach($place->multimedia as $media)
             <div class="gallery-item {{ $media->is_cover ? 'main-image' : '' }}">
-                <img src="{{ $media->image }}" alt="{{ $place->name }}">
+                <img src="/images/{{ $media->image }}" alt="{{ $place->name }}">
             </div>
         @endforeach
     </div>
 
     <div class="place-info-grid">
         <div class="info-content">
-            <h3>A helyről</h3>
-            <p>{{ $place->description ?? 'Ehhez a helyhez még nincs leírás.' }}</p>
             
             <hr>
 

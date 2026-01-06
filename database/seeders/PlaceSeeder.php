@@ -34,7 +34,7 @@ class PlaceSeeder extends Seeder
 
             // kep hozzarendelese
             $gundel->multimedia()->updateOrCreate(
-                ['image' => 'gundel_main.jpg'], // fix fajlnev /* TODO: dinamikusra megcsinalni az API szerint
+                ['image' => 'gundel-etterem_cover.jpg'], // fix fajlnev /* TODO: dinamikusra megcsinalni az API szerint
                 ['user_id' => $user->id, 'is_cover' => true]
             );
 
@@ -339,7 +339,7 @@ class PlaceSeeder extends Seeder
                         'post_code' => '1073',
                         'address' => 'Budapest, Akácfa u. 49-51',
                         'category_id' => $nightlifeCat->id,
-                        'description' => 'Budapest legnagyobb parti-komplexuma, amely több romkocsmát és klubot egyesít. Számos tánctérrel, változatos zenei stílusokkal és egyedi, szürreális dekorációval várja a bulizókat [web:6][web:10].'
+                        'description' => 'Budapest legnagyobb parti-komplexuma, amely több romkocsmát és klubot egyesít. Számos tánctérrel, változatos zenei stílusokkal és egyedi, szürreális dekorációval várja a bulizókat.'
                     ]
                 );
 
@@ -355,7 +355,7 @@ class PlaceSeeder extends Seeder
                         'post_code' => '1075',
                         'address' => 'Budapest, Kazinczy u. 14',
                         'category_id' => $nightlifeCat->id,
-                        'description' => 'A város legrégebbi és legismertebb romkocsmája. Eklektikus berendezés, labirintusszerű terek, élőzene és utánozhatatlan hangulat jellemzi a Kazinczy utcában [web:7][web:12].'
+                        'description' => 'A város legrégebbi és legismertebb romkocsmája. Eklektikus berendezés, labirintusszerű terek, élőzene és utánozhatatlan hangulat jellemzi a Kazinczy utcában.'
                     ]
                 );
 
@@ -371,7 +371,7 @@ class PlaceSeeder extends Seeder
                         'post_code' => '1051',
                         'address' => 'Budapest, Erzsébet tér 12',
                         'category_id' => $nightlifeCat->id,
-                        'description' => 'Kulturális központ és szórakozóhely a város szívében, az Erzsébet tér alatt. Híres a kiváló koncertterméről, elektronikus zenei partijairól és a medence alatti teraszáról [web:9][web:14].'
+                        'description' => 'Kulturális központ és szórakozóhely a város szívében, az Erzsébet tér alatt. Híres a kiváló koncertterméről, elektronikus zenei partijairól és a medence alatti teraszáról.'
                     ]
                 );
 
@@ -387,7 +387,7 @@ class PlaceSeeder extends Seeder
                         'post_code' => '1051',
                         'address' => 'Budapest, Zrínyi u. 4',
                         'category_id' => $nightlifeCat->id,
-                        'description' => 'Stílusos klub és bár a Bazilika közelében. Nyáron nyitott tetővel, télen fűtött terekkel, főként R&B, hip-hop és sláger zenékkel vonzza a közönséget [web:8][web:13].'
+                        'description' => 'Stílusos klub és bár a Bazilika közelében. Nyáron nyitott tetővel, télen fűtött terekkel, főként R&B, hip-hop és sláger zenékkel vonzza a közönséget.'
                     ]
                 );
 
@@ -403,7 +403,7 @@ class PlaceSeeder extends Seeder
                         'post_code' => '1055',
                         'address' => 'Budapest, Szent István krt. 11',
                         'category_id' => $nightlifeCat->id,
-                        'description' => 'Budapest egyik legnagyobb romkocsma-klubja a Nyugati pályaudvar közelében. Híres arról, hogy a hét minden napján nyitva tart, 7 különböző tánctérrel, karaoke teremmel és hatalmas belső udvarral várja a vendégeket [web:22][web:23].'
+                        'description' => 'Budapest egyik legnagyobb romkocsma-klubja a Nyugati pályaudvar közelében. Híres arról, hogy a hét minden napján nyitva tart, 7 különböző tánctérrel, karaoke teremmel és hatalmas belső udvarral várja a vendégeket.'
                     ]
                 );
 
@@ -419,7 +419,7 @@ class PlaceSeeder extends Seeder
                         'post_code' => '1117',
                         'address' => 'Budapest, Petőfi híd, budai hídfő',
                         'category_id' => $nightlifeCat->id,
-                        'description' => 'A világ egyik legjobb klubjának választott állóhajó a Dunán. Egykori kőszállító hajóból alakították át kulturális központtá, amely koncerteknek, partiknak és étteremnek ad otthont lenyűgöző panorámával [web:26][web:36].'
+                        'description' => 'A világ egyik legjobb klubjának választott állóhajó a Dunán. Egykori kőszállító hajóból alakították át kulturális központtá, amely koncerteknek, partiknak és étteremnek ad otthont lenyűgöző panorámával.'
                     ]
                 );
 
@@ -435,7 +435,7 @@ class PlaceSeeder extends Seeder
                         'post_code' => '1082',
                         'address' => 'Budapest, Vajdahunyad u. 4',
                         'category_id' => $nightlifeCat->id,
-                        'description' => 'Multifunkcionális kulturális tér a 8. kerületben. Nappal kiállítótér és kávézó, éjszaka pedig az underground elektronikus zene egyik legfontosabb bázisa kiváló hangrendszerrel [web:29][web:34].'
+                        'description' => 'Multifunkcionális kulturális tér a 8. kerületben. Nappal kiállítótér és kávézó, éjszaka pedig az underground elektronikus zene egyik legfontosabb bázisa kiváló hangrendszerrel.'
                     ]
                 );
 
@@ -451,7 +451,7 @@ class PlaceSeeder extends Seeder
                         'post_code' => '1072',
                         'address' => 'Budapest, Klauzál u. 10',
                         'category_id' => $nightlifeCat->id,
-                        'description' => 'Prémium kategóriás romkocsma és klub a Klauzál utcában. Különlegessége a belső udvaron található hatalmas, King Kongot ábrázoló fa szobor, valamint a két különböző zenei stílust (house, R&B) kínáló tánctér [web:27][web:32].'
+                        'description' => 'Prémium kategóriás romkocsma és klub a Klauzál utcában. Különlegessége a belső udvaron található hatalmas, King Kongot ábrázoló fa szobor, valamint a két különböző zenei stílust (house, R&B) kínáló tánctér.'
                     ]
                 );
 
