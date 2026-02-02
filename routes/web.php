@@ -42,6 +42,8 @@ Route::get('/favorites', function () {
     return view('users.favorites');
 })->middleware('auth')->name('favorites');
 
+Route::post('favorite', PlaceController::class)->middleware('auth')->name('place.store');
+
 /* LOGOUT */
 
 Route::post('logout', function () {

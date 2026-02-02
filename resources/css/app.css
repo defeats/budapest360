@@ -821,8 +821,8 @@ body {
     }
 }
 
-/* --- FAVORITES PAGE STYLING --- */
-.favorites-container {
+/* --- FAVORITES AND CATEGORIES PAGE STYLING --- */
+.place-container {
     padding-top: 4rem;
     padding-bottom: 6rem;
 }
@@ -833,14 +833,14 @@ body {
 }
 
 /* Grid Elrendezés */
-.favorites-grid {
+.card-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
     gap: 2.5rem;
 }
 
 /* Kártya Design */
-.favorite-card {
+.place-card {
     background: var(--bg-card);
     border-radius: 20px;
     overflow: hidden;
@@ -849,7 +849,7 @@ body {
     box-shadow: 0 10px 30px rgba(0,0,0,0.3);
 }
 
-.favorite-card:hover {
+.place-card:hover {
     transform: translateY(-10px);
     border-color: var(--border-color);
     box-shadow: var(--shadow-glow);

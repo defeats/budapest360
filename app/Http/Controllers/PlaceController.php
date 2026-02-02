@@ -29,9 +29,13 @@ class PlaceController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StorePlaceRequest $request)
+    public function store(StorePlaceRequest $request, $slug)
     {
-        //
+        $place = Place::where('slug', $slug)->firstOrFail();
+        $favorite = Favourite::create([
+            'user_id' => auth()->id(),
+            'place_id' => $place->id,
+        ]);
     }
 
     /**

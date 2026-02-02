@@ -1,15 +1,15 @@
 @extends('layout.app')
 
 @section('content')
-<div class="container favorites-container">
+<div class="container place-container">
     <div class="page-header">
         <h1>Budapesti <span class="highlight">{{ $category->name }}</span></h1>
         <p class="subtitle">Fedezd fel a legjobb helyeket a(z) {{ $category->name }} kategóriában.</p>
     </div>
 
-    <div class="favorites-grid">
+    <div class="card-grid">
         @forelse($places ?? [] as $place)
-            <div class="favorite-card">
+            <div class="place-card">
                 <div class="card-image" style="background-image: url('{{ asset('images/' . ($place->multimedia->first()->image ?? 'placeholder.jpg')) }}');">
                     <div class="category-tag">{{ $category->name }}</div>
                 </div>

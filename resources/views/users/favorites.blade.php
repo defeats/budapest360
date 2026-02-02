@@ -1,13 +1,13 @@
 @extends('layout.app')
 
 @section('content')
-<div class="container favorites-container">
+<div class="container place-container">
     <div class="page-header">
         <h1>Mentett <span class="highlight">helyeid</span></h1>
         <p class="subtitle">Itt találod az összes helyet, amit későbbre elmentettél magadnak.</p>
     </div>
 
-    <div class="favorites-grid">
+    <div class="card-grid">
         {{-- dinamikus forelse ciklus --}}
         
         @forelse($favorites ?? [] as $favorite)     
@@ -23,7 +23,7 @@
         @endforelse
 
         {{-- pelda kartya --}}
-        <div class="favorite-card">
+        <div class="place-card">
             <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1552566626-52f8b828add9?q=80&w=500');">
                 <div class="category-tag">Étterem</div>
                 <button class="remove-favorite" title="Eltávolítás">
