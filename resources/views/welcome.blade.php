@@ -1,4 +1,4 @@
-@extends('layout.app') @section('content')
+@extends('layouts.app') @section('content')
     <section class="hero-section">
         <div class="hero-content">
             <h1>Budapest<span class="highlight">360</span></h1>

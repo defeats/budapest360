@@ -10,13 +10,14 @@
 
         <nav class="nav-links">
             <div class="nav-items">
-                <a href="{{ route('categories.show', ['category' => 'restaurants']) }}">Népszerű</a>
+                <a href="{{ route('categories.show', ['category' => 'featured']) }}">Népszerű</a>
                 <a href="{{ route('categories.show', ['category' => 'restaurants']) }}">Éttermek</a>
                 <a href="{{ route('categories.show', ['category' => 'sights']) }}">Látnivalók</a>
                 <a href="{{ route('categories.show', ['category' => 'nightlife']) }}">Éjszakai Élet</a>
                 <a href="{{ route('categories.show', ['category' => 'accomodations']) }}">Szállások</a>
                 <a href="{{ route('categories.show', ['category' => 'malls']) }}">Plázák</a>
                 <a href="{{ route('categories.show', ['category' => 'culture']) }}">Kultúra</a>
+                <a href="{{ route('places.index') }}">Összes</a>
             </div>
 
             <div class="nav-auth">

@@ -3,15 +3,13 @@
 @section('content')
 <div class="container place-container">
     <div class="page-header">
-        <h1>Budapesti <span class="highlight">{{ $category->name }}</span></h1>
-        <p class="subtitle">Fedezd fel a legjobb helyeket a(z) {{ $category->name }} kategóriában.</p>
+        <h1>Budapest, egy helyen.</h1>
     </div>
 
     <div class="card-grid">
         @forelse($places ?? [] as $place)
             <div class="place-card">
                 <div class="card-image" style="background-image: url('{{ asset('images/' . ($place->multimedia->first()->image ?? 'placeholder.jpg')) }}');">
-                    <div class="category-tag">{{ $category->name }}</div>
                 </div>
                 <div class="card-content">
                     <h3>{{ $place->name }}</h3>
@@ -26,7 +24,7 @@
             <div class="empty-favorites">
                 <div class="empty-icon"><i class="fa-solid fa-map-pin"></i></div>
                 <h2>Hamarosan...</h2>
-                <p>Ebben a kategóriában még nincsenek feltöltött helyek. Gyere vissza később!</p>
+                <p>Még nincsenek feltöltött helyek. Gyere vissza később!</p>
                 <a href="/" class="btn btn-primary">Vissza a főoldalra</a>
             </div>
         @endforelse

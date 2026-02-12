@@ -11,13 +11,13 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body>
-    @include('layout.header')
+    @include('layouts.header')
 
     <main class="content-wrapper">
         @yield('content')
     </main>
 
-    @include('layout.footer')
+    @include('layouts.footer')
 
     <script>
         const mobileBtn = document.getElementById('mobile-menu-btn');

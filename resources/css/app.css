@@ -99,7 +99,7 @@ body {
 
 .nav-items {
     display: flex;
-    gap: 1.5rem;
+    gap: 1.15rem;
 }
 
 .nav-auth {
@@ -246,9 +246,6 @@ body {
         display: block;
     }
 
-    .user-menu-hamburger {
-        display: block;
-    }
 
     .header-container {
         justify-content: space-between;
@@ -635,8 +632,7 @@ body {
     padding: 12px;
 }
 
-.mt-1 { margin-top: 0.5rem; }
-
+ 
 /* --- VÉLEMÉNYEK --- */
 .section-header {
     display: flex;
