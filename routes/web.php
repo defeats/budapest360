@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\FavouriteController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MultimediaController;
 use App\Http\Controllers\PlaceController;
@@ -38,11 +39,7 @@ Route::get('/profile', function () {
 
 /* FAVORITES */
 
-Route::get('/favorites', function () {
-    return view('users.favorites');
-})->middleware('auth')->name('favorites');
-
-Route::post('favorite', PlaceController::class)->middleware('auth')->name('place.store');
+Route::resource('/favourites', FavouriteController::class);
 
 /* LOGOUT */
 
@@ -57,15 +54,16 @@ Route::post('logout', function () {
 
 /* CATEGORIES */
 
-//Route::resource('places', PlaceController::class);
+Route::resource('places', PlaceController::class);
 
-//Route::resource('categories', CategoryController::class);
+Route::get('/places/{slug}', [PlaceController::class, 'show']);
+
+Route::resource('categories', CategoryController::class);
+
+Route::get('/categories/{slug}', [CategoryController::class, 'show'])/*->name('categories.show')*/;
 
 Route::resource('multimedia', MultimediaController::class);
 
 Route::resource('reviews', ReviewController::class);
 
-Route::get('/places/{slug}', [PlaceController::class, 'show'])->name('place.show');
-
-Route::get('/{slug}', [CategoryController::class, 'show'])->name('categories.show');
 

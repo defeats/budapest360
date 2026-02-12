@@ -23,7 +23,7 @@ class PlaceController extends Controller
      */
     public function create()
     {
-        return view('places.index');
+        //
     }
 
     /**
@@ -31,11 +31,7 @@ class PlaceController extends Controller
      */
     public function store(StorePlaceRequest $request, $slug)
     {
-        $place = Place::where('slug', $slug)->firstOrFail();
-        $favorite = Favourite::create([
-            'user_id' => auth()->id(),
-            'place_id' => $place->id,
-        ]);
+        //
     }
 
     /**

@@ -18,7 +18,7 @@
                     <p><i class="fa-solid fa-location-dot"></i> {{ $place->address }}</p>
                     <div class="card-footer">
                         <span class="rating"><i class="fa-solid fa-star"></i> {{ $place->rating }}</span>
-                        <a href="{{ route('place.show', $place->slug) }}" class="btn-link">Részletek <i class="fa-solid fa-arrow-right"></i></a>
+                        <a href="{{ route('places.show', $place->slug) }}" class="btn-link">Részletek <i class="fa-solid fa-arrow-right"></i></a>
                     </div>
                 </div>
             </div>
