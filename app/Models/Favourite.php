@@ -11,4 +11,9 @@ class Favourite extends Model
     /** @use HasFactory<\Database\Factories\FavouriteFactory> */
     use HasFactory;
     use SoftDeletes;
+
+    protected $fillable = [
+        'user_id',
+        'place_id',
+    ];
 }

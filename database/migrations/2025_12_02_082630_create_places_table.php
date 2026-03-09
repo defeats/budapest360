@@ -25,7 +25,7 @@ return new class extends Migration {
             $table->longText("description")->nullable();
             $table->string("longitude")->nullable();
             $table->string("latitude")->nullable();
-            $table->string("outdoor_seating")->nullable();
+            $table->boolean("outdoor_seating")->nullable();
             $table->integer("views")->nullable();
             $table->softDeletes();
             $table->timestamps();

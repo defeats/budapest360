@@ -38,7 +38,7 @@
                             <a href="/profile" class="dropdown-item">
                                 <i class="fa-solid fa-id-card"></i> Adataim
                             </a>
-                            <a href="/favorites" class="dropdown-item">
+                            <a href="/favourites" class="dropdown-item">
                                 <i class="fa-solid fa-heart"></i> Kedvencek
                             </a>
                             <div class="divider"></div>

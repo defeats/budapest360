@@ -13,7 +13,8 @@ class FavouriteController extends Controller
      */
     public function index()
     {
-        //
+        $favourites = Favourite::where('user_id', auth()->id())->get();
+        return view('favourites.index', compact('favourites'));
     }
 
     /**
@@ -29,7 +30,12 @@ class FavouriteController extends Controller
      */
     public function store(StoreFavouriteRequest $request)
     {
-        //
+        $favourite = new Favourite();
+        $favourite->user_id = auth()->id();
+        $favourite->place_id = $request->place_id;
+        $favourite->save();
+
+        return redirect()->back()->with('success', 'Hely sikeresen hozzáadva a kedvencekhez!');
     }
 
     /**

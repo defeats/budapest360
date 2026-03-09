@@ -41,6 +41,8 @@ Route::get('/profile', function () {
 
 Route::resource('/favourites', FavouriteController::class);
 
+Route::post('/favourites', [FavouriteController::class, 'store'])->name('favourites.store')->middleware('auth');
+
 /* LOGOUT */
 
 Route::post('logout', function () {
