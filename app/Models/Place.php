@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use App\Models\Favourite;
 
 class Place extends Model
 {
@@ -28,6 +29,10 @@ class Place extends Model
     public function reviews()
     {
         return $this->hasMany(Review::class);
+    }
+
+    public function favourites() {
+        return $this->hasMany(Favourite::class);
     }
 
     // atlagos ertekeles metodus

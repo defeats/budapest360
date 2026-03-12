@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Favourite;
 use App\Http\Requests\StoreFavouriteRequest;
 use App\Http\Requests\UpdateFavouriteRequest;
+use App\Models\Place;
 
 class FavouriteController extends Controller
 {
@@ -13,8 +14,10 @@ class FavouriteController extends Controller
      */
     public function index()
     {
-        $favourites = Favourite::where('user_id', auth()->id())->get();
-        return view('favourites.index', compact('favourites'));
+        $favourites = Favourite::with('place')->where('user_id', auth()->id())->get();
+
+        // each favourite already has the place relation, so just pass the collection
+        return view('favourites.index', ['favourites' => $favourites]);
     }
 
     /**

@@ -8,7 +8,20 @@
     </div>
 
     <div class="card-grid">        
-        @forelse($favorites ?? [] as $favorite)     
+        @forelse($favourites ?? [] as $favourite)
+            <div class="place-card">
+                <div class="card-image" style="background-image: url('{{ asset('images/' . ($favourite->place->multimedia->first()->image ?? 'placeholder.jpg')) }}');">
+                        
+                </div>
+                <div class="card-content">
+                    <h3>{{ $favourite->place->name ?? 'N/A' }}</h3>
+                    <p><i class="fa-solid fa-location-dot"></i> {{ $favourite->place->address ?? '' }}</p>
+                    <div class="card-footer">
+                        <span class="rating"><i class="fa-solid fa-star"></i> {{ $favourite->place->rating ?? 0 }}</span>
+                        <a href="{{ route('places.show', $favourite->place->slug) }}" class="btn-link">Részletek <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
         @empty
             <div class="empty-favorites">
                 <div class="empty-icon">
