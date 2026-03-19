@@ -1,0 +1,11 @@
+:root {
+    --bg-dark: #1a1a1a;
+    --bg-card: #232323;
+    --bg-header: rgba(19, 19, 19, 0.95);
+    --primary: #ff9500;
+    --primary-hover: #ffaa33;
+    --text-main: #e7e7e7;
+    --text-muted: #a7a7a7;
+    --border-color: rgba(255, 149, 0, 0.3);
+    --shadow-glow: 0 0 20px rgba(255, 149, 0, 0.2);
+}
