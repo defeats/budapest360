@@ -16,7 +16,6 @@ class FavouriteController extends Controller
     {
         $favourites = Favourite::with('place')->where('user_id', auth()->id())->get();
 
-        // each favourite already has the place relation, so just pass the collection
         return view('favourites.index', ['favourites' => $favourites]);
     }
 
@@ -33,12 +32,24 @@ class FavouriteController extends Controller
      */
     public function store(StoreFavouriteRequest $request)
     {
-        $favourite = new Favourite();
-        $favourite->user_id = auth()->id();
-        $favourite->place_id = $request->place_id;
-        $favourite->save();
+        $userId = auth()->id();
+        $placeId = $request->place_id;
 
-        return redirect()->back()->with('success', 'Hely sikeresen hozzáadva a kedvencekhez!');
+        $favourite = Favourite::where('user_id', $userId)
+            ->where('place_id', $placeId)
+            ->first();
+
+        if ($favourite) {
+            $favourite->delete();
+            return redirect()->back()->with('success', 'Eltávolítva a kedvencek közül.');
+        }
+
+        Favourite::create([
+            'user_id' => $userId,
+            'place_id' => $placeId,
+        ]);
+
+        return redirect()->back()->with('success', 'Hozzáadva a kedvencekhez!');
     }
 
     /**

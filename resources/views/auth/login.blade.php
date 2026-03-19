@@ -4,8 +4,8 @@
     <section class="form-container">
         <div class="form-card">
             <div class="form-header">
-                <h2>Bejelentkezés</h2>
-                <p>Üdvözlünk újra!</p>
+                <h2>{{ __('Bejelentkezés') }}</h2>
+                <p>{{ __('Üdvözlünk újra!') }}</p>
             </div>
             <div class="card">
                 <div class="card-body">
@@ -13,12 +13,11 @@
                         @csrf
 
                         <div class="input-group">
-                            <label for="email" class="col-md-4 col-form-label text-md-end">E-mail cím</label>
+                            <label for="email" class="col-md-4 col-form-label text-md-end"> {{ __('E-mail cím') }} </label>
 
                             <div class="col-md-6">
-                                <input id="email" type="email"
-                                    class="form-control @error('email') is-invalid @enderror" name="email"
-                                    value="{{ old('email') }}" required autocomplete="email" autofocus>
+                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
+                                    name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
 
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
@@ -29,7 +28,7 @@
                         </div>
 
                         <div class="input-group">
-                            <label for="password" class="col-md-4 col-form-label text-md-end">Jelszó</label>
+                            <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Jelszó') }}</label>
 
                             <div class="col-md-6">
                                 <input id="password" type="password"
@@ -44,21 +43,22 @@
                             </div>
                         </div>
 
-                        <div class="form-options">
-                            <label class="remember-me" for="remember">
-                                <input type="checkbox" name="remember" id="remember"
-                                    {{ old('remember') ? 'checked' : '' }}>
-                                Emlékezz rám
-                            </label>
-                        </div>
+                        <label class="remember-me" for="remember">
+                            <input type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+                            {{ __('Emlékezz rám') }}
+                        </label><br>
 
                         <button type="submit" class="btn btn-primary">
-                            Bejelentkezés
+                            {{ __('Bejelentkezés') }}
                         </button>
 
+                        <a class="btn btn-link" href="{{ route('register') }}">
+                            {{ __('Még nincs fiókod?') }}
+                        </a>
+
                         @if (Route::has('password.request'))
-                            <a class="btn btn-link" href="{{ route('password.request') }}">
-                                Elfelejtetted a jelszavad?
+                            <a class="btn btn-link " href="{{ route('password.request') }}">
+                                {{ __('Elfelejtetted a jelszavad?') }}
                             </a>
                         @endif
                     </form>

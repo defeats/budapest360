@@ -41,8 +41,7 @@ class CategoryController extends Controller
     {
         $category = Category::where('slug', $slug)->firstOrFail();
 
-        $places = Place::where('category_id', $category->id)
-                    ->get();
+        $places = Place::where('category_id', $category->id)->with(['reviews', 'category'])->get();
 
         return view('categories.show', ['category' => $category, 'places' => $places]);
     }

@@ -13,7 +13,7 @@ class MultimediaPolicy
      */
     public function viewAny(User $user): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -21,7 +21,7 @@ class MultimediaPolicy
      */
     public function view(User $user, Multimedia $multimedia): bool
     {
-        return false;
+        return true;
     }
 
     /**

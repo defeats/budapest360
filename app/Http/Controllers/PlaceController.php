@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Place;
 use App\Http\Requests\StorePlaceRequest;
 use App\Http\Requests\UpdatePlaceRequest;
+use App\Models\Favourite;
+use Illuminate\Support\Facades\Auth;
+
 
 class PlaceController extends Controller
 {
@@ -40,10 +43,17 @@ class PlaceController extends Controller
     public function show($slug)
     {
         $place = Place::where('slug', $slug)
-            ->with(['multimedia', 'category', 'reviews.user']) /*velemenyek mellett a usert is betoltjuk*/ /*TODO: Reviewt megcsinalni es optimalizalni*/
+            ->with(['multimedia', 'category', 'reviews'])
             ->firstOrFail();
 
-        return view('places.show', ['place' => $place]);
+        if (auth()->check()) {
+            auth()->user()->load('favourites');
+        }
+
+        $favourite = Favourite::where('place_id', $place->id)->get();
+        $userId = auth()->id();
+
+        return view('places.show', ['place' => $place, 'favourite' => $favourite, 'userId' => $userId]);
     }
 
     /**

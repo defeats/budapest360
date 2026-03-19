@@ -17,7 +17,7 @@
                     <h3>{{ $favourite->place->name ?? 'N/A' }}</h3>
                     <p><i class="fa-solid fa-location-dot"></i> {{ $favourite->place->address ?? '' }}</p>
                     <div class="card-footer">
-                        <span class="rating"><i class="fa-solid fa-star"></i> {{ $favourite->place->rating ?? 0 }}</span>
+                        <span class="rating"><i class="fa-solid fa-star"></i> {{ $favourite->place->reviews->avg('star') ?? 0 }}</span>
                         <a href="{{ route('places.show', $favourite->place->slug) }}" class="btn-link">Részletek <i class="fa-solid fa-arrow-right"></i></a>
                     </div>
                 </div>

@@ -4,33 +4,25 @@
     <div class="container place-detail-wrapper">
 
         <div class="place-header">
-            <div class="header-left">
-                <div class="badge-row">
-                    <span class="category-badge">{{ $place->category->name }}</span>
-                    @if ($place->rating >= 4.5)
-                        <span class="top-rated-badge"><i class="fa-solid fa-medal"></i> Kiváló választás</span>
-                    @endif
-                </div>
+            <div>
+                <span class="highlight category-badge">{{ $place->category->name }}</span>
                 <h1>{{ $place->name }}</h1>
-                <p class="address"><i class="fa-solid fa-location-dot"></i> {{ $place->address }}</p>
+                <p style="margin-bottom: 0.2rem"><i class="fa-solid fa-location-dot"></i> {{ $place->address }}</p>
+                <p><i class="fa-regular fa-clock"></i> <span>Nyitva: 10:00 - 22:00</span></p>
+                <p><i class="fa-solid fa-phone"></i> <span>+36 1 234 5678</span></p>
             </div>
 
-            <div class="header-right">
-                <div class="rating-box">
-                    <div class="rating-number">{{ $place->rating }}</div>
-                    <div class="rating-meta">
-                        <div class="stars">
-                            @for ($i = 1; $i <= 5; $i++)
-                                <i class="fa-{{ $i <= round($place->rating) ? 'solid' : 'regular' }} fa-star"></i>
-                            @endfor
-                        </div>
-                        <span>{{ $place->reviews->count() }} értékelés</span>
-                    </div>
+            <div>
+                <div>
+                    @for ($i = 1; $i <= 5; $i++)
+                        <i class="fa-star {{ $i <= $place->reviews->avg('star') ? 'fa-solid' : 'fa-regular' }}"></i>
+                    @endfor
                 </div>
+                <span>{{ $place->reviews->avg('star') }} értékelés</span>
             </div>
         </div>
 
-        <div class="gallery-container">
+        <div style="margin-bottom: 3rem;">
             @php
                 $validMedia = $place->multimedia->filter(function ($media) {
                     return file_exists(public_path('images/' . $media->image));
@@ -58,14 +50,13 @@
         </div>
 
         <div class="content-grid-layout">
-
-            <div class="main-content">
-
-                <div class="info-card description-card">
+            <div>
+                <div style="margin-bottom: 2rem;">
                     <h3>A helyről</h3>
                     <hr class="divider">
-                    <p class="lead-text" style="margin-bottom: 0.75rem">
-                        {{ $place->description ?? 'Ehhez a helyhez még nincs részletes leírás feltöltve.' }}</p>
+                    <p style="margin-bottom: 0.5rem">
+                        {{ $place->description ?? 'Ehhez a helyhez még nincs részletes leírás feltöltve.' }}
+                    </p>
 
                     <div class="features-row">
                         <span><i class="fa-solid fa-wifi"></i> Wifi</span>
@@ -74,32 +65,33 @@
                     </div>
                 </div>
 
-                <div class="reviews-section">
+                <div>
                     <div class="section-header">
                         <h3>Vélemények</h3>
-                        <button class="btn btn-primary btn-outline">Írj véleményt</button>
+                        <button class="btn btn-primary">Írj véleményt</button>
                     </div>
 
                     @forelse($place->reviews as $review)
                         <div class="place-review-card">
                             <div class="review-header">
                                 <div class="user-info">
-                                    <div class="avatar-circle">{{ substr($review->user->name, 0, 1) }}</div>
+                                    <!--<div class="avatar-circle">{{ substr($review->user->name, 0, 1) }}</div>-->
+                                    <!--TODO: Avatar megcsinalasa ha belefer az idobe..-->
                                     <div>
-                                        <strong>{{ $review->user->name }}</strong>
+                                        <strong>{{ $review->user->name }}</strong><br>
                                         <small class="text-muted">{{ $review->created_at->format('Y. m. d.') }}</small>
                                     </div>
                                 </div>
-                                <span class="stars">
+                                <span>
                                     @for ($i = 1; $i <= 5; $i++)
                                         <i class="fa-{{ $i <= $review->star ? 'solid' : 'regular' }} fa-star"></i>
                                     @endfor
                                 </span>
                             </div>
-                            <p class="review-text">"{{ $review->comment }}"</p>
+                            <p>{{ $review->comment }}</p>
                         </div>
                     @empty
-                        <div class="empty-state">
+                        <div>
                             <i class="fa-regular fa-comment-dots"></i>
                             <p class="text-muted">Még nincs vélemény. Legyél te az első!</p>
                         </div>
@@ -107,10 +99,10 @@
                 </div>
             </div>
 
-            <aside class="sidebar">
-                <div class="action-card sticky-element">
-                    <h3>Tervezés</h3>
-                    <div class="map-container" style="margin-bottom: 1rem;">
+            <aside>
+                <div class="sticky-element">
+                    <h3 style="margin-bottom: 0.5rem;">Tervezés</h3>
+                    <div style="margin-bottom: 1rem;">
                         <iframe width="100%" height="250" style="border: 1px solid #eee; border-radius: 12px;"
                             frameborder="0" scrolling="no" marginheight="0" marginwidth="0"
                             src="https://maps.google.com/maps?q={{ urlencode($place->address) }}&t=&z=14&ie=UTF8&iwloc=&output=embed">
@@ -121,18 +113,19 @@
                         @csrf
                         <input type="hidden" name="place_id" value="{{ $place->id }}">
 
-                        <button class="btn btn-primary btn-full"><i class="fa-regular fa-heart"></i>
-                            Mentés kedvencnek
+                        @php
+                            //$isFavourite = auth()->user()->favourites->contains('place_id', $place->id);
+                            
+                            $isFavourite = auth()->check() && auth()->user()->favourites->contains('place_id', $place->id);
+                        @endphp
+
+                        <button type="submit" class="btn {{ $isFavourite ? 'btn-danger' : 'btn-primary' }} btn-full">
+                            <i class="{{ $isFavourite ? 'fa-solid' : 'fa-regular' }} fa-heart"></i>
+                            {{ $isFavourite ? 'Eltávolítás a kedvencekből' : 'Mentés a kedvencekhez' }}
                         </button>
                     </form>
-
-                    <div class="quick-info">
-                        <div class="info-row"><i class="fa-regular fa-clock"></i> <span>Nyitva: 10:00 - 22:00</span></div>
-                        <div class="info-row"><i class="fa-solid fa-phone"></i> <span>+36 1 234 5678</span></div>
-                    </div>
                 </div>
             </aside>
-
         </div>
     </div>
 @endsection

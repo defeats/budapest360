@@ -35,7 +35,7 @@
                         </button>
 
                         <div class="dropdown-menu" id="profileDropdown">
-                            <a href="/profile" class="dropdown-item">
+                            <a href="/home" class="dropdown-item">
                                 <i class="fa-solid fa-id-card"></i> Adataim
                             </a>
                             <a href="/favourites" class="dropdown-item">

@@ -13,7 +13,7 @@ class PlacePolicy
      */
     public function viewAny(User $user): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -21,7 +21,7 @@ class PlacePolicy
      */
     public function view(User $user, Place $place): bool
     {
-        return false;
+        return true;
     }
 
     /**

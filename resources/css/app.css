@@ -464,8 +464,6 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
-    margin-bottom: 2rem;
-    border-bottom: 1px solid var(--border-color);
     padding-bottom: 1.5rem;
 }
 
@@ -473,11 +471,6 @@ body {
     font-size: 2.5rem;
     margin: 0.5rem 0;
     font-weight: 800;
-}
-
-.badge-row {
-    display: flex;
-    gap: 10px;
 }
 
 .category-badge {
@@ -488,29 +481,6 @@ body {
     font-size: 0.85rem;
     font-weight: 600;
     text-transform: uppercase;
-}
-
-.top-rated-badge {
-    background: #e6f7e9;
-    color: #27ae60;
-    padding: 4px 12px;
-    border-radius: 20px;
-    font-size: 0.85rem;
-    font-weight: 600;
-}
-
-.rating-box {
-    text-align: right;
-    display: flex;
-    align-items: center;
-    gap: 15px;
-}
-
-.rating-number {
-    font-size: 2.5rem;
-    font-weight: bold;
-    color: var(--primary);
-    line-height: 1;
 }
 
 .place-gallery {
@@ -538,9 +508,6 @@ body {
     transform: scale(1.02);
 }
 
-.gallery-container {
-    margin-bottom: 3rem;
-}
 
 .single-image-banner {
     width: 100%;
@@ -552,7 +519,7 @@ body {
 .single-image-banner img {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Kitölti a helyet torzítás nélkül */
+    object-fit: cover;
 }
 
 /* --- FŐ LAYOUT (Két oszlopos) --- */
@@ -563,16 +530,12 @@ body {
 }
 
 /* --- KÁRTYÁK STÍLUSA --- */
-.info-card, .action-card, .place-review-card {
+.info-card, .place-review-card {
     background: var(--bg-card, #fff);
     border: 1px solid var(--border-color, #eee);
     border-radius: 12px;
     padding: 2rem;
     box-shadow: 0 4px 12px rgba(0,0,0,0.03);
-}
-
-.description-card {
-    margin-bottom: 2rem;
 }
 
 /* --- SZOLGÁLTATÁSOK --- */
@@ -589,35 +552,9 @@ body {
 }
 
 /* --- OLDALSÁV (Sticky) --- */
-.sidebar {
-    position: relative;
-}
-
 .sticky-element {
     position: sticky;
-    top: 2rem; /* Görgetésnél itt tapad meg */
-}
-
-.map-placeholder {
-    background: #f0f2f5;
-    height: 120px;
-    border-radius: 8px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    color: #777;
-    margin-bottom: 1rem;
-    cursor: pointer;
-    transition: background 0.2s;
-}
-
-.map-placeholder:hover { background: #e4e6eb; }
-
-.quick-info {
-    margin-top: 1.5rem;
-    padding-top: 1rem;
-    border-top: 1px solid #eee;
+    top: 6rem; /* Görgetésnél itt tapad meg */
 }
 
 .info-row {
@@ -658,18 +595,6 @@ body {
     gap: 10px;
 }
 
-.avatar-circle {
-    width: 40px;
-    height: 40px;
-    background: #eee;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
-    color: #666;
-}
-
 /* MOBIL NÉZET */
 @media (max-width: 900px) {
     .content-grid-layout {
@@ -699,24 +624,11 @@ body {
     padding-bottom: 4rem;
 }
 
-.profile-header {
-    text-align: center;
-    margin-bottom: 3rem;
-}
-
 .profile-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 2rem;
     align-items: start;
-}
-
-.profile-card {
-    background: var(--bg-card);
-    border: 1px solid var(--border-color);
-    border-radius: 15px;
-    padding: 2rem;
-    box-shadow: var(--shadow-glow);
 }
 
 .card-header {
@@ -726,17 +638,6 @@ body {
     margin-bottom: 2rem;
     border-bottom: 1px solid rgba(255,255,255,0.05);
     padding-bottom: 1rem;
-}
-
-.card-header i {
-    color: var(--primary);
-    font-size: 1.5rem;
-}
-
-.card-header h3 {
-    font-size: 1.3rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
 }
 
 .info-item {
@@ -762,11 +663,6 @@ body {
     display: flex;
     flex-direction: column;
     gap: 10px;
-}
-
-.btn-full {
-    width: 100%;
-    text-align: center;
 }
 
 .mt-1 { margin-top: 1rem; }
@@ -819,20 +715,15 @@ body {
 
 /* --- FAVORITES AND CATEGORIES PAGE STYLING --- */
 .place-container {
-    padding-top: 4rem;
-    padding-bottom: 6rem;
-}
-
-.page-header {
-    text-align: center;
-    margin-bottom: 4rem;
+    padding-top: 2rem;
+    padding-bottom: 4rem;
 }
 
 /* Grid Elrendezés */
 .card-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    gap: 2.5rem;
+    gap: 3rem;
 }
 
 /* Kártya Design */
@@ -941,7 +832,7 @@ body {
 }
 
 /* Üres állapot stílusa */
-.empty-favorites {
+.empty {
     grid-column: 1 / -1; /* Kitölti az egész sort */
     text-align: center;
     padding: 5rem 1rem;
@@ -954,11 +845,11 @@ body {
     opacity: 0.3;
 }
 
-.empty-favorites h2 {
+.empty h2 {
     margin-bottom: 1rem;
 }
 
-.empty-favorites p {
+.empty p {
     color: var(--text-muted);
     margin-bottom: 2rem;
     max-width: 400px;
@@ -966,20 +857,11 @@ body {
     margin-right: auto;
 }
 
-/* Reszponzivitás */
+/* RESPONSIVE */
 @media (max-width: 480px) {
     .favorites-grid {
         grid-template-columns: 1fr;
     }
-}
-
-/* Options & Footer */
-.form-options {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1.5rem;
-    font-size: 0.85rem;
 }
 
 .remember-me {
@@ -987,44 +869,6 @@ body {
     align-items: center;
     gap: 8px;
     cursor: pointer;
-}
-
-.forgot-link {
-    color: var(--primary);
-    text-decoration: none;
-}
-
-.btn-submit {
-    width: 100%;
-    padding: 1rem;
-    background: var(--primary);
-    color: black;
-    border: none;
-    border-radius: 10px;
-    font-size: 1rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.btn-submit:hover {
-    background: var(--primary-hover);
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(255, 149, 0, 0.4);
-}
-
-.form-footer {
-    text-align: center;
-    margin-top: 1.5rem;
-    font-size: 0.9rem;
-    color: var(--text-muted);
-}
-
-.form-footer a {
-    color: var(--primary);
-    text-decoration: none;
-    font-weight: 600;
 }
 
 .error-message {
