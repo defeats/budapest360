@@ -13,8 +13,7 @@ class ReviewController extends Controller
      */
     public function index()
     {
-        $reviews = Review::with(['user', 'place'])->get();
-        return view('reviews.index', ['reviews' => $reviews]);
+        //
     }
 
     /**
@@ -22,7 +21,7 @@ class ReviewController extends Controller
      */
     public function create()
     {
-        return view('reviews.index');
+        //
     }
 
     /**
@@ -30,7 +29,16 @@ class ReviewController extends Controller
      */
     public function store(StoreReviewRequest $request)
     {
-        //
+        $validated = $request->validated();
+
+        $review = new Review();
+        $review->user_id = auth()->id();
+        $review->place_id = $validated['place_id'];
+        $review->comment = $validated['review'];
+        //$review->star = $validated['star']; // Alapértelmezett érték, ha nincs megadva
+        $review->save();
+
+        return redirect()->back()->with('success', 'Vélemény sikeresen elküldve!');
     }
 
     /**

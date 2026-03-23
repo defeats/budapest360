@@ -68,8 +68,30 @@
                 <div>
                     <div class="section-header">
                         <h3>Vélemények</h3>
-                        <button class="btn btn-primary">Írj véleményt</button>
+                        <!--<button class="btn btn-primary">Írj véleményt</button>-->
                     </div>
+
+                    <form action="{{ route('reviews.store') }}" method="post">
+                        @csrf
+                        <input type="hidden" name="place_id" value="{{ $place->id }}">
+                        <div class="place-review-card">
+                            <div class="review-stars">
+                                <input type="radio" id="star5" name="rating" value="5" required>
+                                <label for="star5" title="5 csillag"><i class="fa-solid fa-star"></i></label>
+                                <input type="radio" id="star4" name="rating" value="4">
+                                <label for="star4" title="4 csillag"><i class="fa-solid fa-star"></i></label>
+                                <input type="radio" id="star3" name="rating" value="3">
+                                <label for="star3" title="3 csillag"><i class="fa-solid fa-star"></i></label>
+                                <input type="radio" id="star2" name="rating" value="2">
+                                <label for="star2" title="2 csillag"><i class="fa-solid fa-star"></i></label>
+                                <input type="radio" id="star1" name="rating" value="1">
+                                <label for="star1" title="1 csillag"><i class="fa-solid fa-star"></i></label>
+                            </div>
+                            <textarea class="form-textarea" name="review" id="review" rows="5" cols="100"
+                                placeholder="Oszd meg a véleményed..." maxlength="1000"></textarea>
+                            <button class="btn btn-primary" style="margin-top: 0.5rem;">Küldés</button>
+                        </div>
+                    </form>
 
                     @forelse($place->reviews as $review)
                         <div class="place-review-card">
@@ -115,8 +137,9 @@
 
                         @php
                             //$isFavourite = auth()->user()->favourites->contains('place_id', $place->id);
-                            
-                            $isFavourite = auth()->check() && auth()->user()->favourites->contains('place_id', $place->id);
+
+                            $isFavourite =
+                                auth()->check() && auth()->user()->favourites->contains('place_id', $place->id);
                         @endphp
 
                         <button type="submit" class="btn {{ $isFavourite ? 'btn-danger' : 'btn-primary' }} btn-full">

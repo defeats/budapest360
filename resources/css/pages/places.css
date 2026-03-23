@@ -103,6 +103,35 @@
     margin-bottom: 1rem;
 }
 
+.review-stars {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+    font-size: 1.5rem;
+    color: #ddd; 
+    gap: 0.2rem;
+}
+
+.review-stars input {
+    display: none;
+}
+
+.review-stars label {
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.review-stars label:hover,
+.review-stars label:hover ~ label i,
+.review-stars input:checked ~ label i,
+.review-stars input:checked ~ label:hover ~ label i {
+    color: var(--primary);
+}
+
+.review-stars input:checked + label i {
+    color: var(--primary); 
+}
+
 .user-info {
     display: flex;
     align-items: center;

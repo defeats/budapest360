@@ -16,8 +16,8 @@ return new class extends Migration {
             $table->foreign('user_id')->references('id')->on('users')->onDelete("cascade");
             $table->unsignedBigInteger('place_id');
             $table->foreign("place_id")->references('id')->on('places')->onDelete("cascade");
-            $table->text("comment");
-            $table->integer("star");
+            $table->text("comment")->nullable();
+            $table->tinyInteger("star")->unsigned();
             $table->softDeletes();
             $table->timestamps();
         });

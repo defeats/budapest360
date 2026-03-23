@@ -24,7 +24,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $favourites = Favourite::all();
+        $favourites = Favourite::where('user_id', auth()->id())->get();
         return view('home', ['favourites' => $favourites]);
     }
 }

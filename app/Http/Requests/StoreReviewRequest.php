@@ -23,7 +23,9 @@ class StoreReviewRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'place_id' => 'required|exists:places,id',
+            'review' => 'nullable|string|max:1000', 
+            'star' => 'required|integer|min:1|max:5'
         ];
     }
 }
