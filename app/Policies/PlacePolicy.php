@@ -29,7 +29,7 @@ class PlacePolicy
      */
     public function create(User $user): bool
     {
-        if ($user->role === "admin") {
+        if ($user->role === "admin" || $user->role === "owner") {
             return true;
         } else {
             return false;
@@ -41,7 +41,7 @@ class PlacePolicy
      */
     public function update(User $user, Place $place): bool
     {
-        if ($user->role === "admin") {
+        if ($user->role === "admin" || $user->role === "owner") {
             return true;
         } else {
             return false;
@@ -53,7 +53,7 @@ class PlacePolicy
      */
     public function delete(User $user, Place $place): bool
     {
-        if ($user->role === "admin") {
+        if ($user->role === "admin" || $user->role === "owner") {
             return true;
         } else {
             return false;

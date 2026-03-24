@@ -29,7 +29,7 @@ class ReviewPolicy
      */
     public function create(User $user): bool
     {
-        if ($user->role === "admin") {
+        if ($user->role === "user" || $user->role === "admin") {
             return true;
         } else {
             return false;
@@ -53,7 +53,7 @@ class ReviewPolicy
      */
     public function delete(User $user, Review $review): bool
     {
-        if ($user->role === "admin") {
+        if ($user->role === "user" || $user->role === "admin") {
             return true;
         } else {
             return false;

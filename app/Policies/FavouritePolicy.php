@@ -13,7 +13,11 @@ class FavouritePolicy
      */
     public function viewAny(User $user): bool
     {
-        return true;
+        if ($user->role === "user" || $user->role === "admin") {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -21,7 +25,11 @@ class FavouritePolicy
      */
     public function view(User $user, Favourite $favourite): bool
     {
-        return true;
+        if ($user->role === "user" || $user->role === "admin") {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -29,7 +37,11 @@ class FavouritePolicy
      */
     public function create(User $user): bool
     {
-        return true;
+        if ($user->role === "user" || $user->role === "admin") {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -37,7 +49,15 @@ class FavouritePolicy
      */
     public function update(User $user, Favourite $favourite): bool
     {
-        return false;
+        if ($user->role === "user" || $user->role === "admin") {
+            if ($user->id === $favourite->user_id) {
+            return true;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -45,7 +65,15 @@ class FavouritePolicy
      */
     public function delete(User $user, Favourite $favourite): bool
     {
-        return true;
+        if ($user->role === "user" || $user->role === "admin") {
+            if ($user->id === $favourite->user_id) {
+            return true;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -53,7 +81,11 @@ class FavouritePolicy
      */
     public function restore(User $user, Favourite $favourite): bool
     {
-        return false;
+        if ($user->role === "admin") {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -61,6 +93,10 @@ class FavouritePolicy
      */
     public function forceDelete(User $user, Favourite $favourite): bool
     {
-        return false;
+        if ($user->role === "admin") {
+            return true;
+        } else {
+            return false;
+        }
     }
 }

@@ -11,7 +11,11 @@ class StoreEventRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        if ($this->user()->role === 'admin') {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**

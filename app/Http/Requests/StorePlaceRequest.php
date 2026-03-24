@@ -12,7 +12,11 @@ class StorePlaceRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return auth()->check();
+        if ($this->user()->role === 'owner' || $this->user()->role === 'admin') {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**
