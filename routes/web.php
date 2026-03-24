@@ -14,11 +14,11 @@ Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
 
-/* FAVORITES */
+/* AUTH */
 
-Route::resource('/favourites', FavouriteController::class);
+Auth::routes();
 
-Route::post('/favourites', [FavouriteController::class, 'store'])->name('favourites.store')->middleware('auth');
+Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 /* LOGOUT */
 
@@ -31,22 +31,30 @@ Route::post('logout', function () {
     return redirect('/');
 })->name('logout');
 
-/* CATEGORIES */
+/* PLACES */
 
 Route::resource('places', PlaceController::class);
 
 Route::get('/places/{slug}', [PlaceController::class, 'show']);
 
+/* FAVORITES */
+
+Route::resource('/favourites', FavouriteController::class);
+
+Route::post('/favourites', [FavouriteController::class, 'store'])->name('favourites.store')->middleware('auth');
+
+/* REVIEWS */
+
+Route::resource('reviews', ReviewController::class);
+
+Route::post('/reviews', [ReviewController::class, 'store'])->name('reviews.store')->middleware('auth');
+
+/* CATEGORIES */
+
 Route::resource('categories', CategoryController::class);
 
 Route::get('/categories/{slug}', [CategoryController::class, 'show'])/*->name('categories.show')*/;
 
+/* MULTIMEDIA */
+
 Route::resource('multimedia', MultimediaController::class);
-
-Route::resource('reviews', ReviewController::class);
-
-
-
-Auth::routes();
-
-Route::get('/home', [HomeController::class, 'index'])->name('home');

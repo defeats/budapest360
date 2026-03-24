@@ -71,12 +71,19 @@
                         <!--<button class="btn btn-primary">Írj véleményt</button>-->
                     </div>
 
+                    @if(session('error'))
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            {{ session('error') }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    @endif
+
                     <form action="{{ route('reviews.store') }}" method="post">
                         @csrf
                         <input type="hidden" name="place_id" value="{{ $place->id }}">
                         <div class="place-review-card">
                             <div class="review-stars">
-                                <input type="radio" id="star5" name="rating" value="5" required>
+                                <input type="radio" id="star5" name="rating" value="5">
                                 <label for="star5" title="5 csillag"><i class="fa-solid fa-star"></i></label>
                                 <input type="radio" id="star4" name="rating" value="4">
                                 <label for="star4" title="4 csillag"><i class="fa-solid fa-star"></i></label>
@@ -87,9 +94,9 @@
                                 <input type="radio" id="star1" name="rating" value="1">
                                 <label for="star1" title="1 csillag"><i class="fa-solid fa-star"></i></label>
                             </div>
-                            <textarea class="form-textarea" name="review" id="review" rows="5" cols="100"
-                                placeholder="Oszd meg a véleményed..." maxlength="1000"></textarea>
-                            <button class="btn btn-primary" style="margin-top: 0.5rem;">Küldés</button>
+                            <textarea class="form-textarea" name="comment" id="comment" rows="5" cols="100"
+                                placeholder="Oszd meg a véleményed... (opcionális)" maxlength="1000"></textarea>
+                            <button type="submit" class="btn btn-primary" style="margin-top: 0.5rem;">Küldés</button>
                         </div>
                     </form>
 
@@ -136,8 +143,6 @@
                         <input type="hidden" name="place_id" value="{{ $place->id }}">
 
                         @php
-                            //$isFavourite = auth()->user()->favourites->contains('place_id', $place->id);
-
                             $isFavourite =
                                 auth()->check() && auth()->user()->favourites->contains('place_id', $place->id);
                         @endphp

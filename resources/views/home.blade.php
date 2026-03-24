@@ -44,7 +44,7 @@
                     <span class="stat-label">Kedvencek</span>
                 </div>
                 <div class="stat-box">
-                    <span class="stat-number">0 <!--TODO--> </span>
+                    <span class="stat-number">{{ $reviews->count() }}</span>
                     <span class="stat-label">Értékelések</span>
                 </div>
             </div>

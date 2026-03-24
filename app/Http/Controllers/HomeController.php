@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Favourite;
+use App\Models\Review;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -25,6 +26,7 @@ class HomeController extends Controller
     public function index()
     {
         $favourites = Favourite::where('user_id', auth()->id())->get();
-        return view('home', ['favourites' => $favourites]);
+        $reviews = Review::where('user_id', auth()->id())->get();
+        return view('home', ['favourites' => $favourites, 'reviews' => $reviews]);
     }
 }

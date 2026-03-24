@@ -24,8 +24,8 @@ class StoreReviewRequest extends FormRequest
     {
         return [
             'place_id' => 'required|exists:places,id',
-            'review' => 'nullable|string|max:1000', 
-            'star' => 'required|integer|min:1|max:5'
+            'comment' => 'nullable|string|max:1000', 
+            'rating' => 'required|integer|min:1|max:5'
         ];
     }
 }
