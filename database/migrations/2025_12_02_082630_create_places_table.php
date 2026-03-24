@@ -25,8 +25,11 @@ return new class extends Migration {
             $table->longText("description")->nullable();
             $table->string("longitude")->nullable();
             $table->string("latitude")->nullable();
-            $table->boolean("outdoor_seating")->nullable();
             $table->integer("views")->nullable();
+            $table->boolean("outdoor_seating")->default(false);
+            $table->boolean("wifi")->default(false);
+            $table->boolean("pet_friendly")->default(false);
+            $table->boolean("card_payment")->default(false);
             $table->softDeletes();
             $table->timestamps();
         });

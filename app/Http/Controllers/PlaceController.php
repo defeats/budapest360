@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Place;
 use App\Http\Requests\StorePlaceRequest;
 use App\Http\Requests\UpdatePlaceRequest;
 use App\Models\Favourite;
-use Illuminate\Support\Facades\Auth;
-
+use App\Models\Place;
+use App\Models\Review;
 
 class PlaceController extends Controller
 {
@@ -16,8 +15,8 @@ class PlaceController extends Controller
      */
     public function index()
     {
-        $places = Place::with(['category'/*, 'coverImage'*/])->get(); /*TODO: multimedia (kepek, coverek) optimalizalasa*/
-        
+        $places = Place::with(['category'/* , 'coverImage' */])->get(); /* TODO: multimedia (kepek, coverek) optimalizalasa */
+
         return view('places.index', ['places' => $places]);
     }
 
@@ -52,8 +51,18 @@ class PlaceController extends Controller
 
         $favourite = Favourite::where('place_id', $place->id)->get();
         $userId = auth()->id();
+        $placeId = $place->id;
+        $hasRated = false;
 
-        return view('places.show', ['place' => $place, 'favourite' => $favourite, 'userId' => $userId]);
+        $review = Review::where('user_id', $userId)
+            ->where('place_id', $placeId)
+            ->first();
+
+        if ($review) {
+            $hasRated = true;
+        }
+
+        return view('places.show', ['place' => $place, 'favourite' => $favourite, 'userId' => $userId, 'hasRated' => $hasRated]);
     }
 
     /**

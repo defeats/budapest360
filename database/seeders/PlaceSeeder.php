@@ -28,7 +28,9 @@ class PlaceSeeder extends Seeder
                     'post_code' => '1146',
                     'address' => 'Budapest, Gundel Károly út 4.',
                     'category_id' => $restaurantCat->id,
-                    'description' => 'Budapest egyik leghíresebb és legpatinásabb étterme a Városliget szélén.'
+                    'description' => 'Budapest egyik leghíresebb és legpatinásabb étterme a Városliget szélén.',
+                    'wifi' => true,
+                    'card_payment' => true
                 ]
             );
 

@@ -59,9 +59,18 @@
                     </p>
 
                     <div class="features-row">
+                        @if ($place->outdoor_seating)
+                        <span><i class="fa-solid fa-sun-o"></i> Kültéri asztalok</span>
+                        @endif
+                        @if ($place->wifi)
                         <span><i class="fa-solid fa-wifi"></i> Wifi</span>
+                        @endif
+                        @if ($place->pet_friendly)
                         <span><i class="fa-solid fa-dog"></i> Kutyabarát</span>
-                        <span><i class="fa-solid fa-credit-card"></i> Bankkártya</span>
+                        @endif
+                        @if ($place->card_payment)
+                        <span><i class="fa-solid fa-credit-card"></i> Bankkártyás fizetés</span>
+                        @endif
                     </div>
                 </div>
 
@@ -71,34 +80,36 @@
                         <!--<button class="btn btn-primary">Írj véleményt</button>-->
                     </div>
 
-                    @if(session('error'))
+                    @if (session('error'))
                         <div class="alert alert-danger alert-dismissible fade show" role="alert">
                             {{ session('error') }}
                             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                         </div>
                     @endif
 
-                    <form action="{{ route('reviews.store') }}" method="post">
-                        @csrf
-                        <input type="hidden" name="place_id" value="{{ $place->id }}">
-                        <div class="place-review-card">
-                            <div class="review-stars">
-                                <input type="radio" id="star5" name="rating" value="5">
-                                <label for="star5" title="5 csillag"><i class="fa-solid fa-star"></i></label>
-                                <input type="radio" id="star4" name="rating" value="4">
-                                <label for="star4" title="4 csillag"><i class="fa-solid fa-star"></i></label>
-                                <input type="radio" id="star3" name="rating" value="3">
-                                <label for="star3" title="3 csillag"><i class="fa-solid fa-star"></i></label>
-                                <input type="radio" id="star2" name="rating" value="2">
-                                <label for="star2" title="2 csillag"><i class="fa-solid fa-star"></i></label>
-                                <input type="radio" id="star1" name="rating" value="1">
-                                <label for="star1" title="1 csillag"><i class="fa-solid fa-star"></i></label>
+                    @if ($hasRated === false)
+                        <form action="{{ route('reviews.store') }}" method="post">
+                            @csrf
+                            <input type="hidden" name="place_id" value="{{ $place->id }}">
+                            <div class="place-review-card">
+                                <div class="review-stars">
+                                    <input type="radio" id="star5" name="rating" value="5">
+                                    <label for="star5" title="5 csillag"><i class="fa-solid fa-star"></i></label>
+                                    <input type="radio" id="star4" name="rating" value="4">
+                                    <label for="star4" title="4 csillag"><i class="fa-solid fa-star"></i></label>
+                                    <input type="radio" id="star3" name="rating" value="3">
+                                    <label for="star3" title="3 csillag"><i class="fa-solid fa-star"></i></label>
+                                    <input type="radio" id="star2" name="rating" value="2">
+                                    <label for="star2" title="2 csillag"><i class="fa-solid fa-star"></i></label>
+                                    <input type="radio" id="star1" name="rating" value="1">
+                                    <label for="star1" title="1 csillag"><i class="fa-solid fa-star"></i></label>
+                                </div>
+                                <textarea class="form-textarea" name="comment" id="comment" rows="5" cols="100"
+                                    placeholder="Oszd meg a véleményed... (opcionális)" maxlength="1000"></textarea>
+                                <button type="submit" class="btn btn-primary" style="margin-top: 0.5rem;">Küldés</button>
                             </div>
-                            <textarea class="form-textarea" name="comment" id="comment" rows="5" cols="100"
-                                placeholder="Oszd meg a véleményed... (opcionális)" maxlength="1000"></textarea>
-                            <button type="submit" class="btn btn-primary" style="margin-top: 0.5rem;">Küldés</button>
-                        </div>
-                    </form>
+                        </form>
+                    @endif
 
                     @forelse($place->reviews as $review)
                         <div class="place-review-card">
