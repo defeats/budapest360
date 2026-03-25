@@ -29,7 +29,13 @@ return new class extends Migration {
             $table->boolean("outdoor_seating")->default(false);
             $table->boolean("wifi")->default(false);
             $table->boolean("pet_friendly")->default(false);
+            $table->boolean("family_friendly")->default(false);
             $table->boolean("card_payment")->default(false);
+            $table->boolean("free_parking")->default(false);
+            $table->boolean("free_entry")->default(false);
+            $table->boolean("photo_spot")->default(false);
+            $table->boolean("accessible")->default(false);
+            $table->boolean("student_discount")->default(false);
             $table->softDeletes();
             $table->timestamps();
         });

@@ -63,3 +63,20 @@
     font-size: 1.5rem;
     cursor: pointer;
 }
+
+.category-header {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+    padding-right: 0.5rem;
+    padding-left: 0.5rem;
+}
+
+.category-header h1{
+    margin-bottom: 1rem;
+}
+
+.category-header button{
+    margin-bottom: 0.8rem;
+}

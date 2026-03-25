@@ -2,9 +2,35 @@
 
 @section('content')
     <div class="container place-container">
-        <div style="text-align: center">
+        <div class="category-header">
             <h1>Budapesti <span class="highlight">{{ $category->name }}</span></h1>
-            <p class="subtitle">Fedezd fel a legjobb helyeket a(z) {{ $category->name }} kategóriában.</p>
+            <button class="btn btn-primary btn-filter" onclick="toggleFilter()">Szűrő</button>
+        </div>
+
+        <div class="filter-card" id="filter-card">
+            <form action="" method="GET">
+                <label for="wifi">Wi-Fi</label>
+                <input type="checkbox" name="wifi" id="wifi">
+                <label for="card_payment">Kártyás fizetés</label>
+                <input type="checkbox" name="card_payment" id="card_payment">
+                <label for="pet_friendly">Kutyabarát</label>
+                <input type="checkbox" name="pet_friendly" id="pet_friendly">
+                <label for="family_friendly">Családbarát</label>
+                <input type="checkbox" name="family_friendly" id="family_friendly">
+                <label for="free_parking">Ingyenes parkolás</label>
+                <input type="checkbox" name="free_parking" id="free_parking">
+                <label for="free_entry">Ingyenes belépés</label>
+                <input type="checkbox" name="free_entry" id="free_entry">
+                <label for="student_discount">Diákkedvezmény</label>
+                <input type="checkbox" name="student_discount" id="student_discount">
+                <label for="outdoor_seating">Kültéri asztalok</label>
+                <input type="checkbox" name="outdoor_seating" id="outdoor_seating">
+                <label for="photo_spot">Fotó pont</label>
+                <input type="checkbox" name="photo_spot" id="photo_spot">
+                <label for="accessible">Akadálymentesített</label>
+                <input type="checkbox" name="accessible" id="accessible">
+                <button type="submit">Szűrés</button>
+            </form>
         </div>
 
         <div class="card-grid">
@@ -19,7 +45,8 @@
                         <p><i class="fa-solid fa-location-dot"></i> {{ $place->address }}</p>
                         <div class="card-footer">
                             <span class="rating"><i class="fa-solid fa-star"></i> {{ $place->reviews->avg('star') }}</span>
-                            <a href="{{ route('places.show', $place->slug) }}" class="btn-link">Részletek <i class="fa-solid fa-arrow-right"></i></a>
+                            <a href="{{ route('places.show', $place->slug) }}" class="btn-link">Részletek <i
+                                    class="fa-solid fa-arrow-right"></i></a>
                         </div>
                     </div>
                 </div>

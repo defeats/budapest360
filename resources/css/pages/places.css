@@ -67,6 +67,8 @@
 /* --- SZOLGÁLTATÁSOK --- */
 .features-row {
     display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
     gap: 20px;
     color: #999999;
     font-weight: 500;

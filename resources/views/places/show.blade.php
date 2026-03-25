@@ -60,16 +60,34 @@
 
                     <div class="features-row">
                         @if ($place->outdoor_seating)
-                        <span><i class="fa-solid fa-sun-o"></i> Kültéri asztalok</span>
+                            <span><i class="fa-solid fa-chair"></i> Kültéri asztalok</span>
                         @endif
                         @if ($place->wifi)
-                        <span><i class="fa-solid fa-wifi"></i> Wifi</span>
+                            <span><i class="fa-solid fa-wifi"></i> Wifi</span>
                         @endif
                         @if ($place->pet_friendly)
-                        <span><i class="fa-solid fa-dog"></i> Kutyabarát</span>
+                            <span><i class="fa-solid fa-dog"></i> Kutyabarát</span>
                         @endif
                         @if ($place->card_payment)
-                        <span><i class="fa-solid fa-credit-card"></i> Bankkártyás fizetés</span>
+                            <span><i class="fa-solid fa-credit-card"></i> Bankkártyás fizetés</span>
+                        @endif
+                        @if ($place->photo_spot)
+                            <span><i class="fa-solid fa-camera-retro"></i> Fotó pont</span>
+                        @endif
+                        @if ($place->family_friendly)
+                            <span><i class="fa fa-child"></i> Családbarát</span>
+                        @endif
+                        @if ($place->accessible)
+                            <span><i class="fa fa-wheelchair"></i> Akadálymentesített</span>
+                        @endif
+                        @if ($place->student_discount)
+                            <span><i class="fa-solid fa-id-card"></i> Diákkedvezmény</span>
+                        @endif
+                        @if ($place->free_parking)
+                            <span><i class="fa fa-car"></i> Ingyenes parkolás</span>
+                        @endif
+                        @if ($place->free_entry)
+                            <span><i class="fa-ticket-alt"></i> Ingyenes belépés</span>
                         @endif
                     </div>
                 </div>

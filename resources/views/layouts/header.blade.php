@@ -20,6 +20,7 @@
                 <a href="{{ route('places.index') }}">Összes</a>
             </div>
 
+
             <div class="nav-auth">
                 @guest
                     <a href="{{ route('login')}}" class="btn btn-outline">Belépés</a>

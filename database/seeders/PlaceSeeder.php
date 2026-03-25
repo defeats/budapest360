@@ -30,8 +30,15 @@ class PlaceSeeder extends Seeder
                     'category_id' => $restaurantCat->id,
                     'description' => 'Budapest egyik leghíresebb és legpatinásabb étterme a Városliget szélén.',
                     'wifi' => true,
-                    'card_payment' => true
-                ]
+                    'card_payment' => true,
+                    'outdoor_seating' => true,
+                    'family_friendly' => true,
+                    'student_discount' => true,
+                    'accessible' => true,
+                    'photo_spot' => true,
+                    'free_parking' => true,
+                    'pet_friendly' => true
+                    ]
             );
 
             // kep hozzarendelese
