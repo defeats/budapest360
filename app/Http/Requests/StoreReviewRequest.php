@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Review;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
 
@@ -12,7 +13,7 @@ class StoreReviewRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        if ($this->user()->role === 'user' || $this->user()->role === 'admin') {
+        if (auth()->check() && auth()->user()->can('create', Review::class)) {
             return true;
         } else {
             return false;
@@ -27,9 +28,9 @@ class StoreReviewRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'place_id' => 'required|exists:places,id',
-            'comment' => 'nullable|string|max:1000', 
-            'rating' => 'required|integer|min:1|max:5'
+            'place_id' => ['required', 'exists:places,id'],
+            'comment' => ['nullable', 'string', 'max:1000'],
+            'star' => ['required', 'integer', 'min:1', 'max:5']
         ];
     }
 }

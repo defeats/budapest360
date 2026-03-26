@@ -24,6 +24,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role',
     ];
 
     /**
@@ -51,5 +52,9 @@ class User extends Authenticatable
 
     public function favourites() {
         return $this->hasMany(Favourite::class);
+    }
+
+    public function reviews() {
+        return $this->hasMany(Review::class);
     }
 }

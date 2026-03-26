@@ -29,19 +29,18 @@ class ReviewController extends Controller
      */
     public function store(StoreReviewRequest $request)
     {
-        if (auth()->check()) {
-            $validated = $request->validated();
-            $userId = auth()->id();
+        $this->authorize('create', Review::class);
+        $validated = $request->validated();
+        $userId = auth()->id();
 
-            $review = new Review();
-            $review->user_id = $userId;
-            $review->place_id = $validated['place_id'];
-            $review->comment = $validated['comment'];
-            $review->star = $validated['rating'];
-            $review->save();
+        $review = new Review();
+        $review->user_id = $userId;
+        $review->place_id = $validated['place_id'];
+        $review->comment = $validated['comment'];
+        $review->star = $validated['star'];
+        $review->save();
 
-            return redirect()->back()->with('success', 'Vélemény sikeresen elküldve!');
-        }
+        return redirect()->back()->with('success', 'Vélemény sikeresen elküldve!');
     }
 
     /**

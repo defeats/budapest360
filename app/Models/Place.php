@@ -2,12 +2,19 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use App\Models\Favourite;
+use App\Observers\PlaceObserver;
+use App\Policies\PlacePolicy;
+use Illuminate\Database\Eloquent\Attributes\UsePolicy;
+
+#[UsePolicy(PlacePolicy::class)]
+#[ObservedBy(PlaceObserver::class)]
 
 class Place extends Model
 {

@@ -14,6 +14,7 @@ class FavouriteController extends Controller
      */
     public function index()
     {
+        $this->authorize('viewAny', Favourite::class);
         $favourites = Favourite::with('place')->where('user_id', auth()->id())->get();
 
         return view('favourites.index', ['favourites' => $favourites]);
@@ -32,6 +33,7 @@ class FavouriteController extends Controller
      */
     public function store(StoreFavouriteRequest $request)
     {
+        $this->authorize('create', Favourite::class);
         $userId = auth()->id();
         $placeId = $request->place_id;
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Favourite;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
 
@@ -12,7 +13,7 @@ class StoreFavouriteRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        if ($this->user()->role === 'user' || $this->user()->role === 'admin') {
+        if (auth()->check() && auth()->user()->can('create', Favourite::class)) {
             return true;
         } else {
             return false;
