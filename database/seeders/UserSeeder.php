@@ -21,6 +21,14 @@ class UserSeeder extends Seeder
             'password' => bcrypt('!r|_||o3no|4|/|1'),
             'role' => 'admin'
         ]);
+
+        User::factory()->create([
+            'name' => 'Vallalko_Zoltan',
+            'email' => 'owner@bp360.hu',
+            'password' => bcrypt('ownertest'),
+            'role' => 'owner'
+        ]);
+
         User::factory(50)->create();
     }
 }

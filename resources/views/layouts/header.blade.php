@@ -42,6 +42,11 @@
                             <a href="/favourites" class="dropdown-item">
                                 <i class="fa-solid fa-heart"></i> Kedvencek
                             </a>
+                            @if (auth()->user()->role === 'admin' || auth()->user()->role === 'owner')
+                            <a href="{{ route('places.create') }}" class="dropdown-item">
+                                <i class="fa-solid fa-location-dot" style="padding-left: 0.15rem"></i> Új hely
+                            </a>
+                            @endif
                             <div class="divider"></div>
                             <form action="{{ route('logout') }}" method="POST">
                                 @csrf
