@@ -9,10 +9,11 @@
                 <h1>{{ $place->name }}</h1>
                 <p style="margin-bottom: 0.2rem"><i class="fa-solid fa-location-dot"></i> {{ $place->address }}</p>
                 <p><i class="fa-regular fa-clock"></i> <span>Nyitva: 10:00 - 22:00</span></p>
-                <p><i class="fa-solid fa-phone"></i> <span>+36 1 234 5678</span></p>
             </div>
 
             <div>
+                <p><i class="fa-solid fa-phone"></i> <span>{{ $place->phone }}</span></p>
+                <p><i class="fa-solid fa-envelope"></i> <span>{{ $place->email }}</span></p>
                 <div>
                     @for ($i = 1; $i <= 5; $i++)
                         <i class="fa-star {{ $i <= $place->reviews->avg('star') ? 'fa-solid' : 'fa-regular' }}"></i>

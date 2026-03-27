@@ -19,9 +19,9 @@ return new class extends Migration {
             $table->string("old_name")->nullable();
             $table->integer('post_code');
             $table->string("address");
-            $table->string("phone")->nullable()->unique();
-            $table->string("email")->nullable()->unique();
-            $table->string("website")->nullable()->unique();
+            $table->string("phone")->default('+36 1 234 5678');
+            $table->string("email")->default('info@bp360.hu');
+            $table->string("website")->nullable();
             $table->longText("description")->nullable();
             $table->string("longitude")->nullable();
             $table->string("latitude")->nullable();

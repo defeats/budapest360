@@ -21,11 +21,16 @@ class Place extends Model
     /** @use HasFactory<\Database\Factories\PlaceFactory> */
     use HasFactory, SoftDeletes;
 
-    protected $fillable = ["name", "slug", "category_id", "post_code", "address", "phone", "email", "description", "longitude", "latitude"];
+    protected $fillable = ["name", "slug", "category_id", "post_code", "address", "phone", "email", "description", "longitude", "latitude", "outdoor_seating", "wifi", "pet_friendly", "family_friendly", "card_payment", "free_parking", "free_entry", "photo_spot", "accessible", "student_discount"];
 
     public function category()
     {
         return $this->belongsTo(Category::class);
+    }
+
+    public function opentimes()
+    {
+        return $this->hasMany(OpenTime::class);
     }
 
     public function multimedia(): HasMany

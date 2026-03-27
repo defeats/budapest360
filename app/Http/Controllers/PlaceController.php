@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StorePlaceRequest;
 use App\Http\Requests\UpdatePlaceRequest;
+use App\Models\Category;
 use App\Models\Favourite;
 use App\Models\Place;
 use App\Models\Review;
@@ -25,7 +26,8 @@ class PlaceController extends Controller
      */
     public function create()
     {
-        return view('places.create');
+        $categories = Category::all();
+        return view('places.create', ['categories' => $categories]);
     }
 
     /**

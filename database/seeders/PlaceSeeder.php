@@ -869,6 +869,8 @@ class PlaceSeeder extends Seeder
                                 ['slug' => 'magyar-nemzeti-galeria'],
                                 [
                                     'name' => 'Magyar Nemzeti Galéria',
+                                    'phone' => '+36 1 234 5678',
+                                    'email' => 'info@bp360.hu',
                                     'post_code' => '1014',
                                     'address' => 'Budapest, Szent György tér 2.',
                                     'category_id' => $cultureCat->id,
