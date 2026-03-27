@@ -42,9 +42,15 @@ class PlaceSeeder extends Seeder
             );
 
             // kep hozzarendelese
-            $gundel->multimedia()->updateOrCreate(
-                ['image' => 'gundel-etterem_cover.jpg'], // fix fajlnev /* TODO: dinamikusra megcsinalni az API szerint
-                ['user_id' => $user->id, 'is_cover' => true]
+            $gundel->multimedias()->updateOrCreate(
+                ['file_name' => 'gundel-etterem_cover.jpg'], // fix fajlnev /* TODO: dinamikusra megcsinalni az API szerint
+                [
+                    'user_id' => $user->id,
+                    'file_path' => 'public/images',
+                    'mime_type' => 'image/jpeg',
+                    'file_size' => 0,
+                    'is_cover' => true,
+                ]
             );
 
             $virtu = Place::updateOrCreate(
@@ -58,9 +64,15 @@ class PlaceSeeder extends Seeder
                 ]
             );
 
-            $virtu->multimedia()->updateOrCreate(
-                ['image' => 'virtu_main.jpg'], // fix fajlnev /* TODO: dinamikusra megcsinalni az API szerint
-                ['user_id' => $user->id, 'is_cover' => true]
+            $virtu->multimedias()->updateOrCreate(
+                ['file_name' => 'virtu_main.jpg'], // fix fajlnev /* TODO: dinamikusra megcsinalni az API szerint
+                [
+                    'user_id' => $user->id,
+                    'file_path' => 'public/images',
+                    'mime_type' => 'image/jpeg',
+                    'file_size' => 0,
+                    'is_cover' => true,
+                ]
             );
 
             $stand = Place::updateOrCreate(
@@ -74,9 +86,15 @@ class PlaceSeeder extends Seeder
                 ]
             );
 
-            $stand->multimedia()->updateOrCreate(
-                ['image' => 'stand_main.jpg'],
-                ['user_id' => $user->id, 'is_cover' => true]
+            $stand->multimedias()->updateOrCreate(
+                ['file_name' => 'stand_main.jpg'],
+                [
+                    'user_id' => $user->id,
+                    'file_path' => 'public/images',
+                    'mime_type' => 'image/jpeg',
+                    'file_size' => 0,
+                    'is_cover' => true,
+                ]
             );
 
             $salt = Place::updateOrCreate(
@@ -90,9 +108,15 @@ class PlaceSeeder extends Seeder
                 ]
             );
 
-            $salt->multimedia()->updateOrCreate(
-                ['image' => 'salt_main.jpg'],
-                ['user_id' => $user->id, 'is_cover' => true]
+            $salt->multimedias()->updateOrCreate(
+                ['file_name' => 'salt_main.jpg'],
+                [
+                    'user_id' => $user->id,
+                    'file_path' => 'public/images',
+                    'mime_type' => 'image/jpeg',
+                    'file_size' => 0,
+                    'is_cover' => true,
+                ]
             );
 
             $rosenstein = Place::updateOrCreate(
@@ -106,9 +130,15 @@ class PlaceSeeder extends Seeder
                 ]
             );
 
-            $rosenstein->multimedia()->updateOrCreate(
-                ['image' => 'rosenstein_main.jpg'],
-                ['user_id' => $user->id, 'is_cover' => true]
+            $rosenstein->multimedias()->updateOrCreate(
+                ['file_name' => 'rosenstein_main.jpg'],
+                [
+                    'user_id' => $user->id,
+                    'file_path' => 'public/images',
+                    'mime_type' => 'image/jpeg',
+                    'file_size' => 0,
+                    'is_cover' => true,
+                ]
             );
 
             $borkonyha = Place::updateOrCreate(
@@ -122,9 +152,15 @@ class PlaceSeeder extends Seeder
                 ]
             );
 
-            $borkonyha->multimedia()->updateOrCreate(
-                ['image' => 'borkonyha_main.jpg'],
-                ['user_id' => $user->id, 'is_cover' => true]
+            $borkonyha->multimedias()->updateOrCreate(
+                ['file_name' => 'borkonyha_main.jpg'],
+                [
+                    'user_id' => $user->id,
+                    'file_path' => 'public/images',
+                    'mime_type' => 'image/jpeg',
+                    'file_size' => 0,
+                    'is_cover' => true,
+                ]
             );
 
             $babel = Place::updateOrCreate(
@@ -138,9 +174,15 @@ class PlaceSeeder extends Seeder
                 ]
             );
 
-            $babel->multimedia()->updateOrCreate(
-                ['image' => 'babel_main.jpg'],
-                ['user_id' => $user->id, 'is_cover' => true]
+            $babel->multimedias()->updateOrCreate(
+                ['file_name' => 'babel_main.jpg'],
+                [
+                    'user_id' => $user->id,
+                    'file_path' => 'public/images',
+                    'mime_type' => 'image/jpeg',
+                    'file_size' => 0,
+                    'is_cover' => true,
+                ]
             );
 
             $rumour = Place::updateOrCreate(
@@ -154,9 +196,15 @@ class PlaceSeeder extends Seeder
                 ]
             );
 
-            $rumour->multimedia()->updateOrCreate(
-                ['image' => 'rumour_main.jpg'],
-                ['user_id' => $user->id, 'is_cover' => true]
+            $rumour->multimedias()->updateOrCreate(
+                ['file_name' => 'rumour_main.jpg'],
+                [
+                    'user_id' => $user->id,
+                    'file_path' => 'public/images',
+                    'mime_type' => 'image/jpeg',
+                    'file_size' => 0,
+                    'is_cover' => true,
+                ]
             );
 
             $costes = Place::updateOrCreate(
@@ -170,9 +218,15 @@ class PlaceSeeder extends Seeder
                 ]
             );
 
-            $costes->multimedia()->updateOrCreate(
-                ['image' => 'costes_main.jpg'],
-                ['user_id' => $user->id, 'is_cover' => true]
+            $costes->multimedias()->updateOrCreate(
+                ['file_name' => 'costes_main.jpg'],
+                [
+                    'user_id' => $user->id,
+                    'file_path' => 'public/images',
+                    'mime_type' => 'image/jpeg',
+                    'file_size' => 0,
+                    'is_cover' => true,
+                ]
             );
         }
 
@@ -190,9 +244,15 @@ class PlaceSeeder extends Seeder
                 ]
             );
 
-            $halaszbastya->multimedia()->updateOrCreate(
-                ['image' => 'halaszbastya_cover.jpg'],
-                ['user_id' => $user->id, 'is_cover' => true]
+            $halaszbastya->multimedias()->updateOrCreate(
+                ['file_name' => 'halaszbastya_cover.jpg'],
+                [
+                    'user_id' => $user->id,
+                    'file_path' => 'public/images',
+                    'mime_type' => 'image/jpeg',
+                    'file_size' => 0,
+                    'is_cover' => true,
+                ]
             );
 
             $parlament = Place::updateOrCreate(
@@ -206,9 +266,15 @@ class PlaceSeeder extends Seeder
                 ]
             );
 
-            $parlament->multimedia()->updateOrCreate(
-                ['image' => 'orszaghaz_cover.jpg'],
-                ['user_id' => $user->id, 'is_cover' => true]
+            $parlament->multimedias()->updateOrCreate(
+                ['file_name' => 'orszaghaz_cover.jpg'],
+                [
+                    'user_id' => $user->id,
+                    'file_path' => 'public/images',
+                    'mime_type' => 'image/jpeg',
+                    'file_size' => 0,
+                    'is_cover' => true,
+                ]
             );
 
             $bazilika = Place::updateOrCreate(
@@ -222,9 +288,15 @@ class PlaceSeeder extends Seeder
                 ]
             );
 
-            $bazilika->multimedia()->updateOrCreate(
-                ['image' => 'bazilika_cover.jpg'],
-                ['user_id' => $user->id, 'is_cover' => true]
+            $bazilika->multimedias()->updateOrCreate(
+                ['file_name' => 'bazilika_cover.jpg'],
+                [
+                    'user_id' => $user->id,
+                    'file_path' => 'public/images',
+                    'mime_type' => 'image/jpeg',
+                    'file_size' => 0,
+                    'is_cover' => true,
+                ]
             );
 
             $hosokTere = Place::updateOrCreate(
@@ -238,9 +310,15 @@ class PlaceSeeder extends Seeder
                 ]
             );
 
-            $hosokTere->multimedia()->updateOrCreate(
-                ['image' => 'hosok_tere_cover.jpg'],
-                ['user_id' => $user->id, 'is_cover' => true]
+            $hosokTere->multimedias()->updateOrCreate(
+                ['file_name' => 'hosok_tere_cover.jpg'],
+                [
+                    'user_id' => $user->id,
+                    'file_path' => 'public/images',
+                    'mime_type' => 'image/jpeg',
+                    'file_size' => 0,
+                    'is_cover' => true,
+                ]
             );
 
             $matyasTemplom = Place::updateOrCreate(
@@ -254,9 +332,15 @@ class PlaceSeeder extends Seeder
                 ]
             );
 
-            $matyasTemplom->multimedia()->updateOrCreate(
-                ['image' => 'matyas_templom_cover.jpg'],
-                ['user_id' => $user->id, 'is_cover' => true]
+            $matyasTemplom->multimedias()->updateOrCreate(
+                ['file_name' => 'matyas_templom_cover.jpg'],
+                [
+                    'user_id' => $user->id,
+                    'file_path' => 'public/images',
+                    'mime_type' => 'image/jpeg',
+                    'file_size' => 0,
+                    'is_cover' => true,
+                ]
             );
 
             $lanchid = Place::updateOrCreate(
@@ -270,9 +354,15 @@ class PlaceSeeder extends Seeder
                 ]
             );
 
-            $lanchid->multimedia()->updateOrCreate(
-                ['image' => 'lanchid_cover.jpg'],
-                ['user_id' => $user->id, 'is_cover' => true]
+            $lanchid->multimedias()->updateOrCreate(
+                ['file_name' => 'lanchid_cover.jpg'],
+                [
+                    'user_id' => $user->id,
+                    'file_path' => 'public/images',
+                    'mime_type' => 'image/jpeg',
+                    'file_size' => 0,
+                    'is_cover' => true,
+                ]
             );
 
             $szechenyiFurdo = Place::updateOrCreate(
@@ -286,9 +376,15 @@ class PlaceSeeder extends Seeder
                 ]
             );
 
-            $szechenyiFurdo->multimedia()->updateOrCreate(
-                ['image' => 'szechenyi_furdo_cover.jpg'],
-                ['user_id' => $user->id, 'is_cover' => true]
+            $szechenyiFurdo->multimedias()->updateOrCreate(
+                ['file_name' => 'szechenyi_furdo_cover.jpg'],
+                [
+                    'user_id' => $user->id,
+                    'file_path' => 'public/images',
+                    'mime_type' => 'image/jpeg',
+                    'file_size' => 0,
+                    'is_cover' => true,
+                ]
             );
 
             $operahaz = Place::updateOrCreate(
@@ -302,9 +398,15 @@ class PlaceSeeder extends Seeder
                 ]
             );
 
-            $operahaz->multimedia()->updateOrCreate(
-                ['image' => 'operahaz_cover.jpg'],
-                ['user_id' => $user->id, 'is_cover' => true]
+            $operahaz->multimedias()->updateOrCreate(
+                ['file_name' => 'operahaz_cover.jpg'],
+                [
+                    'user_id' => $user->id,
+                    'file_path' => 'public/images',
+                    'mime_type' => 'image/jpeg',
+                    'file_size' => 0,
+                    'is_cover' => true,
+                ]
             );
 
             $zsinagoga = Place::updateOrCreate(
@@ -318,9 +420,15 @@ class PlaceSeeder extends Seeder
                 ]
             );
 
-            $zsinagoga->multimedia()->updateOrCreate(
-                ['image' => 'zsinagoga_cover.jpg'],
-                ['user_id' => $user->id, 'is_cover' => true]
+            $zsinagoga->multimedias()->updateOrCreate(
+                ['file_name' => 'zsinagoga_cover.jpg'],
+                [
+                    'user_id' => $user->id,
+                    'file_path' => 'public/images',
+                    'mime_type' => 'image/jpeg',
+                    'file_size' => 0,
+                    'is_cover' => true,
+                ]
             );
             //ejszakai elet teszt
             $nightlifeCat = Category::where('slug', 'nightlife')->first();
@@ -336,9 +444,15 @@ class PlaceSeeder extends Seeder
                     ]
                 );
 
-                $Heaven->multimedia()->updateOrCreate(
-                    ['image' => 'heaven_cover.jpg'],
-                    ['user_id' => $user->id, 'is_cover' => true]
+                $Heaven->multimedias()->updateOrCreate(
+                    ['file_name' => 'heaven_cover.jpg'],
+                    [
+                        'user_id' => $user->id,
+                        'file_path' => 'public/images',
+                        'mime_type' => 'image/jpeg',
+                        'file_size' => 0,
+                        'is_cover' => true,
+                    ]
                 );
 
                 $Instant = Place::updateOrCreate(
@@ -352,9 +466,15 @@ class PlaceSeeder extends Seeder
                     ]
                 );
 
-                $Instant->multimedia()->updateOrCreate(
-                    ['image' => 'instant_fogas_cover.jpg'],
-                    ['user_id' => $user->id, 'is_cover' => true]
+                $Instant->multimedias()->updateOrCreate(
+                    ['file_name' => 'instant_fogas_cover.jpg'],
+                    [
+                        'user_id' => $user->id,
+                        'file_path' => 'public/images',
+                        'mime_type' => 'image/jpeg',
+                        'file_size' => 0,
+                        'is_cover' => true,
+                    ]
                 );
 
                 $Szimpla = Place::updateOrCreate(
@@ -368,9 +488,15 @@ class PlaceSeeder extends Seeder
                     ]
                 );
 
-                $Szimpla->multimedia()->updateOrCreate(
-                    ['image' => 'szimpla_kert_cover.jpg'],
-                    ['user_id' => $user->id, 'is_cover' => true]
+                $Szimpla->multimedias()->updateOrCreate(
+                    ['file_name' => 'szimpla_kert_cover.jpg'],
+                    [
+                        'user_id' => $user->id,
+                        'file_path' => 'public/images',
+                        'mime_type' => 'image/jpeg',
+                        'file_size' => 0,
+                        'is_cover' => true,
+                    ]
                 );
 
                 $Akvarium = Place::updateOrCreate(
@@ -384,9 +510,15 @@ class PlaceSeeder extends Seeder
                     ]
                 );
 
-                $Akvarium->multimedia()->updateOrCreate(
-                    ['image' => 'akvarium_cover.jpg'],
-                    ['user_id' => $user->id, 'is_cover' => true]
+                $Akvarium->multimedias()->updateOrCreate(
+                    ['file_name' => 'akvarium_cover.jpg'],
+                    [
+                        'user_id' => $user->id,
+                        'file_path' => 'public/images',
+                        'mime_type' => 'image/jpeg',
+                        'file_size' => 0,
+                        'is_cover' => true,
+                    ]
                 );
 
                 $Otkert = Place::updateOrCreate(
@@ -400,9 +532,15 @@ class PlaceSeeder extends Seeder
                     ]
                 );
 
-                $Otkert->multimedia()->updateOrCreate(
-                    ['image' => 'otkert_cover.jpg'],
-                    ['user_id' => $user->id, 'is_cover' => true]
+                $Otkert->multimedias()->updateOrCreate(
+                    ['file_name' => 'otkert_cover.jpg'],
+                    [
+                        'user_id' => $user->id,
+                        'file_path' => 'public/images',
+                        'mime_type' => 'image/jpeg',
+                        'file_size' => 0,
+                        'is_cover' => true,
+                    ]
                 );
 
                 $Morrisons2 = Place::updateOrCreate(
@@ -416,9 +554,15 @@ class PlaceSeeder extends Seeder
                     ]
                 );
 
-                $Morrisons2->multimedia()->updateOrCreate(
-                    ['image' => 'morrisons2_cover.jpg'],
-                    ['user_id' => $user->id, 'is_cover' => true]
+                $Morrisons2->multimedias()->updateOrCreate(
+                    ['file_name' => 'morrisons2_cover.jpg'],
+                    [
+                        'user_id' => $user->id,
+                        'file_path' => 'public/images',
+                        'mime_type' => 'image/jpeg',
+                        'file_size' => 0,
+                        'is_cover' => true,
+                    ]
                 );
 
                 $A38 = Place::updateOrCreate(
@@ -432,9 +576,15 @@ class PlaceSeeder extends Seeder
                     ]
                 );
 
-                $A38->multimedia()->updateOrCreate(
-                    ['image' => 'a38_ship_cover.jpg'],
-                    ['user_id' => $user->id, 'is_cover' => true]
+                $A38->multimedias()->updateOrCreate(
+                    ['file_name' => 'a38_ship_cover.jpg'],
+                    [
+                        'user_id' => $user->id,
+                        'file_path' => 'public/images',
+                        'mime_type' => 'image/jpeg',
+                        'file_size' => 0,
+                        'is_cover' => true,
+                    ]
                 );
 
                 $Turbina = Place::updateOrCreate(
@@ -448,9 +598,15 @@ class PlaceSeeder extends Seeder
                     ]
                 );
 
-                $Turbina->multimedia()->updateOrCreate(
-                    ['image' => 'turbina_cover.jpg'],
-                    ['user_id' => $user->id, 'is_cover' => true]
+                $Turbina->multimedias()->updateOrCreate(
+                    ['file_name' => 'turbina_cover.jpg'],
+                    [
+                        'user_id' => $user->id,
+                        'file_path' => 'public/images',
+                        'mime_type' => 'image/jpeg',
+                        'file_size' => 0,
+                        'is_cover' => true,
+                    ]
                 );
 
                 $Doboz = Place::updateOrCreate(
@@ -464,9 +620,15 @@ class PlaceSeeder extends Seeder
                     ]
                 );
 
-                $Doboz->multimedia()->updateOrCreate(
-                    ['image' => 'doboz_cover.jpg'],
-                    ['user_id' => $user->id, 'is_cover' => true]
+                $Doboz->multimedias()->updateOrCreate(
+                    ['file_name' => 'doboz_cover.jpg'],
+                    [
+                        'user_id' => $user->id,
+                        'file_path' => 'public/images',
+                        'mime_type' => 'image/jpeg',
+                        'file_size' => 0,
+                        'is_cover' => true,
+                    ]
                 );
                 //szallasok teszt
                 $accomodationsCat = Category::where('slug', 'accomodations')->first();
@@ -481,9 +643,15 @@ class PlaceSeeder extends Seeder
                             'description' => 'Luxus szálloda a belváros szívében, elegáns szobákkal, wellness központtal és kiváló éttermekkel.'
                         ]
                     );
-                    $corinthia->multimedia()->updateOrCreate(
-                        ['image' => 'corinthia_cover.jpg'],
-                        ['user_id' => $user->id, 'is_cover' => true]
+                    $corinthia->multimedias()->updateOrCreate(
+                        ['file_name' => 'corinthia_cover.jpg'],
+                        [
+                            'user_id' => $user->id,
+                            'file_path' => 'public/images',
+                            'mime_type' => 'image/jpeg',
+                            'file_size' => 0,
+                            'is_cover' => true,
+                        ]
                     );
 
                     $newYorkPalace = Place::updateOrCreate(
@@ -496,9 +664,15 @@ class PlaceSeeder extends Seeder
                             'description' => 'A világ legszebb kávéházának otthont adó luxusszálloda, ahol a történelmi elegancia találkozik a modern kényelemmel.'
                         ]
                     );
-                    $newYorkPalace->multimedia()->updateOrCreate(
-                        ['image' => 'new_york_palace_cover.jpg'],
-                        ['user_id' => $user->id, 'is_cover' => true]
+                    $newYorkPalace->multimedias()->updateOrCreate(
+                        ['file_name' => 'new_york_palace_cover.jpg'],
+                        [
+                            'user_id' => $user->id,
+                            'file_path' => 'public/images',
+                            'mime_type' => 'image/jpeg',
+                            'file_size' => 0,
+                            'is_cover' => true,
+                        ]
                     );
 
                     $fourSeasons = Place::updateOrCreate(
@@ -511,9 +685,15 @@ class PlaceSeeder extends Seeder
                             'description' => 'Szecessziós műemléképület a Lánchíd lábánál, páratlan dunai panorámával és világszínvonalú szolgáltatásokkal.'
                         ]
                     );
-                    $fourSeasons->multimedia()->updateOrCreate(
-                        ['image' => 'four_seasons_gresham_cover.jpg'],
-                        ['user_id' => $user->id, 'is_cover' => true]
+                    $fourSeasons->multimedias()->updateOrCreate(
+                        ['file_name' => 'four_seasons_gresham_cover.jpg'],
+                        [
+                            'user_id' => $user->id,
+                            'file_path' => 'public/images',
+                            'mime_type' => 'image/jpeg',
+                            'file_size' => 0,
+                            'is_cover' => true,
+                        ]
                     );
 
                     $kempinski = Place::updateOrCreate(
@@ -526,9 +706,15 @@ class PlaceSeeder extends Seeder
                             'description' => 'Modern luxus és gasztronómiai élmények a belváros szívében, karnyújtásnyira a Váci utcától és a Duna-parttól.'
                         ]
                     );
-                    $kempinski->multimedia()->updateOrCreate(
-                        ['image' => 'kempinski_corvinus_cover.jpg'],
-                        ['user_id' => $user->id, 'is_cover' => true]
+                    $kempinski->multimedias()->updateOrCreate(
+                        ['file_name' => 'kempinski_corvinus_cover.jpg'],
+                        [
+                            'user_id' => $user->id,
+                            'file_path' => 'public/images',
+                            'mime_type' => 'image/jpeg',
+                            'file_size' => 0,
+                            'is_cover' => true,
+                        ]
                     );
 
                     $parisiUdvar = Place::updateOrCreate(
@@ -541,9 +727,15 @@ class PlaceSeeder extends Seeder
                             'description' => 'Exkluzív szálloda egy lenyűgöző, mór és gótikus stílusjegyeket ötvöző történelmi épületben, a város egyik legszebb passzázsával.'
                         ]
                     );
-                    $parisiUdvar->multimedia()->updateOrCreate(
-                        ['image' => 'parisi_udvar_cover.jpg'],
-                        ['user_id' => $user->id, 'is_cover' => true]
+                    $parisiUdvar->multimedias()->updateOrCreate(
+                        ['file_name' => 'parisi_udvar_cover.jpg'],
+                        [
+                            'user_id' => $user->id,
+                            'file_path' => 'public/images',
+                            'mime_type' => 'image/jpeg',
+                            'file_size' => 0,
+                            'is_cover' => true,
+                        ]
                     );
 
                     $ariaHotel = Place::updateOrCreate(
@@ -556,9 +748,15 @@ class PlaceSeeder extends Seeder
                             'description' => 'Zenei tematikájú boutique hotel a Szent István Bazilika mellett, egyedülálló tetőtéri bárral és panorámával.'
                         ]
                     );
-                    $ariaHotel->multimedia()->updateOrCreate(
-                        ['image' => 'aria_hotel_cover.jpg'],
-                        ['user_id' => $user->id, 'is_cover' => true]
+                    $ariaHotel->multimedias()->updateOrCreate(
+                        ['file_name' => 'aria_hotel_cover.jpg'],
+                        [
+                            'user_id' => $user->id,
+                            'file_path' => 'public/images',
+                            'mime_type' => 'image/jpeg',
+                            'file_size' => 0,
+                            'is_cover' => true,
+                        ]
                     );
 
                     $ritzCarlton = Place::updateOrCreate(
@@ -571,9 +769,15 @@ class PlaceSeeder extends Seeder
                             'description' => 'Időtlen elegancia és modern luxus találkozása a belváros központjában, pár lépésre a Fashion Street-től.'
                         ]
                     );
-                    $ritzCarlton->multimedia()->updateOrCreate(
-                        ['image' => 'ritz_carlton_cover.jpg'],
-                        ['user_id' => $user->id, 'is_cover' => true]
+                    $ritzCarlton->multimedias()->updateOrCreate(
+                        ['file_name' => 'ritz_carlton_cover.jpg'],
+                        [
+                            'user_id' => $user->id,
+                            'file_path' => 'public/images',
+                            'mime_type' => 'image/jpeg',
+                            'file_size' => 0,
+                            'is_cover' => true,
+                        ]
                     );
 
                     $hilton = Place::updateOrCreate(
@@ -586,9 +790,15 @@ class PlaceSeeder extends Seeder
                             'description' => 'A Budai Várnegyed szívében, a Halászbástya és a Mátyás-templom közvetlen szomszédságában, lenyűgöző dunai kilátással.'
                         ]
                     );
-                    $hilton->multimedia()->updateOrCreate(
-                        ['image' => 'hilton_budapest_cover.jpg'],
-                        ['user_id' => $user->id, 'is_cover' => true]
+                    $hilton->multimedias()->updateOrCreate(
+                        ['file_name' => 'hilton_budapest_cover.jpg'],
+                        [
+                            'user_id' => $user->id,
+                            'file_path' => 'public/images',
+                            'mime_type' => 'image/jpeg',
+                            'file_size' => 0,
+                            'is_cover' => true,
+                        ]
                     );
 
                     $matildPalace = Place::updateOrCreate(
@@ -601,9 +811,15 @@ class PlaceSeeder extends Seeder
                             'description' => 'Egy UNESCO világörökségi épület újjászületése, amely a Belle Époque hangulatát idézi modern köntösben.'
                         ]
                     );
-                    $matildPalace->multimedia()->updateOrCreate(
-                        ['image' => 'matild_palace_cover.jpg'],
-                        ['user_id' => $user->id, 'is_cover' => true]
+                    $matildPalace->multimedias()->updateOrCreate(
+                        ['file_name' => 'matild_palace_cover.jpg'],
+                        [
+                            'user_id' => $user->id,
+                            'file_path' => 'public/images',
+                            'mime_type' => 'image/jpeg',
+                            'file_size' => 0,
+                            'is_cover' => true,
+                        ]
                     );
 
                     $interContinental = Place::updateOrCreate(
@@ -616,9 +832,15 @@ class PlaceSeeder extends Seeder
                             'description' => 'Közvetlenül a Duna-parton elhelyezkedő szálloda, ahonnan a Budai Várra nyíló egyik legszebb kilátás tárul a vendégek elé.'
                         ]
                     );
-                    $interContinental->multimedia()->updateOrCreate(
-                        ['image' => 'intercontinental_cover.jpg'],
-                        ['user_id' => $user->id, 'is_cover' => true]
+                    $interContinental->multimedias()->updateOrCreate(
+                        ['file_name' => 'intercontinental_cover.jpg'],
+                        [
+                            'user_id' => $user->id,
+                            'file_path' => 'public/images',
+                            'mime_type' => 'image/jpeg',
+                            'file_size' => 0,
+                            'is_cover' => true,
+                        ]
                     );
                     //bevasarlokozpontok teszt
                     $mallsCat = Category::where('slug', 'malls')->first();
@@ -633,9 +855,15 @@ class PlaceSeeder extends Seeder
                                 'description' => 'Az egyik legnagyobb bevásárlóközpont Közép-Európában, több mint 400 üzlettel, éttermekkel és szórakozási lehetőségekkel.'
                             ]
                         );
-                        $westend->multimedia()->updateOrCreate(
-                            ['image' => 'westend_cover.jpg'],
-                            ['user_id' => $user->id, 'is_cover' => true]
+                        $westend->multimedias()->updateOrCreate(
+                            ['file_name' => 'westend_cover.jpg'],
+                            [
+                                'user_id' => $user->id,
+                                'file_path' => 'public/images',
+                                'mime_type' => 'image/jpeg',
+                                'file_size' => 0,
+                                'is_cover' => true,
+                            ]
                         );
 
                         $arena = Place::updateOrCreate(
@@ -648,9 +876,15 @@ class PlaceSeeder extends Seeder
                                 'description' => 'Magyarország legnagyobb alapterületű bevásárlóközpontja, amely számos világmárkának és az ország első IMAX mozijának ad otthont.'
                             ]
                         );
-                        $arena->multimedia()->updateOrCreate(
-                            ['image' => 'arena_mall_cover.jpg'],
-                            ['user_id' => $user->id, 'is_cover' => true]
+                        $arena->multimedias()->updateOrCreate(
+                            ['file_name' => 'arena_mall_cover.jpg'],
+                            [
+                                'user_id' => $user->id,
+                                'file_path' => 'public/images',
+                                'mime_type' => 'image/jpeg',
+                                'file_size' => 0,
+                                'is_cover' => true,
+                            ]
                         );
 
                         $allee = Place::updateOrCreate(
@@ -663,9 +897,15 @@ class PlaceSeeder extends Seeder
                                 'description' => 'Buda egyik legnépszerűbb plázája a XI. kerület szívében, széles divat- és gasztronómiai kínálattal.'
                             ]
                         );
-                        $allee->multimedia()->updateOrCreate(
-                            ['image' => 'allee_cover.jpg'],
-                            ['user_id' => $user->id, 'is_cover' => true]
+                        $allee->multimedias()->updateOrCreate(
+                            ['file_name' => 'allee_cover.jpg'],
+                            [
+                                'user_id' => $user->id,
+                                'file_path' => 'public/images',
+                                'mime_type' => 'image/jpeg',
+                                'file_size' => 0,
+                                'is_cover' => true,
+                            ]
                         );
 
                         $arkad = Place::updateOrCreate(
@@ -678,9 +918,15 @@ class PlaceSeeder extends Seeder
                                 'description' => 'A pesti oldal egyik legforgalmasabb bevásárlóközpontja az Örs vezér terén, több mint 200 üzlettel.'
                             ]
                         );
-                        $arkad->multimedia()->updateOrCreate(
-                            ['image' => 'arkad_budapest_cover.jpg'],
-                            ['user_id' => $user->id, 'is_cover' => true]
+                        $arkad->multimedias()->updateOrCreate(
+                            ['file_name' => 'arkad_budapest_cover.jpg'],
+                            [
+                                'user_id' => $user->id,
+                                'file_path' => 'public/images',
+                                'mime_type' => 'image/jpeg',
+                                'file_size' => 0,
+                                'is_cover' => true,
+                            ]
                         );
 
                         $mammut = Place::updateOrCreate(
@@ -693,9 +939,15 @@ class PlaceSeeder extends Seeder
                                 'description' => 'A Széna téren található dupla épületes komplexum, amely mozijáról, éttermeiről és központi elhelyezkedéséről ismert.'
                             ]
                         );
-                        $mammut->multimedia()->updateOrCreate(
-                            ['image' => 'mammut_cover.jpg'],
-                            ['user_id' => $user->id, 'is_cover' => true]
+                        $mammut->multimedias()->updateOrCreate(
+                            ['file_name' => 'mammut_cover.jpg'],
+                            [
+                                'user_id' => $user->id,
+                                'file_path' => 'public/images',
+                                'mime_type' => 'image/jpeg',
+                                'file_size' => 0,
+                                'is_cover' => true,
+                            ]
                         );
 
                         $momPark = Place::updateOrCreate(
@@ -708,9 +960,15 @@ class PlaceSeeder extends Seeder
                                 'description' => 'Prémium kategóriás bevásárlóközpont Budán, exkluzív márkákkal, elegáns környezettel és színvonalas szolgáltatásokkal.'
                             ]
                         );
-                        $momPark->multimedia()->updateOrCreate(
-                            ['image' => 'mom_park_cover.jpg'],
-                            ['user_id' => $user->id, 'is_cover' => true]
+                        $momPark->multimedias()->updateOrCreate(
+                            ['file_name' => 'mom_park_cover.jpg'],
+                            [
+                                'user_id' => $user->id,
+                                'file_path' => 'public/images',
+                                'mime_type' => 'image/jpeg',
+                                'file_size' => 0,
+                                'is_cover' => true,
+                            ]
                         );
 
                         $corvin = Place::updateOrCreate(
@@ -723,9 +981,15 @@ class PlaceSeeder extends Seeder
                                 'description' => 'A belvárosi Corvin Sétány része, modern építészettel és könnyű megközelíthetőséggel.'
                             ]
                         );
-                        $corvin->multimedia()->updateOrCreate(
-                            ['image' => 'corvin_plaza_cover.jpg'],
-                            ['user_id' => $user->id, 'is_cover' => true]
+                        $corvin->multimedias()->updateOrCreate(
+                            ['file_name' => 'corvin_plaza_cover.jpg'],
+                            [
+                                'user_id' => $user->id,
+                                'file_path' => 'public/images',
+                                'mime_type' => 'image/jpeg',
+                                'file_size' => 0,
+                                'is_cover' => true,
+                            ]
                         );
 
                         $etele = Place::updateOrCreate(
@@ -738,9 +1002,15 @@ class PlaceSeeder extends Seeder
                                 'description' => 'Buda legnagyobb és legmodernebb "okosplázája" a Kelenföldi pályaudvar közvetlen szomszédságában.'
                             ]
                         );
-                        $etele->multimedia()->updateOrCreate(
-                            ['image' => 'etele_plaza_cover.jpg'],
-                            ['user_id' => $user->id, 'is_cover' => true]
+                        $etele->multimedias()->updateOrCreate(
+                            ['file_name' => 'etele_plaza_cover.jpg'],
+                            [
+                                'user_id' => $user->id,
+                                'file_path' => 'public/images',
+                                'mime_type' => 'image/jpeg',
+                                'file_size' => 0,
+                                'is_cover' => true,
+                            ]
                         );
 
                         $dunaPlaza = Place::updateOrCreate(
@@ -753,9 +1023,15 @@ class PlaceSeeder extends Seeder
                                 'description' => 'Magyarország első bevásárlóközpontja a Váci úti irodafolyosón, moziélménnyel és számos üzlettel.'
                             ]
                         );
-                        $dunaPlaza->multimedia()->updateOrCreate(
-                            ['image' => 'duna_plaza_cover.jpg'],
-                            ['user_id' => $user->id, 'is_cover' => true]
+                        $dunaPlaza->multimedias()->updateOrCreate(
+                            ['file_name' => 'duna_plaza_cover.jpg'],
+                            [
+                                'user_id' => $user->id,
+                                'file_path' => 'public/images',
+                                'mime_type' => 'image/jpeg',
+                                'file_size' => 0,
+                                'is_cover' => true,
+                            ]
                         );
 
                         $campona = Place::updateOrCreate(
@@ -768,9 +1044,15 @@ class PlaceSeeder extends Seeder
                                 'description' => 'Családbarát bevásárlóközpont Dél-Budán, amely a Tropicariumnak és a Csodák Palotájának is otthont ad.'
                             ]
                         );
-                        $campona->multimedia()->updateOrCreate(
-                            ['image' => 'campona_cover.jpg'],
-                            ['user_id' => $user->id, 'is_cover' => true]
+                        $campona->multimedias()->updateOrCreate(
+                            ['file_name' => 'campona_cover.jpg'],
+                            [
+                                'user_id' => $user->id,
+                                'file_path' => 'public/images',
+                                'mime_type' => 'image/jpeg',
+                                'file_size' => 0,
+                                'is_cover' => true,
+                            ]
                         );
 
                         $koki = Place::updateOrCreate(
@@ -783,9 +1065,15 @@ class PlaceSeeder extends Seeder
                                 'description' => 'Közvetlen metrókapcsolattal rendelkező bevásárlóközpont Kőbánya-Kispesten, a reptérre vezető út mentén.'
                             ]
                         );
-                        $koki->multimedia()->updateOrCreate(
-                            ['image' => 'koki_cover.jpg'],
-                            ['user_id' => $user->id, 'is_cover' => true]
+                        $koki->multimedias()->updateOrCreate(
+                            ['file_name' => 'koki_cover.jpg'],
+                            [
+                                'user_id' => $user->id,
+                                'file_path' => 'public/images',
+                                'mime_type' => 'image/jpeg',
+                                'file_size' => 0,
+                                'is_cover' => true,
+                            ]
                         );
 
                         $cultureCat = Category::where('slug', 'culture')->first();
@@ -800,9 +1088,15 @@ class PlaceSeeder extends Seeder
                                     'description' => 'Impozáns épület a Hősök terén, gazdag európai művészeti gyűjteménnyel a középkortól a 20. századig.'
                                 ]
                             );
-                            $szepmuveszeti->multimedia()->updateOrCreate(
-                                ['image' => 'szepmuveszeti_cover.jpg'],
-                                ['user_id' => $user->id, 'is_cover' => true]
+                            $szepmuveszeti->multimedias()->updateOrCreate(
+                                ['file_name' => 'szepmuveszeti_cover.jpg'],
+                                [
+                                    'user_id' => $user->id,
+                                    'file_path' => 'public/images',
+                                    'mime_type' => 'image/jpeg',
+                                    'file_size' => 0,
+                                    'is_cover' => true,
+                                ]
                             );
 
                             $nemzetiMuzeum = Place::updateOrCreate(
@@ -815,9 +1109,15 @@ class PlaceSeeder extends Seeder
                                     'description' => 'Magyarország első nemzeti múzeuma, a magyar történelem tárgyi emlékeinek legfontosabb gyűjtőhelye a klasszicista stílusú palotában.'
                                 ]
                             );
-                            $nemzetiMuzeum->multimedia()->updateOrCreate(
-                                ['image' => 'magyar_nemzeti_muzeum_cover.jpg'],
-                                ['user_id' => $user->id, 'is_cover' => true]
+                            $nemzetiMuzeum->multimedias()->updateOrCreate(
+                                ['file_name' => 'magyar_nemzeti_muzeum_cover.jpg'],
+                                [
+                                    'user_id' => $user->id,
+                                    'file_path' => 'public/images',
+                                    'mime_type' => 'image/jpeg',
+                                    'file_size' => 0,
+                                    'is_cover' => true,
+                                ]
                             );
 
                             $operahaz = Place::updateOrCreate(
@@ -830,9 +1130,15 @@ class PlaceSeeder extends Seeder
                                     'description' => 'Ybl Miklós által tervezett neoreneszánsz épület, a magyar opera- és balettjátszás fellegvára az Andrássy úton.'
                                 ]
                             );
-                            $operahaz->multimedia()->updateOrCreate(
-                                ['image' => 'operahaz_cover.jpg'],
-                                ['user_id' => $user->id, 'is_cover' => true]
+                            $operahaz->multimedias()->updateOrCreate(
+                                ['file_name' => 'operahaz_cover.jpg'],
+                                [
+                                    'user_id' => $user->id,
+                                    'file_path' => 'public/images',
+                                    'mime_type' => 'image/jpeg',
+                                    'file_size' => 0,
+                                    'is_cover' => true,
+                                ]
                             );
 
                             $neprajzi = Place::updateOrCreate(
@@ -845,9 +1151,15 @@ class PlaceSeeder extends Seeder
                                     'description' => 'A Városliget kapujában álló, díjnyertes modern épület, amely a magyar és nemzetközi népi kultúra kincseit őrzi.'
                                 ]
                             );
-                            $neprajzi->multimedia()->updateOrCreate(
-                                ['image' => 'neprajzi_muzeum_cover.jpg'],
-                                ['user_id' => $user->id, 'is_cover' => true]
+                            $neprajzi->multimedias()->updateOrCreate(
+                                ['file_name' => 'neprajzi_muzeum_cover.jpg'],
+                                [
+                                    'user_id' => $user->id,
+                                    'file_path' => 'public/images',
+                                    'mime_type' => 'image/jpeg',
+                                    'file_size' => 0,
+                                    'is_cover' => true,
+                                ]
                             );
 
                             $zeneHaza = Place::updateOrCreate(
@@ -860,9 +1172,15 @@ class PlaceSeeder extends Seeder
                                     'description' => 'A Sou Fujimoto által tervezett, természetbe simuló közösségi tér és koncerthelyszín a Városliget szívében.'
                                 ]
                             );
-                            $zeneHaza->multimedia()->updateOrCreate(
-                                ['image' => 'magyar_zene_haza_cover.jpg'],
-                                ['user_id' => $user->id, 'is_cover' => true]
+                            $zeneHaza->multimedias()->updateOrCreate(
+                                ['file_name' => 'magyar_zene_haza_cover.jpg'],
+                                [
+                                    'user_id' => $user->id,
+                                    'file_path' => 'public/images',
+                                    'mime_type' => 'image/jpeg',
+                                    'file_size' => 0,
+                                    'is_cover' => true,
+                                ]
                             );
 
                             $nemzetiGaleria = Place::updateOrCreate(
@@ -877,9 +1195,15 @@ class PlaceSeeder extends Seeder
                                     'description' => 'A Budavári Palotában található legnagyobb hazai képzőművészeti gyűjtemény, amely átfogó képet ad a magyar művészet történetéről.'
                                 ]
                             );
-                            $nemzetiGaleria->multimedia()->updateOrCreate(
-                                ['image' => 'magyar_nemzeti_galeria_cover.jpg'],
-                                ['user_id' => $user->id, 'is_cover' => true]
+                            $nemzetiGaleria->multimedias()->updateOrCreate(
+                                ['file_name' => 'magyar_nemzeti_galeria_cover.jpg'],
+                                [
+                                    'user_id' => $user->id,
+                                    'file_path' => 'public/images',
+                                    'mime_type' => 'image/jpeg',
+                                    'file_size' => 0,
+                                    'is_cover' => true,
+                                ]
                             );
                         }
                     }

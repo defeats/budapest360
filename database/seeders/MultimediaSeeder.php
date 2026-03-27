@@ -6,7 +6,7 @@ use App\Models\Multimedia;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\Category;
-use APP\Models\User;
+use App\Models\User;
 use App\Models\Place;
 
 class MultimediaSeeder extends Seeder
@@ -22,30 +22,37 @@ class MultimediaSeeder extends Seeder
         $places = Place::all();
 
         if ($places->isEmpty()) {
-            $this->command->info('Nincsenek helyszínek, előbb futtasd a PlaceSeedert!');
+            $this->command->info('Rossz DBSeeder sorrend');
             return;
         }
 
         foreach ($places as $place) {
-            // minden helyhez 1 borito
+            // minden helyhez 1 borito (cover)
             Multimedia::updateOrCreate(
                 [
                     'place_id' => $place->id,
-                    'is_cover' => true
+                    'is_cover' => true,
                 ],
                 [
                     'user_id' => $user->id,
                     // fix kep /* TODO: atirni dinamikusra az API alapjan */
-                    'image' => $place->slug . '_cover.jpg', 
+                    'file_name' => $place->slug . '_cover.jpg',
+                    'file_path' => 'public/images',
+                    'mime_type' => 'image/jpeg',
+                    'file_size' => 0,
+                    'is_cover' => true,
                 ]
             );
 
-            // +1-2 extra galeria kep opcionalisan
+            // +1-2 extra galeria kep opcionálisan
             /*
             Multimedia::create([
                 'place_id' => $place->id,
                 'user_id' => $user->id,
-                'image' => $place->slug . '_extra_1.jpg',
+                'file_name' => $place->slug . '_extra_1.jpg',
+                'file_path' => 'public/images',
+                'mime_type' => 'image/jpeg',
+                'file_size' => 0,
                 'is_cover' => false
             ]);
             */

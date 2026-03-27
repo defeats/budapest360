@@ -17,7 +17,10 @@ return new class extends Migration
             $table->foreign('user_id')->references('id')->on('users')->onDelete("cascade");
             $table->unsignedBigInteger('place_id');
             $table->foreign("place_id")->references('id')->on('places')->onDelete("cascade");
-            $table->string("image")->default("placeholder.png");
+            $table->string('file_path')->default("public/images");
+            $table->string('file_name')->default("placeholder.png");
+            $table->string('mime_type')->default("jpeg");
+            $table->integer('file_size')->default(0);
             $table->boolean("is_cover")->default(false);
             $table->softDeletes();
             $table->timestamps();

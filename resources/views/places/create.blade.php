@@ -9,7 +9,7 @@
             </div>
             <div class="card">
                 <div class="card-body">
-                    <form method="POST" action="{{ route('places.store') }}">
+                    <form method="POST" action="{{ route('places.store') }}" enctype="multipart/form-data">
                         @csrf
                         <div class="input-group">
                             <label for="name">{{ __('Hely neve') }}</label>
@@ -66,18 +66,45 @@
                         </div>
 
                         <div class="input-group">
+                            <label>Galéria</label>
+                            <input type="file" name="place_images[]" accept="image/*" multiple>
+                            <div id="preview-container" style="margin-top: 10px;"></div>
+                        </div>
+
+                        <script>
+                            document.querySelector('input[name="place_images[]"]').addEventListener('change', function(event) {
+                            const container = document.getElementById('preview-container');
+                            container.innerHTML = '';
+
+                            Array.from(event.target.files).forEach(file => {
+                                const reader = new FileReader();
+                                reader.onload = function(e) {
+                                    const img = document.createElement('img');
+                                    img.src = e.target.result;
+                                    img.style.width = '100px';
+                                    img.style.margin = '5px';
+                                    img.style.borderRadius = '8px';
+                                    container.appendChild(img);
+                                }
+                                reader.readAsDataURL(file);
+                            });
+                        });
+                        </script>
+
+                        <!-- <div class="input-group">
                             <label for="opening_hours">{{ __('Nyitvatartási idő') }}</label>
                             <input type="text" id="opening_hours" name="opening_hours" placeholder="Pl. H-P: 9:00-18:00" value="{{ old('opening_hours') }}">
-                        </div>
+                        </div> -->
 
                         <div class="input-group">
                             <label for="price_range">{{ __('Ártartomány') }}</label>
                             <select id="price_range" name="price_range">
-                                <option value="" {{ old('price_range') == '' ? 'selected' : '' }}>{{ __('Válassz') }}</option>
-                                <option value="$" {{ old('price_range') == '$' ? 'selected' : '' }}>$</option>
-                                <option value="$$" {{ old('price_range') == '$$' ? 'selected' : '' }}>$$</option>
-                                <option value="$$$" {{ old('price_range') == '$$$' ? 'selected' : '' }}>$$$</option>
-                                <option value="$$$$" {{ old('price_range') == '$$$$' ? 'selected' : '' }}>$$$$</option>
+                                <option value="" {{ old('price_range') == '' ? 'selected' : '' }}>{{ __('Nem szeretném megadni') }}</option>
+                                <option value="2000 - 4000 Ft" {{ old('price_range') == '2000 - 4000 Ft' ? 'selected' : '' }}>2000 - 4000 Ft</option>
+                                <option value="4000 - 6000 Ft" {{ old('price_range') == '4000 - 6000 Ft' ? 'selected' : '' }}>4000 - 6000 Ft</option>
+                                <option value="6000 - 8000 Ft" {{ old('price_range') == '6000 - 8000 Ft' ? 'selected' : '' }}>6000 - 8000 Ft</option>
+                                <option value="8000 - 10000 Ft" {{ old('price_range') == '8000 - 10000 Ft' ? 'selected' : '' }}>8000 - 10000 Ft</option>
+                                <option value="10000 Ft felett" {{ old('price_range') == '10000 Ft felett' ? 'selected' : '' }}>10000 Ft felett</option>
                             </select>
                         </div>
 
@@ -130,11 +157,6 @@
                             <input type="checkbox" id="free_entry" name="free_entry">
                             <label for="free_entry"><i class="fa-ticket-alt"></i> {{ __('Ingyenes belépés') }}</label>
                         </div>
-
-                        <label class="remember-me" for="remember">
-                            <input type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-                            {{ __('Emlékezz rám') }}
-                        </label><br>
 
                         <button type="submit" class="btn btn-primary">
                             {{ __('Hely hozzáadása') }}

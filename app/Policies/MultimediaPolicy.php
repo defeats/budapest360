@@ -29,7 +29,7 @@ class MultimediaPolicy
      */
     public function create(User $user): bool
     {
-        if ($user->role === "admin") {
+        if ($user->role === "admin" || $user->role === "owner") {
             return true;
         } else {
             return false;
@@ -41,7 +41,7 @@ class MultimediaPolicy
      */
     public function update(User $user, Multimedia $multimedia): bool
     {
-        if ($user->role === "admin") {
+        if ($user->role === "admin" || ($user->role === "owner" && $multimedia->user_id === $user->id)) {
             return true;
         } else {
             return false;
@@ -53,7 +53,7 @@ class MultimediaPolicy
      */
     public function delete(User $user, Multimedia $multimedia): bool
     {
-        if ($user->role === "admin") {
+        if ($user->role === "admin" || ($user->role === "owner" && $multimedia->user_id === $user->id)) {
             return true;
         } else {
             return false;

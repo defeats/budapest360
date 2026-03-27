@@ -25,21 +25,22 @@
 
         <div style="margin-bottom: 3rem;">
             @php
-                $validMedia = $place->multimedia->filter(function ($media) {
-                    return file_exists(public_path('images/' . $media->image));
-                });
+                $validMedia = $place->multimedias ? $place->multimedias->filter(function ($media) {
+                    return file_exists(public_path('images/' . $media->file_name));
+                }) : collect();
+
                 $mediaCount = $validMedia->count();
             @endphp
 
             @if ($mediaCount === 1)
                 <div class="single-image-banner">
-                    <img src="/images/{{ $validMedia->first()->image }}" alt="{{ $place->name }}">
+                    <img src="{{ asset('images/' . $validMedia->first()->file_name) }}" alt="{{ $place->name }}">
                 </div>
             @elseif($mediaCount > 1)
                 <div class="place-gallery">
                     @foreach ($validMedia->take(3) as $media)
-                        <div class="gallery-item {{ $media->is_cover ? 'main-image' : '' }}">
-                            <img src="/images/{{ $media->image }}" alt="{{ $place->name }}">
+                        <div class="gallery-item {{ isset($media->is_cover) && $media->is_cover ? 'main-image' : '' }}">
+                            <img src="{{ asset('images/' . $media->file_name) }}" alt="{{ $place->name }}">
                         </div>
                     @endforeach
                 </div>
@@ -151,8 +152,7 @@
                         </div>
                     @empty
                         <div>
-                            <i class="fa-regular fa-comment-dots"></i>
-                            <p class="text-muted">Még nincs vélemény. Legyél te az első!</p>
+                            Még nincs vélemény. Legyél te az első! <i class="fa-regular fa-comment-dots"></i>
                         </div>
                     @endforelse
                 </div>

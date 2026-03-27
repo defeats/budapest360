@@ -15,5 +15,15 @@ class Multimedia extends Model
     /** @use HasFactory<\Database\Factories\MultimediaFactory> */
     use HasFactory, SoftDeletes;
 
-    protected $fillable = ["user_id", "place_id", "image"];
+    protected $fillable = ["user_id", "place_id", "file_path", "file_name", "mime_type", "file_size", "is_cover"];
+
+    public function place()
+    {
+        return $this->belongsTo(Place::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

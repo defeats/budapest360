@@ -26,6 +26,7 @@ class PlaceController extends Controller
      */
     public function create()
     {
+        $this->authorize('create', Place::class);
         $categories = Category::all();
         return view('places.create', ['categories' => $categories]);
     }
@@ -33,9 +34,53 @@ class PlaceController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StorePlaceRequest $request, $slug)
+    public function store(StorePlaceRequest $request)
     {
-        //
+        $this->authorize('create', Place::class);
+        $data = $request->validated();
+
+        if ($request->hasFile('place_images')) {
+            $place = Place::create([
+                'name' => $data['name'],
+                'slug' => $data['slug'],
+                'category_id' => $data['category_id'],
+                'post_code' => $data['post_code'],
+                'address' => $data['address'],
+                'phone' => $data['phone'],
+                'email' => $data['email'],
+                'website' => $data['website'] ?? null,
+                'description' => $data['description'],
+                'outdoor_seating' => $request->boolean('outdoor_seating'),
+                'wifi' => $request->boolean('wifi'),
+                'pet_friendly' => $request->boolean('pet_friendly'),
+                'family_friendly' => $request->boolean('family_friendly'),
+                'card_payment' => $request->boolean('card_payment'),
+                'free_parking' => $request->boolean('free_parking'),
+                'free_entry' => $request->boolean('free_entry'),
+                'photo_spot' => $request->boolean('photo_spot'),
+                'accessible' => $request->boolean('accessible'),
+                'student_discount' => $request->boolean('student_discount'),
+                'price_range' => $data['price_range'] ?? null,
+            ]);
+
+            foreach ($request->file('place_images') as $file) {
+                $path = $file->store('public/images');
+
+                $place->multimedias()->create([
+                    'place_id' => $place->id,
+                    'user_id' => auth()->id(),
+                    'file_path' => $path,
+                    'file_name' => $file->getClientOriginalName(),
+                    'mime_type' => $file->getClientMimeType(),
+                    'file_size' => $file->getSize(),
+                    'is_cover' => false
+                ]);
+            }
+        } else {
+            return redirect()->back()->with('error', 'Legalább egy képet fel kell tölteni a helyhez!');
+        }
+
+        return redirect()->route('places.index')->with('success', 'Sikeres mentés!');
     }
 
     /**
@@ -44,7 +89,7 @@ class PlaceController extends Controller
     public function show($slug)
     {
         $place = Place::where('slug', $slug)
-            ->with(['multimedia', 'category', 'reviews'])
+            ->with(['multimedias', 'category', 'reviews'])
             ->firstOrFail();
 
         if (auth()->check()) {

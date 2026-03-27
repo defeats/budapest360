@@ -57,7 +57,7 @@
             @forelse($places ?? [] as $place)
                 <div class="place-card">
                     <div class="card-image"
-                        style="background-image: url('{{ asset('images/' . ($place->multimedia->first()->image ?? 'placeholder.jpg')) }}');">
+                        style="background-image: url('{{ asset('images/' . ($place->multimedias->first()->file_name ?? 'placeholder.jpg')) }}');">
                         <div class="category-tag">{{ $category->name }}</div>
                     </div>
                     <div class="card-content">

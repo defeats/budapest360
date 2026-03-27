@@ -30,12 +30,12 @@ class StorePlaceRequest extends FormRequest
             'name' => 'required|string|max:255',
             'slug' => 'required|string|max:255|unique:places,slug',
             'category_id' => 'required|exists:categories,id',
-            'post_code' => 'required|integer',
+            'post_code' => 'required|integer|min:1007|max:1239',
             'address' => 'required|string|max:255',
             'phone' => 'required|string|max:20',
             'email' => 'required|string|email|max:255',
             'website' => 'nullable|string|max:255',
-            'description' => 'nullable|string|max:1000',
+            'description' => 'required|string|max:1000',
             'longitude' => 'nullable|string|max:255',
             'latitude' => 'nullable|string|max:255',
             'outdoor_seating' => 'boolean',
@@ -47,7 +47,10 @@ class StorePlaceRequest extends FormRequest
             'free_entry' => 'boolean',
             'photo_spot' => 'boolean',
             'accessible' => 'boolean',
-            'student_discount' => 'boolean'
+            'student_discount' => 'boolean',
+            'price_range' => 'nullable|in:2000 - 4000 Ft,4000 - 6000 Ft,6000 - 8000 Ft,8000 - 10000 Ft,10000 Ft felett',
+            'place_images'   => 'nullable|array',
+            'place_images.*' => 'image|mimes:jpeg,png,jpg|max:2048'
         ];
     }
 }
