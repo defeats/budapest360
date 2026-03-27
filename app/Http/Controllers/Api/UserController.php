@@ -34,10 +34,17 @@ class UserController extends Controller
     }
 
     public function login(Request $request){
-        $credentials = $request->validate([
+        $request->validate([
             'email' => ['required', 'email'],
-            'password' => ['required', 'string']
+            'password' => ['required', 'string'],
+            'device_id' => ['string']
         ]);
+
+        $credentials = [
+            'email' => $request->email,
+            'password' => $request->password,
+
+        ];
 
         if (!Auth::attempt($credentials)) {
             return response()->json(['message' => 'Invalid credentials'], 418);
@@ -45,11 +52,27 @@ class UserController extends Controller
 
         $user = auth()->user();
 
-        $token = $user->createToken($request->userAgent())->plainTextToken;
+        $existingToken = $user->tokens()->where('name', $request->device_id ." | ". $request->userAgent())->first();
+
+        if ($existingToken) {
+            $existingToken->delete();
+        }
+
+        $token = $user->createToken($request->device_id ." | ". $request->userAgent(), ['*'], now()->addWeek())->plainTextToken;
 
         return response()->json([
             'user' => $user,
             'token' => $token
         ], 200);
+    }
+
+    public function logout(Request $request){
+        $request->user()->currentAccessToken()->delete();
+
+        return response()->json(['msg' => 'Logged out successfully'], 200);
+    }
+
+    public function user(Request $request) {
+        return response()->json($request->user(), 200);
     }
 }
