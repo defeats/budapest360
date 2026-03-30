@@ -8,17 +8,33 @@ use App\Models\Category;
 use App\Models\Favourite;
 use App\Models\Place;
 use App\Models\Review;
+use Illuminate\Http\Request;
 
 class PlaceController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $places = Place::with(['category'/* , 'coverImage' */])->get(); /* TODO: multimedia (kepek, coverek) optimalizalasa */
+        $query = Place::with(['reviews', 'category']);
 
-        return view('places.index', ['places' => $places]);
+        if ($request->has('wifi')) $query->where('wifi', true);
+        if ($request->has('card_payment')) $query->where('card_payment', true);
+        if ($request->has('pet_friendly')) $query->where('pet_friendly', true);
+        if ($request->has('family_friendly')) $query->where('family_friendly', true);
+        if ($request->has('free_parking')) $query->where('free_parking', true);
+        if ($request->has('free_entry')) $query->where('free_entry', true);
+        if ($request->has('student_discount')) $query->where('student_discount', true);
+        if ($request->has('outdoor_seating')) $query->where('outdoor_seating', true);
+        if ($request->has('photo_spot')) $query->where('photo_spot', true);
+        if ($request->has('accessible')) $query->where('accessible', true);
+
+        $places = $query->get();
+
+        return view('places.index', [
+            'places' => $places
+        ]);
     }
 
     /**

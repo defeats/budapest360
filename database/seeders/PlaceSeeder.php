@@ -60,7 +60,8 @@ class PlaceSeeder extends Seeder
                     'post_code' => '1117',
                     'address' => 'Budapest, Dombóvári út 28.',
                     'category_id' => $restaurantCat->id,
-                    'description' => 'Budapest egyik legikonikusabb, Michelin-kalauzban ajánlott étterme, a város legmagasabb épületének tetején.'
+                    'description' => 'Budapest egyik legikonikusabb, Michelin-kalauzban ajánlott étterme, a város legmagasabb épületének tetején.',
+                    'accessible' => true
                 ]
             );
 

@@ -40,7 +40,7 @@
 
         function toggleFilter() {
             let filterCard = document.getElementById("filter-card");
-            filterCard.style.display = filterCard.style.display === 'none' ? 'block' : 'none';
+            filterCard.style.display = filterCard.style.display === 'flex' ? 'none' : 'flex';
         }
     </script>
 </body>

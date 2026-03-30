@@ -16,6 +16,16 @@
     background: var(--primary-hover);
 }
 
+::-webkit-checkbox{
+    width: 18px;
+    height: 18px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    background: var(--bg-card);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
 .mt-1 {
     margin-top: 1rem;
 }
