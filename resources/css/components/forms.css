@@ -47,6 +47,7 @@
 
 .input-group input {
     width: 100%;
+    margin-bottom: 1rem;
     padding: 0.8rem 1.2rem;
     background: rgba(255, 255, 255, 0.05);
     border: 1px solid rgba(255, 255, 255, 0.1);
@@ -65,6 +66,7 @@
 
 .input-group select {
     width: 100%;
+    margin-bottom: 1rem;
     padding: 0.8rem 1.2rem;
     background: var(--input-background);
     border: 1px solid var(--input-border-color);
@@ -178,11 +180,32 @@
     box-shadow: 0 0 8px rgba(255, 149, 0, 0.5);
 }
 
+.new-place-form-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 4rem 1rem;
+    min-width: calc(100% - 2rem);
+}
+
 .new-place-form{
+    display: flex;
+    flex-direction: column;
     background: var(--bg-card);
     width: calc(100% - 2rem);
     padding: 2.5rem;
     border-radius: 20px;
     border: 1px solid var(--border-color);
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5), var(--shadow-glow);
+}
+
+.form-columns {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.form-columns .input-group {
+    flex: 1;
+    min-width: 0;
 }

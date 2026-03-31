@@ -93,3 +93,17 @@
 .btn-filter:hover{
     background: none;
 }
+
+input[type="file"]::file-selector-button { /* probalkozni kene meg valamilyen formazassal*/
+  background-color: var(--btn-bg-color);
+  color: var(--btn-text-color);
+  border: 2px solid var(--btn-border-color);
+  border-radius: var(--btn-border-radius);
+  padding: var(--btn-padding);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+input[type="file"]::file-selector-button:hover {
+  background-color: var(--btn-hover-bg);
+}
