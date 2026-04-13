@@ -26,7 +26,7 @@
         <div style="margin-bottom: 3rem;">
             @php
                 $validMedia = $place->multimedias ? $place->multimedias->filter(function ($media) {
-                    return file_exists(public_path('images/' . $media->file_name));
+                    return file_exists(public_path($media->file_path));
                 }) : collect();
 
                 $mediaCount = $validMedia->count();
@@ -34,13 +34,13 @@
 
             @if ($mediaCount === 1)
                 <div class="single-image-banner">
-                    <img src="{{ asset('images/' . $validMedia->first()->file_name) }}" alt="{{ $place->name }}">
+                    <img src="{{ asset($validMedia->first()->file_path) }}" alt="{{ $place->name }}">
                 </div>
             @elseif($mediaCount > 1)
                 <div class="place-gallery">
                     @foreach ($validMedia->take(3) as $media)
                         <div class="gallery-item {{ isset($media->is_cover) && $media->is_cover ? 'main-image' : '' }}">
-                            <img src="{{ asset('images/' . $media->file_name) }}" alt="{{ $place->name }}">
+                            <img src="{{ asset($media->file_path) }}" alt="{{ $place->name }}">
                         </div>
                     @endforeach
                 </div>
@@ -56,9 +56,7 @@
                 <div style="margin-bottom: 2rem;">
                     <h3>A helyről</h3>
                     <hr class="divider">
-                    <p style="margin-bottom: 0.5rem">
-                        {{ $place->description ?? 'Ehhez a helyhez még nincs részletes leírás feltöltve.' }}
-                    </p>
+                    <p style="margin-bottom: 0.5rem"> {{ $place->description }} </p>
 
                     <div class="features-row">
                         @if ($place->outdoor_seating)

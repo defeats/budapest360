@@ -19,12 +19,10 @@ return new class extends Migration {
             $table->string("old_name")->nullable();
             $table->integer('post_code');
             $table->string("address");
-            $table->string("phone")->default('+36 1 234 5678');
-            $table->string("email")->default('info@bp360.hu');
+            $table->string("phone")->default('+36 1 234 5678')->unique();
+            $table->string("email")->default('info@bp360.hu')->unique();
             $table->string("website")->nullable();
             $table->longText("description")->default('Ehhez a helyhez még nem érkezett leírás. Ha ismered, oszd meg velünk!');
-            $table->string("longitude")->nullable();
-            $table->string("latitude")->nullable();
             $table->integer("views")->nullable();
             $table->boolean("outdoor_seating")->default(false);
             $table->boolean("wifi")->default(false);

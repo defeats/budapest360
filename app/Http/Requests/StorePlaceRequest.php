@@ -28,7 +28,7 @@ class StorePlaceRequest extends FormRequest
     {
         return [
             'name' => 'required|string|max:255',
-            'slug' => 'required|string|max:255|unique:places,slug',
+            'slug' => 'nullable|string|max:255|unique:places,slug',
             'category_id' => 'required|exists:categories,id',
             'post_code' => 'required|integer|min:1007|max:1239',
             'address' => 'required|string|max:255',
@@ -49,8 +49,8 @@ class StorePlaceRequest extends FormRequest
             'accessible' => 'boolean',
             'student_discount' => 'boolean',
             'price_range' => 'nullable|in:2000 - 4000 Ft,4000 - 6000 Ft,6000 - 8000 Ft,8000 - 10000 Ft,10000 Ft felett',
-            'place_images'   => 'nullable|array',
-            'place_images.*' => 'image|mimes:jpeg,png,jpg|max:2048'
+            'place_images'   => 'required|array',
+            'place_images.*' => 'image|mimes:jpeg,png,jpg|max:5096'
         ];
     }
 }

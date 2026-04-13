@@ -3,6 +3,7 @@
 namespace App\Observers;
 
 use App\Models\Place;
+use Illuminate\Support\Str;
 
 class PlaceObserver
 {
@@ -12,6 +13,7 @@ class PlaceObserver
     public function creating(Place $place): void
     {
         $place->created_by = auth()->id();
+        $place->slug = Str::slug($place->name);
     }
 
     /**

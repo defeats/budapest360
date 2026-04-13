@@ -1,6 +1,17 @@
 @extends('layouts.app')
 
 @section('content')
+
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+
     <section class="new-place-form-container">
         <div class="new-place-form">
             <div class="form-header">
@@ -17,12 +28,6 @@
                         </div>
 
                         <input id="slug" type="hidden" name="slug" value="{{ old('slug') }}">
-
-                        <script>
-                            const nameInput = document.getElementById('name').value;
-                            const slugInput = document.getElementById('slug');
-                            slugInput.value = nameInput.toLowerCase().replace(/\s+/g, '-');
-                        </script>
 
                         <div>
                             <label for="category_id">{{ __('Kategória') }}</label>

@@ -19,16 +19,26 @@ class PlaceController extends Controller
     {
         $query = Place::with(['reviews', 'category']);
 
-        if ($request->has('wifi')) $query->where('wifi', true);
-        if ($request->has('card_payment')) $query->where('card_payment', true);
-        if ($request->has('pet_friendly')) $query->where('pet_friendly', true);
-        if ($request->has('family_friendly')) $query->where('family_friendly', true);
-        if ($request->has('free_parking')) $query->where('free_parking', true);
-        if ($request->has('free_entry')) $query->where('free_entry', true);
-        if ($request->has('student_discount')) $query->where('student_discount', true);
-        if ($request->has('outdoor_seating')) $query->where('outdoor_seating', true);
-        if ($request->has('photo_spot')) $query->where('photo_spot', true);
-        if ($request->has('accessible')) $query->where('accessible', true);
+        if ($request->has('wifi'))
+            $query->where('wifi', true);
+        if ($request->has('card_payment'))
+            $query->where('card_payment', true);
+        if ($request->has('pet_friendly'))
+            $query->where('pet_friendly', true);
+        if ($request->has('family_friendly'))
+            $query->where('family_friendly', true);
+        if ($request->has('free_parking'))
+            $query->where('free_parking', true);
+        if ($request->has('free_entry'))
+            $query->where('free_entry', true);
+        if ($request->has('student_discount'))
+            $query->where('student_discount', true);
+        if ($request->has('outdoor_seating'))
+            $query->where('outdoor_seating', true);
+        if ($request->has('photo_spot'))
+            $query->where('photo_spot', true);
+        if ($request->has('accessible'))
+            $query->where('accessible', true);
 
         $places = $query->get();
 
@@ -80,15 +90,21 @@ class PlaceController extends Controller
             ]);
 
             foreach ($request->file('place_images') as $file) {
-                $path = $file->store('public/images');
+                $name = $file->getClientOriginalName();
+                $mime = $file->getClientMimeType();
+                $size = $file->getSize();
+                $saveAs = time() . '_' . $name;
+                $destinationPath = public_path('images');
+
+                $file->move($destinationPath, $saveAs);
 
                 $place->multimedias()->create([
                     'place_id' => $place->id,
                     'user_id' => auth()->id(),
-                    'file_path' => $path,
-                    'file_name' => $file->getClientOriginalName(),
-                    'mime_type' => $file->getClientMimeType(),
-                    'file_size' => $file->getSize(),
+                    'file_path' => 'images/' . $saveAs,
+                    'file_name' => $name,
+                    'mime_type' => $mime,
+                    'file_size' => $size,
                     'is_cover' => false
                 ]);
             }
