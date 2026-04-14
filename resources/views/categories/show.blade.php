@@ -3,7 +3,7 @@
 @section('content')
     <div class="container place-container">
         <div class="category-header">
-            <h1>Budapesti <span class="highlight">{{ $category->name }}</span></h1>
+            <h1>Budapesti <span class="highlight">{{ mb_strtolower($category->name) }}</span></h1>
             <button class="btn btn-primary btn-filter" onclick="toggleFilter()">Szűrő</button>
         </div>
 
@@ -109,10 +109,17 @@
         <div class="card-grid">
             @forelse($places ?? [] as $place)
                 <div class="place-card">
-                    <div class="card-image"
-                        style="background-image: url('{{ asset($place->multimedias->first()->file_path ?? 'placeholder.jpg') }}');">
-                        <div class="category-tag">{{ $category->name }}</div>
+                    <div class="card-image" style="background-image: url('{{ 
+                        $place->multimedias->first() 
+                            ? (
+                                file_exists(public_path($place->multimedias->first()->file_path))
+                                ? asset($place->multimedias->first()->file_path)
+                                : asset('images/' . $place->multimedias->first()->file_name)
+                            )
+                            : asset('placeholder.jpg') 
+                        }}');">
                     </div>
+
                     <div class="card-content">
                         <h3>{{ $place->name }}</h3>
                         <p><i class="fa-solid fa-location-dot"></i> {{ $place->address }}</p>
@@ -131,6 +138,7 @@
                         </div>
                     </div>
                 </div>
+
             @empty
                 <div class="empty">
                     <div class="empty-icon"><i class="fa-solid fa-map-pin"></i></div>
@@ -139,6 +147,7 @@
                     <a href="/" class="btn btn-link">Vissza a főoldalra</a>
                 </div>
             @endforelse
+
         </div>
     </div>
 @endsection

@@ -17,6 +17,7 @@ return new class extends Migration {
             $table->unsignedBigInteger('place_id');
             $table->foreign("place_id")->references('id')->on('places')->onDelete("cascade");
             $table->text("comment")->nullable();
+            $table->enum("price_range", ['2000 - 4000 Ft', '4000 - 6000 Ft', '6000 - 8000 Ft', '8000 - 10000 Ft', '10000 Ft felett'])->nullable();
             $table->tinyInteger("star")->unsigned();
             $table->softDeletes();
             $table->timestamps();

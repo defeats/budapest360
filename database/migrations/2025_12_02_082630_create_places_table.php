@@ -35,7 +35,6 @@ return new class extends Migration {
             $table->boolean("accessible")->default(false);
             $table->boolean("student_discount")->default(false);
             $table->enum('status', ['pending', 'approved', 'rejected'])->default('pending');
-            $table->enum('price_range', ['2000 - 4000 Ft', '4000 - 6000 Ft', '6000 - 8000 Ft', '8000 - 10000 Ft', '10000 Ft felett'])->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

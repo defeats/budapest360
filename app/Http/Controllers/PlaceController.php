@@ -6,6 +6,7 @@ use App\Http\Requests\StorePlaceRequest;
 use App\Http\Requests\UpdatePlaceRequest;
 use App\Models\Category;
 use App\Models\Favourite;
+use App\Models\OpenTime;
 use App\Models\Place;
 use App\Models\Review;
 use Illuminate\Http\Request;
@@ -85,8 +86,7 @@ class PlaceController extends Controller
                 'free_entry' => $request->boolean('free_entry'),
                 'photo_spot' => $request->boolean('photo_spot'),
                 'accessible' => $request->boolean('accessible'),
-                'student_discount' => $request->boolean('student_discount'),
-                'price_range' => $data['price_range'] ?? null,
+                'student_discount' => $request->boolean('student_discount')
             ]);
 
             foreach ($request->file('place_images') as $file) {

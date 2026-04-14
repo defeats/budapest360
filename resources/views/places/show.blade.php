@@ -4,43 +4,45 @@
     <div class="container place-detail-wrapper">
 
         <div class="place-header">
-            <div>
+            <div style="margin-bottom: 1rem;">
                 <span class="highlight category-badge">{{ $place->category->name }}</span>
                 <h1>{{ $place->name }}</h1>
-                <p style="margin-bottom: 0.2rem"><i class="fa-solid fa-location-dot"></i> {{ $place->address }}</p>
-                <p><i class="fa-regular fa-clock"></i> <span>Nyitva: 10:00 - 22:00</span></p>
-            </div>
-
-            <div>
-                <p><i class="fa-solid fa-phone"></i> <span>{{ $place->phone }}</span></p>
-                <p><i class="fa-solid fa-envelope"></i> <span>{{ $place->email }}</span></p>
-                <div>
-                    @for ($i = 1; $i <= 5; $i++)
-                        <i class="fa-star {{ $i <= $place->reviews->avg('star') ? 'fa-solid' : 'fa-regular' }}"></i>
-                    @endfor
-                </div>
-                <span>{{ $place->reviews->avg('star') }} értékelés</span>
+                @if ($place->reviews->count() > 0)
+                    <div>
+                        @for ($i = 1; $i <= 5; $i++)
+                            <i class="fa-star {{ $i <= $place->reviews->avg('star') ? 'fa-solid' : 'fa-regular' }}"></i>
+                        @endfor
+                    </div>
+                @endif       
             </div>
         </div>
 
         <div style="margin-bottom: 3rem;">
             @php
                 $validMedia = $place->multimedias ? $place->multimedias->filter(function ($media) {
-                    return file_exists(public_path($media->file_path));
-                }) : collect();
+                if (!empty($media->file_path) && file_exists(public_path($media->file_path))) {
+                    return true;
+                }
 
-                $mediaCount = $validMedia->count();
+                if (!empty($media->file_name) && file_exists(public_path('images/' . $media->file_name))) {
+                    return true;
+                }
+
+                return false;
+            }) : collect();
+
+            $mediaCount = $validMedia->count();
             @endphp
 
             @if ($mediaCount === 1)
                 <div class="single-image-banner">
-                    <img src="{{ asset($validMedia->first()->file_path) }}" alt="{{ $place->name }}">
+                    <img src="{{ str_contains($validMedia->first()->file_path, 'images/') ? asset($validMedia->first()->file_path) : asset('images/' . $validMedia->first()->file_name) }}">
                 </div>
             @elseif($mediaCount > 1)
                 <div class="place-gallery">
                     @foreach ($validMedia->take(3) as $media)
                         <div class="gallery-item {{ isset($media->is_cover) && $media->is_cover ? 'main-image' : '' }}">
-                            <img src="{{ asset($media->file_path) }}" alt="{{ $place->name }}">
+                            <img src="{{ str_contains($media->file_path, 'images/') ? asset($media->file_path) : asset('images/' . $media->file_name) }}">
                         </div>
                     @endforeach
                 </div>
@@ -95,39 +97,40 @@
                 <div>
                     <div class="section-header">
                         <h3>Vélemények</h3>
-                        <!--<button class="btn btn-primary">Írj véleményt</button>-->
                     </div>
-
-                    @if (session('error'))
-                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                            {{ session('error') }}
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                        </div>
-                    @endif
-
-                    @if ($hasRated === false)
-                        <form action="{{ route('reviews.store') }}" method="post">
-                            @csrf
-                            <input type="hidden" name="place_id" value="{{ $place->id }}">
-                            <div class="place-review-card">
-                                <div class="review-stars">
-                                    <input type="radio" id="star5" name="star" value="5">
-                                    <label for="star5" title="5 csillag"><i class="fa-solid fa-star"></i></label>
-                                    <input type="radio" id="star4" name="star" value="4">
-                                    <label for="star4" title="4 csillag"><i class="fa-solid fa-star"></i></label>
-                                    <input type="radio" id="star3" name="star" value="3">
-                                    <label for="star3" title="3 csillag"><i class="fa-solid fa-star"></i></label>
-                                    <input type="radio" id="star2" name="star" value="2">
-                                    <label for="star2" title="2 csillag"><i class="fa-solid fa-star"></i></label>
-                                    <input type="radio" id="star1" name="star" value="1">
-                                    <label for="star1" title="1 csillag"><i class="fa-solid fa-star"></i></label>
-                                </div>
-                                <textarea class="form-textarea" name="comment" id="comment" rows="5" cols="100"
-                                    placeholder="Oszd meg a véleményed... (opcionális)" maxlength="1000"></textarea>
-                                <button type="submit" class="btn btn-primary" style="margin-top: 0.5rem;">Küldés</button>
+                    
+                    @auth
+                        @if (session('error'))
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                {{ session('error') }}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                             </div>
-                        </form>
-                    @endif
+                        @endif
+
+                        @if ($hasRated === false)
+                            <form action="{{ route('reviews.store') }}" method="post">
+                                @csrf
+                                <input type="hidden" name="place_id" value="{{ $place->id }}">
+                                <div class="place-review-card">
+                                    <div class="review-stars">
+                                        <input type="radio" id="star5" name="star" value="5">
+                                        <label for="star5" title="5 csillag"><i class="fa-solid fa-star"></i></label>
+                                        <input type="radio" id="star4" name="star" value="4">
+                                        <label for="star4" title="4 csillag"><i class="fa-solid fa-star"></i></label>
+                                        <input type="radio" id="star3" name="star" value="3">
+                                        <label for="star3" title="3 csillag"><i class="fa-solid fa-star"></i></label>
+                                        <input type="radio" id="star2" name="star" value="2">
+                                        <label for="star2" title="2 csillag"><i class="fa-solid fa-star"></i></label>
+                                        <input type="radio" id="star1" name="star" value="1">
+                                        <label for="star1" title="1 csillag"><i class="fa-solid fa-star"></i></label>
+                                    </div>
+                                    <textarea class="form-textarea" name="comment" id="comment" rows="5" cols="100"
+                                        placeholder="Oszd meg a véleményed... (opcionális)" maxlength="1000"></textarea>
+                                    <button type="submit" class="btn btn-primary" style="margin-top: 0.5rem;">Küldés</button>
+                                </div>
+                            </form>
+                        @endif
+                    @endauth
 
                     @forelse($place->reviews as $review)
                         <div class="place-review-card">
@@ -149,7 +152,7 @@
                             <p>{{ $review->comment }}</p>
                         </div>
                     @empty
-                        <div>
+                        <div class="subtitle">
                             Még nincs vélemény. Legyél te az első! <i class="fa-regular fa-comment-dots"></i>
                         </div>
                     @endforelse
@@ -158,28 +161,41 @@
 
             <aside>
                 <div class="sticky-element">
-                    <h3 style="margin-bottom: 0.5rem;">Tervezés</h3>
-                    <div style="margin-bottom: 1rem;">
-                        <iframe width="100%" height="250" style="border: 1px solid #eee; border-radius: 12px;"
-                            frameborder="0" scrolling="no" marginheight="0" marginwidth="0"
-                            src="https://maps.google.com/maps?q={{ urlencode($place->address) }}&t=&z=14&ie=UTF8&iwloc=&output=embed">
-                        </iframe>
+                    <div style="margin-bottom: 2rem;">
+                        <h3 style="margin-bottom: 0.5rem;">Adatok</h3>
+                        <hr class="divider">
+                        <p><i class="fa-regular fa-clock"></i> <span>Nyitva: 10:00 - 22:00</span></p>
+                        <p style="margin-bottom: 0.2rem"><i class="fa-solid fa-location-dot"></i> {{ $place->address }}</p>
+                        <p><i class="fa-solid fa-phone"></i> <span>{{ $place->phone }}</span></p>
+                        <p><i class="fa-solid fa-envelope"></i> <span>{{ $place->email }}</span></p>
+                        @if ($place->website)
+                            <p><i class="fa-solid fa-globe"></i> <a href="{{ $place->website }}" target="_blank">{{ $place->website }}</a></p>
+                        @endif
                     </div>
+                    <div>
+                        <h3 style="margin-bottom: 1rem;">Tervezés</h3>
+                        <div style="margin-bottom: 1rem;">
+                            <iframe width="100%" height="250" style="border: 1px solid #eee; border-radius: 12px;"
+                                frameborder="0" scrolling="no" marginheight="0" marginwidth="0"
+                                src="https://maps.google.com/maps?q={{ urlencode($place->address) }}&t=&z=14&ie=UTF8&iwloc=&output=embed">
+                            </iframe>
+                        </div>
 
-                    <form action="{{ route('favourites.store') }}" method="POST">
-                        @csrf
-                        <input type="hidden" name="place_id" value="{{ $place->id }}">
+                        <form action="{{ route('favourites.store') }}" method="POST">
+                            @csrf
+                            <input type="hidden" name="place_id" value="{{ $place->id }}">
 
-                        @php
-                            $isFavourite =
-                                auth()->check() && auth()->user()->favourites->contains('place_id', $place->id);
-                        @endphp
+                            @php
+                                $isFavourite =
+                                    auth()->check() && auth()->user()->favourites->contains('place_id', $place->id);
+                            @endphp
 
-                        <button type="submit" class="btn {{ $isFavourite ? 'btn-danger' : 'btn-primary' }} btn-full">
-                            <i class="{{ $isFavourite ? 'fa-solid' : 'fa-regular' }} fa-heart"></i>
-                            {{ $isFavourite ? 'Eltávolítás a kedvencekből' : 'Mentés a kedvencekhez' }}
-                        </button>
-                    </form>
+                            <button type="submit" class="btn {{ $isFavourite ? 'btn-danger' : 'btn-primary' }} btn-full">
+                                <i class="{{ $isFavourite ? 'fa-solid' : 'fa-regular' }} fa-heart"></i>
+                                {{ $isFavourite ? 'Eltávolítás a kedvencekből' : 'Mentés a kedvencekhez' }}
+                            </button>
+                        </form>
+                    </div>
                 </div>
             </aside>
         </div>

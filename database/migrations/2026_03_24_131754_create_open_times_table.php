@@ -15,9 +15,10 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('place_id');
             $table->foreign('place_id')->references('id')->on('places');
-            $table->enum('day', ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday']);
+            $table->enum('day', ['everyday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday']);
             $table->time('opens_at');
             $table->time('closes_at');
+            $table->boolean('closed')->default(false);
             $table->softDeletes();
             $table->timestamps();
         });

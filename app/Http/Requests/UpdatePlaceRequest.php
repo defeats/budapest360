@@ -48,7 +48,6 @@ class UpdatePlaceRequest extends FormRequest
             'photo_spot' => 'boolean',
             'accessible' => 'boolean',
             'student_discount' => 'boolean',
-            'price_range' => 'enum:2000 - 4000 Ft,4000 - 6000 Ft,6000 - 8000 Ft,8000 - 10000 Ft,10000 Ft felett',
             'status' => 'enum:pending,approved,rejected',
             'place_images'   => 'nullable|array',
             'place_images.*' => 'image|mimes:jpeg,png,jpg|max:2048'
