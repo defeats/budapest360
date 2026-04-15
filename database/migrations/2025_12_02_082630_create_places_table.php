@@ -19,11 +19,10 @@ return new class extends Migration {
             $table->string("old_name")->nullable();
             $table->integer('post_code');
             $table->string("address");
-            $table->string("phone")->default('+36 1 234 5678')->unique();
-            $table->string("email")->default('info@bp360.hu')->unique();
+            $table->string("phone")->unique()->nullable(); //->default('+36 1 234 5678')
+            $table->string("email")->unique()->nullable(); //->default('info@bp360.hu')
             $table->string("website")->nullable();
             $table->longText("description")->default('Ehhez a helyhez még nem érkezett leírás. Ha ismered, oszd meg velünk!');
-            $table->integer("views")->nullable();
             $table->boolean("outdoor_seating")->default(false);
             $table->boolean("wifi")->default(false);
             $table->boolean("pet_friendly")->default(false);
@@ -34,7 +33,8 @@ return new class extends Migration {
             $table->boolean("photo_spot")->default(false);
             $table->boolean("accessible")->default(false);
             $table->boolean("student_discount")->default(false);
-            $table->enum('status', ['pending', 'approved', 'rejected'])->default('pending');
+            $table->enum('status', ['pending', 'approved', 'rejected'])->default('approved'); //majd irjuk vissza pendingre
+            $table->integer('clicks')->default(0);
             $table->softDeletes();
             $table->timestamps();
         });

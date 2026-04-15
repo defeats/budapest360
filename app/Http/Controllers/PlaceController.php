@@ -132,6 +132,7 @@ class PlaceController extends Controller
         $userId = auth()->id();
         $placeId = $place->id;
         $hasRated = false;
+        $place->increment('clicks');
 
         $review = Review::where('user_id', $userId)
             ->where('place_id', $placeId)

@@ -20,8 +20,7 @@ class CategorySeeder extends Seeder
             ['name' => 'Szállások', 'slug' => 'accomodations'],
             ['name' => 'Bevásárlóközpontok', 'slug' => 'malls'],
             ['name' => 'Kultúra', 'slug' => 'culture'],
-            ['name' => 'Népszerű', 'slug' => 'featured'],
-            ['name' => 'Egyéb', 'slug' => 'other']
+            ['name' => 'Események', 'slug' => 'events'],
         ];
 
         foreach ($categories as $c) {

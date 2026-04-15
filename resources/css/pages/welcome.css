@@ -1,0 +1,58 @@
+/* Layout Container */
+.welcome-container {
+    background-color: var(--bg-dark);
+    padding: 50px 0;
+    min-height: 100vh;
+}
+
+/* Individual Card Styling */
+.welcome-place-card {
+    background-color: var(--bg-card);
+    border: none;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.image-wrapper {
+    width: 100%;
+    height: 90vh;
+    overflow: hidden;
+}
+
+.image-wrapper::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+.place-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: scale 0.5s ease;
+}
+
+.place-info {
+    padding: 1.5rem;
+}
+
+.place-title {
+    color: var(--primary);
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.place-address {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+

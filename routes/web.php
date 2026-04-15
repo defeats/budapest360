@@ -6,13 +6,20 @@ use App\Http\Controllers\MultimediaController;
 use App\Http\Controllers\PlaceController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\HomeController;
+use App\Models\Place;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
 
 Route::get('/', function () {
-    return view('welcome');
-})->name('welcome');
+    $popularPlaces = Place::where('status', 'approved')
+        ->with('multimedias')
+        ->orderByDesc('clicks')
+        ->take(5)
+        ->get();
+
+    return view('welcome', compact('popularPlaces'));
+});
 
 /* AUTH */
 
