@@ -3,8 +3,8 @@
 @section('content')
 <div class="container place-container">
     <div class="page-header">
-        <h1>Mentett <span class="highlight">helyeid</span></h1>
-        <p class="subtitle">Itt találod az összes helyet, amit későbbre elmentettél magadnak.</p>
+        <h1>{!! __('Mentett <span class="highlight">helyeid</span>') !!}</h1>
+        <p class="subtitle">{{ __('Itt találod az összes helyet, amit későbbre elmentettél magadnak.') }}</p>
     </div>
 
     <div class="card-grid">        
@@ -18,7 +18,7 @@
                     <p><i class="fa-solid fa-location-dot"></i> {{ $favourite->place->address ?? '' }}</p>
                     <div class="card-footer">
                         <span class="rating"><i class="fa-solid fa-star"></i> {{ $favourite->place->reviews->avg('star') ?? 0 }}</span>
-                        <a href="{{ route('places.show', $favourite->place->slug) }}" class="btn-link">Részletek <i class="fa-solid fa-arrow-right"></i></a>
+                        <a href="{{ route('places.show', $favourite->place->slug) }}" class="btn-link">{{ __('Részletek') }} <i class="fa-solid fa-arrow-right"></i></a>
                     </div>
                 </div>
             </div>
@@ -27,9 +27,9 @@
                 <div class="empty-icon">
                     <i class="fa-regular fa-heart"></i>
                 </div>
-                <h2>Még nincsenek kedvenceid</h2>
-                <p>Böngéssz a budapesti helyszínek között, és kattints a szív ikonra, hogy elmentsd őket!</p>
-                <a href="/places" class="btn btn-primary">Felfedezés indítása</a>
+                <h2>{{ __('Még nincsenek kedvenceid') }}</h2>
+                <p>{{ __('Böngéssz a budapesti helyszínek között, és kattints a szív ikonra, hogy elmentsd őket!') }}</p>
+                <a href="/places" class="btn btn-primary">{{ __('Felfedezés indítása') }}</a>
             </div>
         @endforelse
     </div>

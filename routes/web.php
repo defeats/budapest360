@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
 
+App::setLocale('en'); //test
+
 Route::get('/', function () {
     $popularPlaces = Place::where('status', 'approved')
         ->with('multimedias')

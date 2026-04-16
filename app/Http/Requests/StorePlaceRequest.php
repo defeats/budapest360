@@ -52,4 +52,9 @@ class StorePlaceRequest extends FormRequest
             'place_images.*' => 'image|mimes:jpeg,png,jpg|max:5096'
         ];
     }
+    public function messages(){
+        return[
+            "place_images.*.image" => "Minden képnek képnek kell lennie.",
+        ];
+    }
 }

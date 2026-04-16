@@ -35,7 +35,7 @@
                                 @foreach ($categories as $category)
                                     <option value="{{ $category->id }}"
                                         {{ old('category_id') == $category->id ? 'selected' : '' }}>
-                                        {{ $category->name }}
+                                        {{ __($category->name) }}
                                     </option>
                                 @endforeach
                             </select>
@@ -48,7 +48,7 @@
 
                         <div>
                             <label for="address">{{ __('Cím') }}</label>
-                            <input type="text" id="address" name="address" placeholder="Pl. Fő utca 1."
+                            <input type="text" id="address" name="address" placeholder="{{ __('Pl. Fő utca 1.') }}"
                                 value="{{ old('address') }}" required>
                         </div>
 
@@ -73,7 +73,7 @@
                         </div>
 
                         <div>
-                            <label>Galéria</label>
+                            <label>{{ __('Galéria') }}</label>
                             <input type="file" name="place_images[]" accept="image/*" multiple>
                             <div id="preview-container" style="margin-top: 10px;"></div>
                         </div>
@@ -82,7 +82,7 @@
                     <div class="input-group">
                         <div class="filter-group">
                             <div>
-                                <label for="wifi">Wi-Fi</label>
+                                <label for="wifi">{{ __('Wifi') }}</label>
                                 <label class="toggle-switch" tabindex="0">
                                     <input type="checkbox" name="wifi" id="wifi"
                                         {{ request('wifi') ? 'checked' : '' }} class="toggle-switch__input" />
@@ -91,7 +91,7 @@
                             </div>
 
                             <div>
-                                <label for="card_payment">Kártyás fizetés</label>
+                                <label for="card_payment">{{ __('Bankkártyás fizetés') }}</label>
                                 <label class="toggle-switch" tabindex="0">
                                     <input type="checkbox" name="card_payment" id="card_payment"
                                         {{ request('card_payment') ? 'checked' : '' }} class="toggle-switch__input" />
@@ -100,7 +100,7 @@
                             </div>
 
                             <div>
-                                <label for="pet_friendly">Kutyabarát</label>
+                                <label for="pet_friendly">{{ __('Kutyabarát') }}</label>
                                 <label class="toggle-switch" tabindex="0">
                                     <input type="checkbox" name="pet_friendly" id="pet_friendly"
                                         {{ request('pet_friendly') ? 'checked' : '' }} class="toggle-switch__input" />
@@ -109,7 +109,7 @@
                             </div>
 
                             <div>
-                                <label for="family_friendly">Családbarát</label>
+                                <label for="family_friendly">{{ __('Családbarát') }}</label>
                                 <label class="toggle-switch" tabindex="0">
                                     <input type="checkbox" name="family_friendly" id="family_friendly"
                                         {{ request('family_friendly') ? 'checked' : '' }} class="toggle-switch__input" />
@@ -118,7 +118,7 @@
                             </div>
 
                             <div>
-                                <label for="free_parking">Ingyenes parkolás</label>
+                                <label for="free_parking">{{ __('Ingyenes parkolás') }}</label>
                                 <label class="toggle-switch" tabindex="0">
                                     <input type="checkbox" name="free_parking" id="free_parking"
                                         {{ request('free_parking') ? 'checked' : '' }} class="toggle-switch__input" />
@@ -127,7 +127,7 @@
                             </div>
 
                             <div>
-                                <label for="free_entry">Ingyenes belépés</label>
+                                <label for="free_entry">{{ __('Ingyenes belépés') }}</label>
                                 <label class="toggle-switch" tabindex="0">
                                     <input type="checkbox" name="free_entry" id="free_entry"
                                         {{ request('free_entry') ? 'checked' : '' }} class="toggle-switch__input" />
@@ -136,7 +136,7 @@
                             </div>
 
                             <div>
-                                <label for="student_discount">Diákkedvezmény</label>
+                                <label for="student_discount">{{ __('Diákkedvezmény') }}</label>
                                 <label class="toggle-switch" tabindex="0">
                                     <input type="checkbox" name="student_discount" id="student_discount"
                                         {{ request('student_discount') ? 'checked' : '' }} class="toggle-switch__input" />
@@ -145,7 +145,7 @@
                             </div>
 
                             <div>
-                                <label for="outdoor_seating">Kültéri asztalok</label>
+                                <label for="outdoor_seating">{{ __('Kültéri asztalok') }}</label>
                                 <label class="toggle-switch" tabindex="0">
                                     <input type="checkbox" name="outdoor_seating" id="outdoor_seating"
                                         {{ request('outdoor_seating') ? 'checked' : '' }} class="toggle-switch__input" />
@@ -154,7 +154,7 @@
                             </div>
 
                             <div>
-                                <label for="photo_spot">Fotó pont</label>
+                                <label for="photo_spot">{{ __('Fotó pont') }}</label>
                                 <label class="toggle-switch" tabindex="0">
                                     <input type="checkbox" name="photo_spot" id="photo_spot"
                                         {{ request('photo_spot') ? 'checked' : '' }} class="toggle-switch__input" />
@@ -163,7 +163,7 @@
                             </div>
 
                             <div>
-                                <label for="accessible">Akadálymentesített</label>
+                                <label for="accessible">{{ __('Akadálymentesített') }}</label>
                                 <label class="toggle-switch" tabindex="0">
                                     <input type="checkbox" name="accessible" id="accessible"
                                         {{ request('accessible') ? 'checked' : '' }} class="toggle-switch__input" />
@@ -179,37 +179,5 @@
             </form>
         </div>
     </section>
-
-<script>
-    document.querySelector('input[name="place_images[]"]').addEventListener('change', function(event) {
-        const container = document.getElementById('preview-container');
-        container.innerHTML = '';
-
-        Array.from(event.target.files).forEach(file => {
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                const img = document.createElement('img');
-                img.src = e.target.result;
-                img.style.width = '100px';
-                img.style.margin = '5px';
-                img.style.borderRadius = '8px';
-                container.appendChild(img);
-            }
-            reader.readAsDataURL(file);
-        });
-    });
-</script>
-
-<script>
-    const input = document.getElementById('address');
-    const prefix = "Budapest, ";
-    input.value = prefix;
-
-    input.addEventListener('input', function() {
-        if (!input.value.startsWith(prefix)) {
-            input.value = prefix;
-        }
-    });
-</script>
 
 @endsection

@@ -5,7 +5,7 @@
         <div class="hero-overlay">
             <div class="hero-content">
                 <h1>Budapest<span class="highlight">360</span></h1>
-                <p class="subtitle">Minden, ami Budapest. Egy helyen.</p>
+                <p class="subtitle">{{ __('Minden, ami Budapest. Egy helyen.') }}</p>
             </div>
         </div>
         <div class="swiper-wrapper">

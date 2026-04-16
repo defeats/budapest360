@@ -13,7 +13,7 @@ class FavouritePolicy
      */
     public function viewAny(User $user): bool
     {
-        if ($user->role === "user" || $user->role === "admin") {
+        if ($user->role === "user" || $user->role === "admin" || $user->role === "owner") {
             return true;
         } else {
             return false;
@@ -25,7 +25,7 @@ class FavouritePolicy
      */
     public function view(User $user, Favourite $favourite): bool
     {
-        if ($user->role === "user" || $user->role === "admin") {
+        if ($user->role === "user" || $user->role === "admin" || $user->role === "owner") {
             return true;
         } else {
             return false;
@@ -37,7 +37,7 @@ class FavouritePolicy
      */
     public function create(User $user): bool
     {
-        if ($user->role === "user" || $user->role === "admin") {
+        if ($user->role === "user" || $user->role === "admin" || $user->role === "owner") {
             return true;
         } else {
             return false;
@@ -49,7 +49,7 @@ class FavouritePolicy
      */
     public function update(User $user, Favourite $favourite): bool
     {
-        if ($user->role === "user" || $user->role === "admin") {
+        if ($user->role === "user" || $user->role === "admin" || $user->role === "owner") {
             if ($user->id === $favourite->user_id) {
             return true;
             } else {
@@ -65,7 +65,7 @@ class FavouritePolicy
      */
     public function delete(User $user, Favourite $favourite): bool
     {
-        if ($user->role === "user" || $user->role === "admin") {
+        if ($user->role === "user" || $user->role === "admin" || $user->role === "owner") {
             if ($user->id === $favourite->user_id) {
             return true;
             } else {

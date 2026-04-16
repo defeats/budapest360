@@ -5,7 +5,7 @@
 
         <div class="place-header">
             <div style="margin-bottom: 1rem;">
-                <span class="highlight category-badge">{{ $place->category->name }}</span>
+                <span class="highlight category-badge">{{ __($place->category->name) }}</span>
                 <h1>{{ $place->name }}</h1>
                 @if ($place->reviews->count() > 0)
                     <div>
@@ -23,11 +23,9 @@
                 if (!empty($media->file_path) && file_exists(public_path($media->file_path))) {
                     return true;
                 }
-
                 if (!empty($media->file_name) && file_exists(public_path('images/' . $media->file_name))) {
                     return true;
                 }
-
                 return false;
             }) : collect();
 
@@ -48,7 +46,7 @@
                 </div>
             @else
                 <div class="single-image-banner no-image">
-                    <p><i class="fa-regular fa-image"></i> Nincs elérhető fotó</p>
+                    <p><i class="fa-regular fa-image"></i> {{ __('Nincs elérhető fotó') }}</p>
                 </div>
             @endif
         </div>
@@ -56,53 +54,53 @@
         <div class="content-grid-layout">
             <div>
                 <div style="margin-bottom: 2rem;">
-                    <h3>A helyről</h3>
+                    <h3>{{ __('A helyről') }}</h3>
                     <hr class="divider">
                     <p style="margin-bottom: 0.5rem"> {{ $place->description }} </p>
 
                     <div class="features-row">
                         @if ($place->outdoor_seating)
-                            <span><i class="fa-solid fa-chair"></i> Kültéri asztalok</span>
+                            <span><i class="fa-solid fa-chair"></i> {{ __('Kültéri asztalok') }}</span>
                         @endif
                         @if ($place->wifi)
-                            <span><i class="fa-solid fa-wifi"></i> Wifi</span>
+                            <span><i class="fa-solid fa-wifi"></i> {{ __('Wifi') }}</span>
                         @endif
                         @if ($place->pet_friendly)
-                            <span><i class="fa-solid fa-dog"></i> Kutyabarát</span>
+                            <span><i class="fa-solid fa-dog"></i> {{ __('Kutyabarát') }}</span>
                         @endif
                         @if ($place->card_payment)
-                            <span><i class="fa-solid fa-credit-card"></i> Bankkártyás fizetés</span>
+                            <span><i class="fa-solid fa-credit-card"></i> {{ __('Bankkártyás fizetés') }}</span>
                         @endif
                         @if ($place->photo_spot)
-                            <span><i class="fa-solid fa-camera-retro"></i> Fotó pont</span>
+                            <span><i class="fa-solid fa-camera-retro"></i> {{ __('Fotó pont') }}</span>
                         @endif
                         @if ($place->family_friendly)
-                            <span><i class="fa fa-child"></i> Családbarát</span>
+                            <span><i class="fa fa-child"></i> {{ __('Családbarát') }}</span>
                         @endif
                         @if ($place->accessible)
-                            <span><i class="fa fa-wheelchair"></i> Akadálymentesített</span>
+                            <span><i class="fa fa-wheelchair"></i> {{ __('Akadálymentesített') }}</span>
                         @endif
                         @if ($place->student_discount)
-                            <span><i class="fa-solid fa-id-card"></i> Diákkedvezmény</span>
+                            <span><i class="fa-solid fa-id-card"></i> {{ __('Diákkedvezmény') }}</span>
                         @endif
                         @if ($place->free_parking)
-                            <span><i class="fa fa-car"></i> Ingyenes parkolás</span>
+                            <span><i class="fa fa-car"></i> {{ __('Ingyenes parkolás') }}</span>
                         @endif
                         @if ($place->free_entry)
-                            <span><i class="fa-ticket-alt"></i> Ingyenes belépés</span>
+                            <span><i class="fa-ticket-alt"></i> {{ __('Ingyenes belépés') }}</span>
                         @endif
                     </div>
                 </div>
 
                 <div>
                     <div class="section-header">
-                        <h3>Vélemények</h3>
+                        <h3>{{ __('Vélemények') }}</h3>
                     </div>
                     
                     @auth
                         @if (session('error'))
                             <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                {{ session('error') }}
+                                {{ __(session('error')) }}
                                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                             </div>
                         @endif
@@ -114,19 +112,19 @@
                                 <div class="place-review-card">
                                     <div class="review-stars">
                                         <input type="radio" id="star5" name="star" value="5">
-                                        <label for="star5" title="5 csillag"><i class="fa-solid fa-star"></i></label>
+                                        <label for="star5" title="{{ __('5 csillag') }}"><i class="fa-solid fa-star"></i></label>
                                         <input type="radio" id="star4" name="star" value="4">
-                                        <label for="star4" title="4 csillag"><i class="fa-solid fa-star"></i></label>
+                                        <label for="star4" title="{{ __('4 csillag') }}"><i class="fa-solid fa-star"></i></label>
                                         <input type="radio" id="star3" name="star" value="3">
-                                        <label for="star3" title="3 csillag"><i class="fa-solid fa-star"></i></label>
+                                        <label for="star3" title="{{ __('3 csillag') }}"><i class="fa-solid fa-star"></i></label>
                                         <input type="radio" id="star2" name="star" value="2">
-                                        <label for="star2" title="2 csillag"><i class="fa-solid fa-star"></i></label>
+                                        <label for="star2" title="{{ __('2 csillag') }}"><i class="fa-solid fa-star"></i></label>
                                         <input type="radio" id="star1" name="star" value="1">
-                                        <label for="star1" title="1 csillag"><i class="fa-solid fa-star"></i></label>
+                                        <label for="star1" title="{{ __('1 csillag') }}"><i class="fa-solid fa-star"></i></label>
                                     </div>
                                     <textarea class="form-textarea" name="comment" id="comment" rows="5" cols="100"
-                                        placeholder="Oszd meg a véleményed... (opcionális)" maxlength="1000"></textarea>
-                                    <button type="submit" class="btn btn-primary" style="margin-top: 0.5rem;">Küldés</button>
+                                        placeholder="{{ __('Oszd meg a véleményed... (opcionális)') }}" maxlength="1000"></textarea>
+                                    <button type="submit" class="btn btn-primary" style="margin-top: 0.5rem;">{{ __('Küldés') }}</button>
                                 </div>
                             </form>
                         @endif
@@ -136,8 +134,6 @@
                         <div class="place-review-card">
                             <div class="review-header">
                                 <div class="user-info">
-                                    <!--<div class="avatar-circle">{{ substr($review->user->name, 0, 1) }}</div>-->
-                                    <!--TODO: Avatar megcsinalasa ha belefer az idobe..-->
                                     <div>
                                         <strong>{{ $review->user->name }}</strong><br>
                                         <small class="text-muted">{{ $review->created_at->format('Y. m. d.') }}</small>
@@ -153,7 +149,7 @@
                         </div>
                     @empty
                         <div class="subtitle">
-                            Még nincs vélemény. Legyél te az első! <i class="fa-regular fa-comment-dots"></i>
+                            {{ __('Még nincs vélemény. Legyél te az első!') }} <i class="fa-regular fa-comment-dots"></i>
                         </div>
                     @endforelse
                 </div>
@@ -162,9 +158,9 @@
             <aside>
                 <div class="sticky-element">
                     <div style="margin-bottom: 2rem;">
-                        <h3 style="margin-bottom: 0.5rem;">Adatok</h3>
+                        <h3 style="margin-bottom: 0.5rem;">{{ __('Adatok') }}</h3>
                         <hr class="divider">
-                        <p><i class="fa-regular fa-clock"></i> <span>Nyitva: 10:00 - 22:00</span></p>
+                        <p><i class="fa-regular fa-clock"></i> <span>{{ __('Nyitva') }}: 10:00 - 22:00</span></p>
                         <p style="margin-bottom: 0.2rem"><i class="fa-solid fa-location-dot"></i> {{ $place->address }}</p>
                         <p><i class="fa-solid fa-phone"></i> <span>{{ $place->phone }}</span></p>
                         <p><i class="fa-solid fa-envelope"></i> <span>{{ $place->email }}</span></p>
@@ -173,7 +169,7 @@
                         @endif
                     </div>
                     <div>
-                        <h3 style="margin-bottom: 1rem;">Tervezés</h3>
+                        <h3 style="margin-bottom: 1rem;">{{ __('Tervezés') }}</h3>
                         <div style="margin-bottom: 1rem;">
                             <iframe width="100%" height="250" style="border: 1px solid #eee; border-radius: 12px;"
                                 frameborder="0" scrolling="no" marginheight="0" marginwidth="0"
@@ -192,7 +188,7 @@
 
                             <button type="submit" class="btn {{ $isFavourite ? 'btn-danger' : 'btn-primary' }} btn-full">
                                 <i class="{{ $isFavourite ? 'fa-solid' : 'fa-regular' }} fa-heart"></i>
-                                {{ $isFavourite ? 'Eltávolítás a kedvencekből' : 'Mentés a kedvencekhez' }}
+                                {{ $isFavourite ? __('Eltávolítás a kedvencekből') : __('Mentés a kedvencekhez') }}
                             </button>
                         </form>
                     </div>
