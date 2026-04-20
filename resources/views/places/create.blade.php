@@ -84,8 +84,8 @@
                             <div>
                                 <label for="wifi">{{ __('Wifi') }}</label>
                                 <label class="toggle-switch" tabindex="0">
-                                    <input type="checkbox" name="wifi" id="wifi"
-                                        {{ request('wifi') ? 'checked' : '' }} class="toggle-switch__input" />
+                                    <input type="checkbox" name="wifi" id="wifi" value="1" 
+                                    {{ old('wifi', $existingValue ?? false) ? 'checked' : '' }} class="toggle-switch__input" />
                                     <span class="toggle-switch__slider"></span>
                                 </label>
                             </div>
@@ -93,8 +93,8 @@
                             <div>
                                 <label for="card_payment">{{ __('Bankkártyás fizetés') }}</label>
                                 <label class="toggle-switch" tabindex="0">
-                                    <input type="checkbox" name="card_payment" id="card_payment"
-                                        {{ request('card_payment') ? 'checked' : '' }} class="toggle-switch__input" />
+                                    <input type="checkbox" name="card_payment" id="card_payment" value="1"
+                                        {{ old('card_payment', $existingValue ?? false) ? 'checked' : '' }} class="toggle-switch__input" />
                                     <span class="toggle-switch__slider"></span>
                                 </label>
                             </div>
@@ -102,8 +102,8 @@
                             <div>
                                 <label for="pet_friendly">{{ __('Kutyabarát') }}</label>
                                 <label class="toggle-switch" tabindex="0">
-                                    <input type="checkbox" name="pet_friendly" id="pet_friendly"
-                                        {{ request('pet_friendly') ? 'checked' : '' }} class="toggle-switch__input" />
+                                    <input type="checkbox" name="pet_friendly" id="pet_friendly" value="1"
+                                        {{ old('pet_friendly', $existingValue ?? false) ? 'checked' : '' }} class="toggle-switch__input" />
                                     <span class="toggle-switch__slider"></span>
                                 </label>
                             </div>
@@ -111,8 +111,8 @@
                             <div>
                                 <label for="family_friendly">{{ __('Családbarát') }}</label>
                                 <label class="toggle-switch" tabindex="0">
-                                    <input type="checkbox" name="family_friendly" id="family_friendly"
-                                        {{ request('family_friendly') ? 'checked' : '' }} class="toggle-switch__input" />
+                                    <input type="checkbox" name="family_friendly" id="family_friendly" value="1"
+                                        {{ old('family_friendly', $existingValue ?? false) ? 'checked' : '' }} class="toggle-switch__input" />
                                     <span class="toggle-switch__slider"></span>
                                 </label>
                             </div>
@@ -120,8 +120,8 @@
                             <div>
                                 <label for="free_parking">{{ __('Ingyenes parkolás') }}</label>
                                 <label class="toggle-switch" tabindex="0">
-                                    <input type="checkbox" name="free_parking" id="free_parking"
-                                        {{ request('free_parking') ? 'checked' : '' }} class="toggle-switch__input" />
+                                    <input type="checkbox" name="free_parking" id="free_parking" value="1"
+                                        {{ old('free_parking', $existingValue ?? false) ? 'checked' : '' }} class="toggle-switch__input" />
                                     <span class="toggle-switch__slider"></span>
                                 </label>
                             </div>
@@ -129,8 +129,8 @@
                             <div>
                                 <label for="free_entry">{{ __('Ingyenes belépés') }}</label>
                                 <label class="toggle-switch" tabindex="0">
-                                    <input type="checkbox" name="free_entry" id="free_entry"
-                                        {{ request('free_entry') ? 'checked' : '' }} class="toggle-switch__input" />
+                                    <input type="checkbox" name="free_entry" id="free_entry" value="1"
+                                         {{ old('free_entry', $existingValue ?? false) ? 'checked' : '' }} class="toggle-switch__input" />
                                     <span class="toggle-switch__slider"></span>
                                 </label>
                             </div>
@@ -138,8 +138,8 @@
                             <div>
                                 <label for="student_discount">{{ __('Diákkedvezmény') }}</label>
                                 <label class="toggle-switch" tabindex="0">
-                                    <input type="checkbox" name="student_discount" id="student_discount"
-                                        {{ request('student_discount') ? 'checked' : '' }} class="toggle-switch__input" />
+                                    <input type="checkbox" name="student_discount" id="student_discount" value="1"
+                                        {{ old('student_discount', $existingValue ?? false) ? 'checked' : '' }} class="toggle-switch__input" />
                                     <span class="toggle-switch__slider"></span>
                                 </label>
                             </div>
@@ -147,8 +147,8 @@
                             <div>
                                 <label for="outdoor_seating">{{ __('Kültéri asztalok') }}</label>
                                 <label class="toggle-switch" tabindex="0">
-                                    <input type="checkbox" name="outdoor_seating" id="outdoor_seating"
-                                        {{ request('outdoor_seating') ? 'checked' : '' }} class="toggle-switch__input" />
+                                    <input type="checkbox" name="outdoor_seating" id="outdoor_seating" value="1"
+                                        {{ old('outdoor_seating', $existingValue ?? false) ? 'checked' : '' }} class="toggle-switch__input" />
                                     <span class="toggle-switch__slider"></span>
                                 </label>
                             </div>
@@ -156,8 +156,8 @@
                             <div>
                                 <label for="photo_spot">{{ __('Fotó pont') }}</label>
                                 <label class="toggle-switch" tabindex="0">
-                                    <input type="checkbox" name="photo_spot" id="photo_spot"
-                                        {{ request('photo_spot') ? 'checked' : '' }} class="toggle-switch__input" />
+                                    <input type="checkbox" name="photo_spot" id="photo_spot" value="1"
+                                        {{ old('photo_spot', $existingValue ?? false) ? 'checked' : '' }} class="toggle-switch__input" />
                                     <span class="toggle-switch__slider"></span>
                                 </label>
                             </div>
@@ -165,8 +165,8 @@
                             <div>
                                 <label for="accessible">{{ __('Akadálymentesített') }}</label>
                                 <label class="toggle-switch" tabindex="0">
-                                    <input type="checkbox" name="accessible" id="accessible"
-                                        {{ request('accessible') ? 'checked' : '' }} class="toggle-switch__input" />
+                                    <input type="checkbox" name="accessible" id="accessible" value="1"
+                                        {{ old('accessible', $existingValue ?? false) ? 'checked' : '' }} class="toggle-switch__input" />
                                     <span class="toggle-switch__slider"></span>
                                 </label>
                             </div>

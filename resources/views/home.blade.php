@@ -3,7 +3,7 @@
 @section('content')
 <div class="container profile-container">
     <div style="text-align: center">
-        <h1>{{ __('Szia,') }} <span class="highlight">{{ Auth::user()->name }}</span>!</h1>
+        <h1>{{ __('Szia, ') }} <span class="highlight">{{ Auth::user()->name }}</span>!</h1>
         <p class="subtitle">{{ __('Itt kezelheted a profilodat és a mentett helyeidet.') }}</p>
     </div>
 
@@ -36,7 +36,7 @@
         <div>
             <div class="card-header">
                 <i class="fa-solid fa-chart-line"></i>
-                <h3>Aktivitás</h3>
+                <h3>{{ __('Aktivitás') }}</h3>
             </div>
             <div class="stats-grid">
                 <div class="stat-box">

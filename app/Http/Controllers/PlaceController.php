@@ -72,7 +72,7 @@ class PlaceController extends Controller
                 'slug' => $data['slug'],
                 'category_id' => $data['category_id'],
                 'post_code' => $data['post_code'],
-                'address' => $data['address'],
+                'address' => 'Budapest, ' . $data['address'],
                 'phone' => $data['phone'],
                 'email' => $data['email'],
                 'website' => $data['website'] ?? null,
@@ -108,10 +108,7 @@ class PlaceController extends Controller
                     'is_cover' => false
                 ]);
             }
-        } else {
-            return redirect()->back()->with('error', 'Legalább egy képet fel kell tölteni a helyhez!');
         }
-
         return redirect()->route('places.index')->with('success', 'Sikeres mentés!');
     }
 
