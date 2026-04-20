@@ -49,7 +49,6 @@ class PlaceSeeder extends Seeder
                     'file_path' => 'public/images',
                     'mime_type' => 'image/jpeg',
                     'file_size' => 0,
-                    'is_cover' => true,
                 ]
             );
 
@@ -72,7 +71,6 @@ class PlaceSeeder extends Seeder
                     'file_path' => 'public/images',
                     'mime_type' => 'image/jpeg',
                     'file_size' => 0,
-                    'is_cover' => true,
                 ]
             );
 
@@ -94,7 +92,6 @@ class PlaceSeeder extends Seeder
                     'file_path' => 'public/images',
                     'mime_type' => 'image/jpeg',
                     'file_size' => 0,
-                    'is_cover' => true,
                 ]
             );
 
@@ -116,7 +113,6 @@ class PlaceSeeder extends Seeder
                     'file_path' => 'public/images',
                     'mime_type' => 'image/jpeg',
                     'file_size' => 0,
-                    'is_cover' => true,
                 ]
             );
 
@@ -138,7 +134,6 @@ class PlaceSeeder extends Seeder
                     'file_path' => 'public/images',
                     'mime_type' => 'image/jpeg',
                     'file_size' => 0,
-                    'is_cover' => true,
                 ]
             );
 
@@ -160,7 +155,6 @@ class PlaceSeeder extends Seeder
                     'file_path' => 'public/images',
                     'mime_type' => 'image/jpeg',
                     'file_size' => 0,
-                    'is_cover' => true,
                 ]
             );
 
@@ -182,7 +176,6 @@ class PlaceSeeder extends Seeder
                     'file_path' => 'public/images',
                     'mime_type' => 'image/jpeg',
                     'file_size' => 0,
-                    'is_cover' => true,
                 ]
             );
 
@@ -204,7 +197,6 @@ class PlaceSeeder extends Seeder
                     'file_path' => 'public/images',
                     'mime_type' => 'image/jpeg',
                     'file_size' => 0,
-                    'is_cover' => true,
                 ]
             );
 
@@ -226,7 +218,6 @@ class PlaceSeeder extends Seeder
                     'file_path' => 'public/images',
                     'mime_type' => 'image/jpeg',
                     'file_size' => 0,
-                    'is_cover' => true,
                 ]
             );
         }
@@ -252,7 +243,6 @@ class PlaceSeeder extends Seeder
                     'file_path' => 'public/images',
                     'mime_type' => 'image/jpeg',
                     'file_size' => 0,
-                    'is_cover' => true,
                 ]
             );
 
@@ -274,7 +264,6 @@ class PlaceSeeder extends Seeder
                     'file_path' => 'public/images',
                     'mime_type' => 'image/jpeg',
                     'file_size' => 0,
-                    'is_cover' => true,
                 ]
             );
 
@@ -296,7 +285,6 @@ class PlaceSeeder extends Seeder
                     'file_path' => 'public/images',
                     'mime_type' => 'image/jpeg',
                     'file_size' => 0,
-                    'is_cover' => true,
                 ]
             );
 
@@ -318,7 +306,6 @@ class PlaceSeeder extends Seeder
                     'file_path' => 'public/images',
                     'mime_type' => 'image/jpeg',
                     'file_size' => 0,
-                    'is_cover' => true,
                 ]
             );
 
@@ -340,7 +327,6 @@ class PlaceSeeder extends Seeder
                     'file_path' => 'public/images',
                     'mime_type' => 'image/jpeg',
                     'file_size' => 0,
-                    'is_cover' => true,
                 ]
             );
 
@@ -362,7 +348,6 @@ class PlaceSeeder extends Seeder
                     'file_path' => 'public/images',
                     'mime_type' => 'image/jpeg',
                     'file_size' => 0,
-                    'is_cover' => true,
                 ]
             );
 
@@ -384,7 +369,6 @@ class PlaceSeeder extends Seeder
                     'file_path' => 'public/images',
                     'mime_type' => 'image/jpeg',
                     'file_size' => 0,
-                    'is_cover' => true,
                 ]
             );
 
@@ -406,7 +390,6 @@ class PlaceSeeder extends Seeder
                     'file_path' => 'public/images',
                     'mime_type' => 'image/jpeg',
                     'file_size' => 0,
-                    'is_cover' => true,
                 ]
             );
 
@@ -428,7 +411,6 @@ class PlaceSeeder extends Seeder
                     'file_path' => 'public/images',
                     'mime_type' => 'image/jpeg',
                     'file_size' => 0,
-                    'is_cover' => true,
                 ]
             );
             //ejszakai elet teszt
@@ -452,7 +434,6 @@ class PlaceSeeder extends Seeder
                         'file_path' => 'public/images',
                         'mime_type' => 'image/jpeg',
                         'file_size' => 0,
-                        'is_cover' => true,
                     ]
                 );
 
@@ -474,7 +455,6 @@ class PlaceSeeder extends Seeder
                         'file_path' => 'public/images',
                         'mime_type' => 'image/jpeg',
                         'file_size' => 0,
-                        'is_cover' => true,
                     ]
                 );
 
@@ -496,7 +476,6 @@ class PlaceSeeder extends Seeder
                         'file_path' => 'public/images',
                         'mime_type' => 'image/jpeg',
                         'file_size' => 0,
-                        'is_cover' => true,
                     ]
                 );
 
@@ -518,7 +497,6 @@ class PlaceSeeder extends Seeder
                         'file_path' => 'public/images',
                         'mime_type' => 'image/jpeg',
                         'file_size' => 0,
-                        'is_cover' => true,
                     ]
                 );
 
@@ -540,7 +518,6 @@ class PlaceSeeder extends Seeder
                         'file_path' => 'public/images',
                         'mime_type' => 'image/jpeg',
                         'file_size' => 0,
-                        'is_cover' => true,
                     ]
                 );
 
@@ -562,7 +539,6 @@ class PlaceSeeder extends Seeder
                         'file_path' => 'public/images',
                         'mime_type' => 'image/jpeg',
                         'file_size' => 0,
-                        'is_cover' => true,
                     ]
                 );
 
@@ -584,7 +560,6 @@ class PlaceSeeder extends Seeder
                         'file_path' => 'public/images',
                         'mime_type' => 'image/jpeg',
                         'file_size' => 0,
-                        'is_cover' => true,
                     ]
                 );
 
@@ -606,7 +581,6 @@ class PlaceSeeder extends Seeder
                         'file_path' => 'public/images',
                         'mime_type' => 'image/jpeg',
                         'file_size' => 0,
-                        'is_cover' => true,
                     ]
                 );
 
@@ -628,7 +602,6 @@ class PlaceSeeder extends Seeder
                         'file_path' => 'public/images',
                         'mime_type' => 'image/jpeg',
                         'file_size' => 0,
-                        'is_cover' => true,
                     ]
                 );
                 //szallasok teszt
@@ -651,7 +624,6 @@ class PlaceSeeder extends Seeder
                             'file_path' => 'public/images',
                             'mime_type' => 'image/jpeg',
                             'file_size' => 0,
-                            'is_cover' => true,
                         ]
                     );
 
@@ -672,7 +644,6 @@ class PlaceSeeder extends Seeder
                             'file_path' => 'public/images',
                             'mime_type' => 'image/jpeg',
                             'file_size' => 0,
-                            'is_cover' => true,
                         ]
                     );
 
@@ -693,7 +664,6 @@ class PlaceSeeder extends Seeder
                             'file_path' => 'public/images',
                             'mime_type' => 'image/jpeg',
                             'file_size' => 0,
-                            'is_cover' => true,
                         ]
                     );
 
@@ -714,7 +684,6 @@ class PlaceSeeder extends Seeder
                             'file_path' => 'public/images',
                             'mime_type' => 'image/jpeg',
                             'file_size' => 0,
-                            'is_cover' => true,
                         ]
                     );
 
@@ -735,7 +704,6 @@ class PlaceSeeder extends Seeder
                             'file_path' => 'public/images',
                             'mime_type' => 'image/jpeg',
                             'file_size' => 0,
-                            'is_cover' => true,
                         ]
                     );
 
@@ -756,7 +724,6 @@ class PlaceSeeder extends Seeder
                             'file_path' => 'public/images',
                             'mime_type' => 'image/jpeg',
                             'file_size' => 0,
-                            'is_cover' => true,
                         ]
                     );
 
@@ -777,7 +744,6 @@ class PlaceSeeder extends Seeder
                             'file_path' => 'public/images',
                             'mime_type' => 'image/jpeg',
                             'file_size' => 0,
-                            'is_cover' => true,
                         ]
                     );
 
@@ -798,7 +764,6 @@ class PlaceSeeder extends Seeder
                             'file_path' => 'public/images',
                             'mime_type' => 'image/jpeg',
                             'file_size' => 0,
-                            'is_cover' => true,
                         ]
                     );
 
@@ -819,7 +784,6 @@ class PlaceSeeder extends Seeder
                             'file_path' => 'public/images',
                             'mime_type' => 'image/jpeg',
                             'file_size' => 0,
-                            'is_cover' => true,
                         ]
                     );
 
@@ -840,7 +804,6 @@ class PlaceSeeder extends Seeder
                             'file_path' => 'public/images',
                             'mime_type' => 'image/jpeg',
                             'file_size' => 0,
-                            'is_cover' => true,
                         ]
                     );
                     //bevasarlokozpontok teszt
@@ -863,7 +826,6 @@ class PlaceSeeder extends Seeder
                                 'file_path' => 'public/images',
                                 'mime_type' => 'image/jpeg',
                                 'file_size' => 0,
-                                'is_cover' => true,
                             ]
                         );
 
@@ -884,7 +846,6 @@ class PlaceSeeder extends Seeder
                                 'file_path' => 'public/images',
                                 'mime_type' => 'image/jpeg',
                                 'file_size' => 0,
-                                'is_cover' => true,
                             ]
                         );
 
@@ -905,7 +866,6 @@ class PlaceSeeder extends Seeder
                                 'file_path' => 'public/images',
                                 'mime_type' => 'image/jpeg',
                                 'file_size' => 0,
-                                'is_cover' => true,
                             ]
                         );
 
@@ -926,7 +886,6 @@ class PlaceSeeder extends Seeder
                                 'file_path' => 'public/images',
                                 'mime_type' => 'image/jpeg',
                                 'file_size' => 0,
-                                'is_cover' => true,
                             ]
                         );
 
@@ -947,7 +906,6 @@ class PlaceSeeder extends Seeder
                                 'file_path' => 'public/images',
                                 'mime_type' => 'image/jpeg',
                                 'file_size' => 0,
-                                'is_cover' => true,
                             ]
                         );
 
@@ -968,7 +926,6 @@ class PlaceSeeder extends Seeder
                                 'file_path' => 'public/images',
                                 'mime_type' => 'image/jpeg',
                                 'file_size' => 0,
-                                'is_cover' => true,
                             ]
                         );
 
@@ -989,7 +946,6 @@ class PlaceSeeder extends Seeder
                                 'file_path' => 'public/images',
                                 'mime_type' => 'image/jpeg',
                                 'file_size' => 0,
-                                'is_cover' => true,
                             ]
                         );
 
@@ -1010,7 +966,6 @@ class PlaceSeeder extends Seeder
                                 'file_path' => 'public/images',
                                 'mime_type' => 'image/jpeg',
                                 'file_size' => 0,
-                                'is_cover' => true,
                             ]
                         );
 
@@ -1031,7 +986,6 @@ class PlaceSeeder extends Seeder
                                 'file_path' => 'public/images',
                                 'mime_type' => 'image/jpeg',
                                 'file_size' => 0,
-                                'is_cover' => true,
                             ]
                         );
 
@@ -1052,7 +1006,6 @@ class PlaceSeeder extends Seeder
                                 'file_path' => 'public/images',
                                 'mime_type' => 'image/jpeg',
                                 'file_size' => 0,
-                                'is_cover' => true,
                             ]
                         );
 
@@ -1073,7 +1026,6 @@ class PlaceSeeder extends Seeder
                                 'file_path' => 'public/images',
                                 'mime_type' => 'image/jpeg',
                                 'file_size' => 0,
-                                'is_cover' => true,
                             ]
                         );
 
@@ -1096,7 +1048,6 @@ class PlaceSeeder extends Seeder
                                     'file_path' => 'public/images',
                                     'mime_type' => 'image/jpeg',
                                     'file_size' => 0,
-                                    'is_cover' => true,
                                 ]
                             );
 
@@ -1117,7 +1068,6 @@ class PlaceSeeder extends Seeder
                                     'file_path' => 'public/images',
                                     'mime_type' => 'image/jpeg',
                                     'file_size' => 0,
-                                    'is_cover' => true,
                                 ]
                             );
 
@@ -1138,7 +1088,6 @@ class PlaceSeeder extends Seeder
                                     'file_path' => 'public/images',
                                     'mime_type' => 'image/jpeg',
                                     'file_size' => 0,
-                                    'is_cover' => true,
                                 ]
                             );
 
@@ -1159,7 +1108,6 @@ class PlaceSeeder extends Seeder
                                     'file_path' => 'public/images',
                                     'mime_type' => 'image/jpeg',
                                     'file_size' => 0,
-                                    'is_cover' => true,
                                 ]
                             );
 
@@ -1180,7 +1128,6 @@ class PlaceSeeder extends Seeder
                                     'file_path' => 'public/images',
                                     'mime_type' => 'image/jpeg',
                                     'file_size' => 0,
-                                    'is_cover' => true,
                                 ]
                             );
 
@@ -1203,7 +1150,6 @@ class PlaceSeeder extends Seeder
                                     'file_path' => 'public/images',
                                     'mime_type' => 'image/jpeg',
                                     'file_size' => 0,
-                                    'is_cover' => true,
                                 ]
                             );
                         }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Place;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
 
@@ -12,7 +13,7 @@ class StorePlaceRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        if ($this->user()->role === 'owner' || $this->user()->role === 'admin') {
+        if (auth()->check() && auth()->user()->can('create', Place::class)) {
             return true;
         } else {
             return false;
@@ -51,7 +52,7 @@ class StorePlaceRequest extends FormRequest
         ];
     }
     public function messages(){
-        return[
+        return [
             "name.required" => "A hely neve megadása kötelező.",
             "name.max" => "A hely neve nem lehet hosszabb 255 karakternél.",
             "category_id.required" => "A kategória megadása kötelező.",

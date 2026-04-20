@@ -39,7 +39,7 @@
             @elseif($mediaCount > 1)
                 <div class="place-gallery">
                     @foreach ($validMedia->take(3) as $media)
-                        <div class="gallery-item {{ isset($media->is_cover) && $media->is_cover ? 'main-image' : '' }}">
+                        <div class="gallery-item">
                             <img src="{{ str_contains($media->file_path, 'images/') ? asset($media->file_path) : asset('images/' . $media->file_name) }}">
                         </div>
                     @endforeach
@@ -98,18 +98,12 @@
                     </div>
                     
                     @auth
-                        @if (session('error'))
-                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                {{ __(session('error')) }}
-                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                            </div>
-                        @endif
-
                         @if ($hasRated === false)
                             <form action="{{ route('reviews.store') }}" method="post">
                                 @csrf
                                 <input type="hidden" name="place_id" value="{{ $place->id }}">
                                 <div class="place-review-card">
+                                    <span style="color: red">{{ $errors->first('star') }}</span>
                                     <div class="review-stars">
                                         <input type="radio" id="star5" name="star" value="5">
                                         <label for="star5" title="{{ __('5 csillag') }}"><i class="fa-solid fa-star"></i></label>
@@ -122,6 +116,7 @@
                                         <input type="radio" id="star1" name="star" value="1">
                                         <label for="star1" title="{{ __('1 csillag') }}"><i class="fa-solid fa-star"></i></label>
                                     </div>
+                                    <span style="color: red">{{ $errors->first('comment') }}</span>
                                     <textarea class="form-textarea" name="comment" id="comment" rows="5" cols="100"
                                         placeholder="{{ __('Oszd meg a véleményed... (opcionális)') }}" maxlength="1000"></textarea>
                                     <button type="submit" class="btn btn-primary" style="margin-top: 0.5rem;">{{ __('Küldés') }}</button>

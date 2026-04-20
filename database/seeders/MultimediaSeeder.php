@@ -31,31 +31,15 @@ class MultimediaSeeder extends Seeder
             Multimedia::updateOrCreate(
                 [
                     'place_id' => $place->id,
-                    'is_cover' => true,
                 ],
                 [
                     'user_id' => $user->id,
-                    // fix kep /* TODO: atirni dinamikusra az API alapjan */
                     'file_name' => $place->slug . '_cover.jpg',
                     'file_path' => 'public/images',
                     'mime_type' => 'image/jpeg',
                     'file_size' => 0,
-                    'is_cover' => true,
                 ]
             );
-
-            // +1-2 extra galeria kep opcionálisan
-            /*
-            Multimedia::create([
-                'place_id' => $place->id,
-                'user_id' => $user->id,
-                'file_name' => $place->slug . '_extra_1.jpg',
-                'file_path' => 'public/images',
-                'mime_type' => 'image/jpeg',
-                'file_size' => 0,
-                'is_cover' => false
-            ]);
-            */
         }
     }
 }

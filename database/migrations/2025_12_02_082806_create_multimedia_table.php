@@ -21,7 +21,6 @@ return new class extends Migration
             $table->string('file_name')->default("placeholder.png");
             $table->string('mime_type')->default("jpeg");
             $table->integer('file_size')->default(0);
-            $table->boolean("is_cover")->default(false);
             $table->softDeletes();
             $table->timestamps();
         });

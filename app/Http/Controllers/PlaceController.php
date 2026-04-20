@@ -104,8 +104,7 @@ class PlaceController extends Controller
                     'file_path' => 'images/' . $saveAs,
                     'file_name' => $name,
                     'mime_type' => $mime,
-                    'file_size' => $size,
-                    'is_cover' => false
+                    'file_size' => $size
                 ]);
             }
         }

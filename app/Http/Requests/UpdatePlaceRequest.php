@@ -12,7 +12,7 @@ class UpdatePlaceRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        if ($this->user()->role === 'owner' || $this->user()->role === 'admin') {
+        if (auth()->check() && auth()->user()->can('update', Place::class)) {
             return true;
         } else {
             return false;
@@ -28,16 +28,14 @@ class UpdatePlaceRequest extends FormRequest
     {
         return [
             'name' => 'required|string|max:255',
-            'slug' => 'required|string|max:255|unique:places,slug',
+            'slug' => 'nullable|string|max:255|unique:places,slug',
             'category_id' => 'required|exists:categories,id',
-            'post_code' => 'required|integer',
-            'address' => 'required|string|max:255',
-            'phone' => 'required|string|max:20',
+            'post_code' => 'required|integer|min:1007|max:1239',
+            'address' => 'required|string|max:50|regex:/^[a-zA-ZáéíóöőúüűÁÉÍÓÖŐÚÜŰ\s]+[0-9]+\.$/',
+            'phone' => 'required|string|max:20|regex:/^\+?[0-9]{10,15}$/',
             'email' => 'required|string|email|max:255',
-            'website' => 'nullable|string|max:255',
-            'description' => 'nullable|string|max:1000',
-            'longitude' => 'nullable|string|max:255',
-            'latitude' => 'nullable|string|max:255',
+            'website' => 'nullable|string|url|max:255',
+            'description' => 'required|string|max:1000',
             'outdoor_seating' => 'boolean',
             'wifi' => 'boolean',
             'pet_friendly' => 'boolean',
@@ -48,9 +46,37 @@ class UpdatePlaceRequest extends FormRequest
             'photo_spot' => 'boolean',
             'accessible' => 'boolean',
             'student_discount' => 'boolean',
-            'status' => 'enum:pending,approved,rejected',
-            'place_images'   => 'nullable|array',
-            'place_images.*' => 'image|mimes:jpeg,png,jpg|max:2048'
+            'place_images'   => 'required|array',
+            'place_images.*' => 'image|mimes:jpeg,png,jpg|max:5096'
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            "name.required" => "A hely neve megadása kötelező.",
+            "name.max" => "A hely neve nem lehet hosszabb 255 karakternél.",
+            "category_id.required" => "A kategória megadása kötelező.",
+            "post_code.required" => "Az irányítószám megadása kötelező.",
+            "post_code.integer" => "Az irányítószámnak egész számnak kell lennie.",
+            "post_code.min" => "Az irányítószám nem lehet kisebb, mint 1007.",
+            "post_code.max" => "Az irányítószám nem lehet nagyobb, mint 1239.",
+            "address.required" => "A cím megadása kötelező.",
+            "address.max" => "A cím nem lehet hosszabb 50 karakternél.",
+            "address.regex" => "Érvénytelen cím formátum. Kérjük, használja az alábbi formátumot: 'Utca neve házszám.' ",
+            "phone.required" => "A telefonszám megadása kötelező.",
+            "phone.max" => "A telefonszám nem lehet hosszabb 20 karakternél.",
+            "phone.regex" => "Érvénytelen telefonszám formátum. Kérjük, használja az alábbi formátumot: '+36123456789'.",
+            "email.required" => "Az email cím megadása kötelező.",
+            "email.email" => "Érvénytelen email formátum. Kérjük, adjon meg egy érvényes email címet.",
+            "email.max" => "Az email cím nem lehet hosszabb 255 karakternél.",
+            "website.url" => "Érvénytelen URL formátum. Kérjük, adjon meg egy érvényes weboldal címet.",
+            "website.max" => "Az weboldal cím nem lehet hosszabb 255 karakternél.",
+            "description.required" => "A leírás megadása kötelező.",
+            "description.max" => "A leírás nem lehet hosszabb 1000 karakternél.",
+            "place_images.required" => "Legalább egy képet fel kell tölteni.",
+            "place_images.*.mimes" => "Helytelen fájltípus! Csak JPEG, PNG és JPG képek engedélyezettek.",
+            "place_images.*.max" => "A fájl mérete nem haladhatja meg az 5 MB-ot.",
         ];
     }
 }

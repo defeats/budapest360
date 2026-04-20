@@ -13,8 +13,7 @@ class MultimediaController extends Controller
      */
     public function index()
     {
-        $multimedia = Multimedia::with(['user', 'place'])->get();
-        return view('multimedia.index', ['multimedia' => $multimedia]); //TODO, multimedia.index is a wrong view to be returned
+        //
     }
 
     /**
@@ -22,7 +21,7 @@ class MultimediaController extends Controller
      */
     public function create()
     {
-        return view('multimedia.create');
+        //
     }
 
     /**

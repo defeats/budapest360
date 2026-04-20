@@ -1,17 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-
-    @if ($errors->any())
-        <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
-
     <section class="new-place-form-container">
         <div class="new-place-form">
             <div class="form-header">
@@ -24,6 +13,7 @@
                     <div class="input-group">
                         <div>
                             <label for="name">{{ __('Hely neve') }}</label>
+                            <span style="color: red;">{{ $errors->first('name') }}</span>
                             <input id="name" type="text" name="name" value="{{ old('name') }}" required>
                         </div>
 
@@ -31,6 +21,7 @@
 
                         <div>
                             <label for="category_id">{{ __('Kategória') }}</label>
+                            <span style="color: red;">{{ $errors->first('category_id') }}</span>
                             <select id="category_id" name="category_id" required>
                                 @foreach ($categories as $category)
                                     <option value="{{ $category->id }}"
@@ -43,37 +34,44 @@
 
                         <div>
                             <label for="post_code">{{ __('Irányítószám') }}</label>
+                            <span style="color: red;">{{ $errors->first('post_code') }}</span>
                             <input type="number" id="post_code" name="post_code" value="{{ old('post_code') }}" required>
                         </div>
 
                         <div>
                             <label for="address">{{ __('Cím') }}</label>
+                            <span style="color: red;">{{ $errors->first('address') }}</span>
                             <input type="text" id="address" name="address" placeholder="{{ __('Pl. Fő utca 1.') }}"
                                 value="{{ old('address') }}" required>
                         </div>
 
                         <div>
                             <label for="phone">{{ __('Telefonszám') }}</label>
+                            <span style="color: red;">{{ $errors->first('phone') }}</span>
                             <input type="text" id="phone" name="phone" value="{{ old('phone') }}">
                         </div>
 
                         <div>
                             <label for="email">{{ __('Email cím') }}</label>
+                            <span style="color: red;">{{ $errors->first('email') }}</span>
                             <input type="email" id="email" name="email" value="{{ old('email') }}">
                         </div>
 
                         <div>
                             <label for="website">{{ __('Weboldal') }}</label>
+                            <span style="color: red;">{{ $errors->first('website') }}</span>
                             <input type="url" id="website" name="website" value="{{ old('website') }}">
                         </div>
 
                         <div>
                             <label for="description">{{ __('Leírás') }}</label>
+                            <span style="color: red;">{{ $errors->first('description') }}</span>
                             <textarea class="form-textarea" id="description" name="description" rows="4">{{ old('description') }}</textarea>
                         </div>
 
                         <div>
                             <label>{{ __('Galéria') }}</label>
+                            <span style="color: red;">{{ $errors->first('place_images') }}</span>
                             <input type="file" name="place_images[]" accept="image/*" multiple>
                             <div id="preview-container" style="margin-top: 10px;"></div>
                         </div>
