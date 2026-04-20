@@ -12,6 +12,7 @@ use App\Models\Favourite;
 use App\Observers\PlaceObserver;
 use App\Policies\PlacePolicy;
 use Illuminate\Database\Eloquent\Attributes\UsePolicy;
+use Laravel\Sanctum\HasApiTokens;
 
 #[UsePolicy(PlacePolicy::class)]
 #[ObservedBy(PlaceObserver::class)]
@@ -19,7 +20,7 @@ use Illuminate\Database\Eloquent\Attributes\UsePolicy;
 class Place extends Model
 {
     /** @use HasFactory<\Database\Factories\PlaceFactory> */
-    use HasFactory, SoftDeletes;
+    use HasFactory, SoftDeletes, HasApiTokens;
 
     protected $fillable = ["name", "slug", "category_id", "post_code", "address", "phone", "email", "description", "longitude", "latitude", "outdoor_seating", "wifi", "pet_friendly", "family_friendly", "card_payment", "free_parking", "free_entry", "photo_spot", "accessible", "student_discount", "status", "price_range"];
 

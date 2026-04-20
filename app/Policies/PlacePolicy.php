@@ -54,8 +54,9 @@ class PlacePolicy
     {
         if ($user->role === "admin" || ($user->role === "owner" && $place->created_by === $user->id)) {
             return true;
-        } 
-        return false;
+        } else {
+            return false;
+        }
     }
 
     /**

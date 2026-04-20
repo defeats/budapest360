@@ -6,12 +6,12 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Models\Place;
 
-Route::post('/register', [UserController::class, 'register'])->middleware('throttle:2,1440');
-Route::post('/login', [UserController::class, 'login'])->middleware('throttle:5,1');
+Route::post('/checkAdminToken', [UserController::class, 'checkAdminToken']);
 
 Route::middleware('auth:sanctum')->group(function () {
-
     Route::controller(UserController::class)->group(function () {
+        Route::post('/register', [UserController::class, 'register'])->middleware('throttle:2,1440')->withoutMiddleware('auth:sanctum');
+        Route::post('/login', [UserController::class, 'login'])->middleware('throttle:5,1')->withoutMiddleware('auth:sanctum');
         Route::get('/user', 'user');
         Route::post('/logout', 'logout');
     });

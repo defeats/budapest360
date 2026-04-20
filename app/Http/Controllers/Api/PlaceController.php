@@ -9,6 +9,7 @@ use App\Http\Requests\StorePlaceRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Place;
+use Laravel\Sanctum\HasApiTokens;
 
 class PlaceController extends Controller
 {
@@ -32,7 +33,10 @@ class PlaceController extends Controller
     }
 
     public function destroy(Place $place){
-        $place->delete();
-        return response()->json(["msg" => "Place was deleted successfully"]);
+        if (auth()->user()->tokenCan('delete:places')) {
+            $place->delete();
+            return response()->json(["msg" => "Place was deleted successfully"]);
+        }
+        return response()->json(["msg" => "You do not have permission to delete this place"], 403);
     }
 }

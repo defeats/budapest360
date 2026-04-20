@@ -162,6 +162,8 @@ class PlaceController extends Controller
      */
     public function destroy(Place $place)
     {
-        //
+        //$this->authorize('delete', Place::class);
+        $place->delete();
+        return redirect()->route('places.index')->with('success', 'Sikeres törlés!');
     }
 }

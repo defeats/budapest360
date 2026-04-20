@@ -75,4 +75,11 @@ class UserController extends Controller
     public function user(Request $request) {
         return response()->json($request->user(), 200);
     }
+
+    public function checkAdminToken(Request $request) {
+        if ($request->bearerToken()) {
+            return response()->json(['msg' => 'Token is valid'], 200);
+        }
+        return response()->json(['msg' => 'Unauthorized'], 401);
+    }
 }
