@@ -42,9 +42,9 @@ Route::post('logout', function () {
 
 /* PLACES */
 
-Route::resource('places', PlaceController::class);
+Route::resource('places', PlaceController::class)->except(['show']);
 
-Route::get('/places/{slug}', [PlaceController::class, 'show']);
+Route::get('/places/{place}', [PlaceController::class, 'show'])->name('places.show');
 
 /* FAVORITES */
 

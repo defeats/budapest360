@@ -17,4 +17,9 @@ class Category extends Model
     {
         return $this->hasMany(Place::class); /* egy a tobbhoz kapcsolat a helyekkel */
     }
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
 }

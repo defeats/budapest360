@@ -8,6 +8,13 @@ use Illuminate\Auth\Access\Response;
 
 class ReviewPolicy
 {
+        public function before(User $user, $ability)
+    {
+        if ($user->role === 'admin') {
+            return true;
+        }
+    }
+    
     /**
      * Determine whether the user can view any models.
      */
@@ -29,7 +36,7 @@ class ReviewPolicy
      */
     public function create(User $user): bool
     {
-        if ($user->role === "user" || $user->role === "admin") {
+        if ($user->role === "user") {
             return true;
         } else {
             return false;
@@ -41,11 +48,7 @@ class ReviewPolicy
      */
     public function update(User $user, Review $review): bool
     {
-        if ($user->role === "admin") {
-            return true;
-        } else {
-            return false;
-        }
+        return false;
     }
 
     /**
@@ -53,11 +56,7 @@ class ReviewPolicy
      */
     public function delete(User $user, Review $review): bool
     {
-        if ($user->role === "user" || $user->role === "admin") {
-            return true;
-        } else {
-            return false;
-        }
+        return false;
     }
 
     /**
@@ -65,11 +64,7 @@ class ReviewPolicy
      */
     public function restore(User $user, Review $review): bool
     {
-        if ($user->role === "admin") {
-            return true;
-        } else {
-            return false;
-        }
+        return false;
     }
 
     /**
@@ -77,10 +72,6 @@ class ReviewPolicy
      */
     public function forceDelete(User $user, Review $review): bool
     {
-        if ($user->role === "admin") {
-            return true;
-        } else {
-            return false;
-        }
+        return false;
     }
 }

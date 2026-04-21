@@ -31,6 +31,7 @@
     "Tervezés": "Planning",
     "Eltávolítás a kedvencekből": "Remove from favorites",
     "Mentés a kedvencekhez": "Save to favorites",
+    "Mentés": "Save",
     "5 csillag": "5 stars",
     "4 csillag": "4 stars",
     "3 csillag": "3 stars",
@@ -100,5 +101,7 @@
     "Elfelejtetted a jelszavad?": "Forgot your password?",
     "Jelszó visszaállítása": "Reset Password",
     "Jelszó visszaállító link küldése": "Send Password Reset Link",
-    "Kérlek erősítsd meg a jelszavad mielőtt tovább lépsz.": "Please confirm your password before continuing."
+    "Kérlek erősítsd meg a jelszavad mielőtt tovább lépsz.": "Please confirm your password before continuing.",
+    "Hely szerkesztése": "Edit place",
+    "Itt tudod megváltoztatni a hely adatait": "Here you can change the details about your place"
 }

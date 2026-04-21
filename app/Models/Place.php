@@ -53,4 +53,9 @@ class Place extends Model
     {
         return round($this->reviews()->avg('star'), 1);
     }
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
 }

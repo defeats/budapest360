@@ -146,15 +146,72 @@ class PlaceController extends Controller
      */
     public function edit(Place $place)
     {
-        //
+        $this->authorize('update', $place); 
+        
+        $categories = Category::all();
+
+        return view('places.edit', [
+            'place' => $place,
+            'categories' => $categories
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdatePlaceRequest $request, Place $place)
+    public function update(UpdatePlaceRequest $request, Place $place) // a routebol valamiert nem erkezik meg valamelyik objektum
     {
-        //
+        $this->authorize('update', $place);
+        
+        $data = $request->validated();
+
+
+        $place->update([
+            'name' => $data['name'],
+            'slug' => $data['slug'],
+            'category_id' => $data['category_id'],
+            'post_code' => $data['post_code'],
+            'address' => $data['address'], 
+            'phone' => $data['phone'],
+            'email' => $data['email'],
+            'website' => $data['website'] ?? null,
+            'description' => $data['description'],
+            'outdoor_seating' => $request->boolean('outdoor_seating'),
+            'wifi' => $request->boolean('wifi'),
+            'pet_friendly' => $request->boolean('pet_friendly'),
+            'family_friendly' => $request->boolean('family_friendly'),
+            'card_payment' => $request->boolean('card_payment'),
+            'free_parking' => $request->boolean('free_parking'),
+            'free_entry' => $request->boolean('free_entry'),
+            'photo_spot' => $request->boolean('photo_spot'),
+            'accessible' => $request->boolean('accessible'),
+            'student_discount' => $request->boolean('student_discount')
+        ]);
+
+        if ($request->hasFile('place_images')) {
+            foreach ($request->file('place_images') as $file) {
+                $name = $file->getClientOriginalName();
+                $mime = $file->getClientMimeType();
+                $size = $file->getSize();
+                $saveAs = time() . '_' . $name;
+                $destinationPath = public_path('images');
+
+                $file->move($destinationPath, $saveAs);
+
+                $place->multimedias()->create([
+                    'place_id' => $place->id,
+                    'user_id' => auth()->id(),
+                    'file_path' => 'images/' . $saveAs,
+                    'file_name' => $name,
+                    'mime_type' => $mime,
+                    'file_size' => $size
+                ]);
+            }
+        }
+
+        return redirect()
+            ->route('places.show', $place->slug)
+            ->with('success', 'A hely adatai sikeresen frissültek!');
     }
 
     /**
@@ -162,7 +219,7 @@ class PlaceController extends Controller
      */
     public function destroy(Place $place)
     {
-        //$this->authorize('delete', Place::class);
+        $this->authorize('delete', Place::class);
         $place->delete();
         return redirect()->route('places.index')->with('success', 'Sikeres törlés!');
     }

@@ -8,6 +8,13 @@ use Illuminate\Auth\Access\Response;
 
 class PlacePolicy
 {
+    public function before(User $user, $ability)
+    {
+        if ($user->role === 'admin') {
+            return true;
+        }
+    }
+
     /**
      * Determine whether the user can view any models.
      */
@@ -29,7 +36,7 @@ class PlacePolicy
      */
     public function create(User $user): bool
     {
-        if ($user->role === "admin" || $user->role === "owner") {
+        if ($user->role === "owner") {
             return true;
         } else {
             return false;
@@ -41,7 +48,7 @@ class PlacePolicy
      */
     public function update(User $user, Place $place): bool
     {
-        if ($user->role === "admin" || ($user->role === "owner" && $place->created_by === $user->id)) {
+        if ($user->role === "owner" && $place->created_by === $user->id) {
             return true;
         } 
         return false;
@@ -52,7 +59,7 @@ class PlacePolicy
      */
     public function delete(User $user, Place $place): bool
     {
-        if ($user->role === "admin" || ($user->role === "owner" && $place->created_by === $user->id)) {
+        if ($user->role === "owner" && $place->created_by === $user->id) {
             return true;
         } else {
             return false;
@@ -64,11 +71,7 @@ class PlacePolicy
      */
     public function restore(User $user, Place $place): bool
     {
-        if ($user->role === "admin") {
-            return true;
-        } else {
-            return false;
-        }
+        return false;
     }
 
     /**
@@ -76,10 +79,6 @@ class PlacePolicy
      */
     public function forceDelete(User $user, Place $place): bool
     {
-        if ($user->role === "admin") {
-            return true;
-        } else {
-            return false;
-        }
+        return false;
     }
 }
