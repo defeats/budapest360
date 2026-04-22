@@ -19,9 +19,11 @@ class PlaceObserver
     /**
      * Handle the Place "updated" event.
      */
-    public function updated(Place $place): void
+    public function updating(Place $place): void
     {
-        //
+        if ($place->isDirty('name')) {
+            $place->slug = Str::slug($place->name);
+        }
     }
 
     /**

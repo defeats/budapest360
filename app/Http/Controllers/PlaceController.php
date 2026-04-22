@@ -161,7 +161,7 @@ class PlaceController extends Controller
      */
     public function update(UpdatePlaceRequest $request, Place $place) // a routebol valamiert nem erkezik meg valamelyik objektum
     {
-        $this->authorize('update', $place);
+        $this->authorize('update', Place::class);
         
         $data = $request->validated();
 
@@ -171,7 +171,7 @@ class PlaceController extends Controller
             'slug' => $data['slug'],
             'category_id' => $data['category_id'],
             'post_code' => $data['post_code'],
-            'address' => $data['address'], 
+            'address' => $data['address'],
             'phone' => $data['phone'],
             'email' => $data['email'],
             'website' => $data['website'] ?? null,

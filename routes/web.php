@@ -42,9 +42,11 @@ Route::post('logout', function () {
 
 /* PLACES */
 
-Route::resource('places', PlaceController::class)->except(['show']);
+Route::resource('places', PlaceController::class)->except(['show', 'update']);
 
 Route::get('/places/{place}', [PlaceController::class, 'show'])->name('places.show');
+
+Route::put('/places/{place}', [PlaceController::class, 'update'])->name('places.update')->middleware('auth');
 
 /* FAVORITES */
 

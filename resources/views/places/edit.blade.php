@@ -18,7 +18,7 @@
                             <input id="name" type="text" name="name" value="{{ old('name', $place->name) }}" required>
                         </div>
 
-                        <input id="slug" type="hidden" name="slug" value="{{ old('slug') }}">
+                        <input id="slug" type="hidden" name="slug" value="{{ old('slug', $place->slug) }}">
 
                         <div>
                             <label for="category_id">{{ __('Kategória') }}</label>
