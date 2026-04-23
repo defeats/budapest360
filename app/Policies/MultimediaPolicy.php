@@ -8,6 +8,15 @@ use Illuminate\Auth\Access\Response;
 
 class MultimediaPolicy
 {
+    public function before(User $user): bool|null
+    {
+        if ($user->role === "admin") {
+            return true;
+        } else {
+            return null;
+        }
+    }
+
     /**
      * Determine whether the user can view any models.
      */
@@ -29,7 +38,7 @@ class MultimediaPolicy
      */
     public function create(User $user): bool
     {
-        if ($user->role === "admin" || $user->role === "owner") {
+        if ($user->role === "owner") {
             return true;
         } else {
             return false;
@@ -41,8 +50,8 @@ class MultimediaPolicy
      */
     public function update(User $user, Multimedia $multimedia): bool
     {
-        if ($user->role === "admin" || ($user->role === "owner" && $multimedia->user_id === $user->id)) {
-            return true;
+        if ($user->role === "owner") {
+            return $multimedia->user_id === $user->id;
         } else {
             return false;
         }
@@ -53,8 +62,8 @@ class MultimediaPolicy
      */
     public function delete(User $user, Multimedia $multimedia): bool
     {
-        if ($user->role === "admin" || ($user->role === "owner" && $multimedia->user_id === $user->id)) {
-            return true;
+        if ($user->role === "owner") {
+            return $multimedia->user_id === $user->id;
         } else {
             return false;
         }
@@ -65,11 +74,7 @@ class MultimediaPolicy
      */
     public function restore(User $user, Multimedia $multimedia): bool
     {
-        if ($user->role === "admin") {
-            return true;
-        } else {
-            return false;
-        }
+        return false;
     }
 
     /**
@@ -77,10 +82,6 @@ class MultimediaPolicy
      */
     public function forceDelete(User $user, Multimedia $multimedia): bool
     {
-        if ($user->role === "admin") {
-            return true;
-        } else {
-            return false;
-        }
+        return false;
     }
 }

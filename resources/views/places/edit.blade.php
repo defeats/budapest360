@@ -1,6 +1,16 @@
 @extends('layouts.app')
 
 @section('content')
+@if ($errors->any())
+    <div style="background: red; color: white; padding: 20px;">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+
     <section class="new-place-form-container">
         <div class="new-place-form">
             <div class="form-header">
@@ -43,7 +53,7 @@
                             <label for="address">{{ __('Cím') }}</label>
                             <span style="color: red;">{{ $errors->first('address') }}</span>
                             <input type="text" id="address" name="address" placeholder="{{ __('Pl. Fő utca 1.') }}"
-                                value="{{ old('address', $place->address) }}" required>
+                                value="{{ old('address', Str::after($place->address, 'Budapest, ')) }}" required>
                         </div>
 
                         <div>
@@ -65,20 +75,35 @@
                         </div>
 
                         <div>
-                            <label for="description">{{ __('Leírás') }}</label>
-                            <span style="color: red;">{{ $errors->first('description') }}</span>
-                            <textarea class="form-textarea" id="description" name="description" rows="4">{{ old('description', $place->description) }}</textarea>
-                        </div>
-
-                        <div>
                             <label>{{ __('Galéria') }}</label>
                             <span style="color: red;">{{ $errors->first('place_images') }}</span>
-                            <input type="file" name="place_images[]" accept="image/*" multiple > <!--itt nem tudom, hogy lehetne megoldani a meglevo kepek torleset-->
+                            
+                            <div class="existing-images" style="display: flex; gap: 10px; margin-bottom: 15px; flex-wrap: wrap;">
+                                @foreach($place->multimedias as $media)
+                                    <div class="image-item" style="position: relative;">
+                                        <img src="{{ asset($media->file_path) }}" 
+                                            alt="{{ $media->file_name }}" 
+                                            style="width: 100px; height: 100px; object-fit: cover; border-radius: 5px; border: 1px solid #ccc;">
+                                        <div style="font-size: 15px; text-align: center;">{{ $media->file_name }}</div>
+                                        @if ($place->multimedias->count() > 1)
+                                        <input type="checkbox" name="delete_images[]" style="width: 13px; height: 13px" value="{{ $media->id }}"> {{ __('Törlés') }}
+                                        @endif
+                                    </div>
+                                @endforeach
+                            </div>
+
+                            <input type="file" name="place_images[]" accept="image/*" multiple> 
                             <div id="preview-container" style="margin-top: 10px;"></div>
                         </div>
                     </div>
 
                     <div class="input-group">
+                        <div>
+                            <label for="description">{{ __('Leírás') }}</label>
+                            <span style="color: red;">{{ $errors->first('description') }}</span>
+                            <textarea class="form-textarea" id="description" name="description" rows="4">{{ old('description', $place->description) }}</textarea>
+                        </div>
+
                         <div class="filter-group">
                             <div>
                                 <label for="wifi">{{ __('Wifi') }}</label>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Multimedia;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateMultimediaRequest extends FormRequest
@@ -11,11 +12,8 @@ class UpdateMultimediaRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        if ($this->user()->role === 'user' || $this->user()->role === 'admin') {
-            return true;
-        } else {
-            return false;
-        }
+        $multimedia = $this->route('multimedia');
+        return auth()->user()->can('update', $multimedia);
     }
 
     /**

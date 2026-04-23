@@ -29,6 +29,13 @@ class UserSeeder extends Seeder
             'role' => 'owner'
         ]);
 
+        User::factory()->create([
+            'name' => 'Gipsz_Jakab',
+            'email' => 'user@bp360.hu',
+            'password' => bcrypt('usertest'),
+            'role' => 'user'
+        ]);
+
         User::factory(50)->create();
     }
 }

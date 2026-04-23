@@ -109,15 +109,7 @@
         <div class="card-grid">
             @forelse($places ?? [] as $place)
                 <div class="place-card">
-                    <div class="card-image" style="background-image: url('{{ 
-                        $place->multimedias->first() 
-                            ? (
-                                file_exists(public_path($place->multimedias->first()->file_path))
-                                ? asset($place->multimedias->first()->file_path)
-                                : asset('images/' . $place->multimedias->first()->file_name)
-                            )
-                            : asset('placeholder.jpg') 
-                        }}');">
+                    <div class="card-image" style="background-image: url('{{ $place->getThumbnailUrl() }}');">
                     </div>
 
                     <div class="card-content">
@@ -126,15 +118,14 @@
                         <div class="card-footer">
                             @if ($place->reviews->count() > 0)
                             <span class="rating"><i class="fa-solid fa-star"></i>
-                                {{ $place->reviews->avg('star') }}</span>
-                            <a href="{{ route('places.show', $place->slug) }}" class="btn-link">{{ __('Részletek') }} <i
-                                    class="fa-solid fa-arrow-right"></i></a>
+                                {{ $place->getAvgRoundedRating() }}</span>
                             @endif
-                            @if ($place->reviews->count() == 0)
+                            @if ($place->reviews->count() === 0)
                             <span class="rating" style="color: #a7a7a7;"><i class="fa-regular fa-star"></i> {{ __('Nincs értékelés') }}</span>
-                            <a href="{{ route('places.show', $place->slug) }}" class="btn-link">{{ __('Részletek') }} <i
-                                    class="fa-solid fa-arrow-right"></i></a>
                             @endif
+                            <a href="{{ route('places.show', $place->slug) }}" class="btn-link">{{ __('Részletek') }} 
+                                <i class="fa-solid fa-arrow-right"></i>
+                            </a>
                         </div>
                     </div>
                 </div>

@@ -6,6 +6,7 @@ use App\Http\Requests\StorePlaceRequest;
 use App\Http\Requests\UpdatePlaceRequest;
 use App\Models\Category;
 use App\Models\Favourite;
+use App\Models\Multimedia;
 use App\Models\OpenTime;
 use App\Models\Place;
 use App\Models\Review;
@@ -18,30 +19,9 @@ class PlaceController extends Controller
      */
     public function index(Request $request)
     {
-        $query = Place::with(['reviews', 'category']);
-
-        if ($request->has('wifi'))
-            $query->where('wifi', true);
-        if ($request->has('card_payment'))
-            $query->where('card_payment', true);
-        if ($request->has('pet_friendly'))
-            $query->where('pet_friendly', true);
-        if ($request->has('family_friendly'))
-            $query->where('family_friendly', true);
-        if ($request->has('free_parking'))
-            $query->where('free_parking', true);
-        if ($request->has('free_entry'))
-            $query->where('free_entry', true);
-        if ($request->has('student_discount'))
-            $query->where('student_discount', true);
-        if ($request->has('outdoor_seating'))
-            $query->where('outdoor_seating', true);
-        if ($request->has('photo_spot'))
-            $query->where('photo_spot', true);
-        if ($request->has('accessible'))
-            $query->where('accessible', true);
-
-        $places = $query->get();
+        $places = Place::with(['reviews', 'category'])
+            ->filter($request->all())
+            ->get();
 
         return view('places.index', [
             'places' => $places
@@ -67,46 +47,8 @@ class PlaceController extends Controller
         $data = $request->validated();
 
         if ($request->hasFile('place_images')) {
-            $place = Place::create([
-                'name' => $data['name'],
-                'slug' => $data['slug'],
-                'category_id' => $data['category_id'],
-                'post_code' => $data['post_code'],
-                'address' => 'Budapest, ' . $data['address'],
-                'phone' => $data['phone'],
-                'email' => $data['email'],
-                'website' => $data['website'] ?? null,
-                'description' => $data['description'],
-                'outdoor_seating' => $request->boolean('outdoor_seating'),
-                'wifi' => $request->boolean('wifi'),
-                'pet_friendly' => $request->boolean('pet_friendly'),
-                'family_friendly' => $request->boolean('family_friendly'),
-                'card_payment' => $request->boolean('card_payment'),
-                'free_parking' => $request->boolean('free_parking'),
-                'free_entry' => $request->boolean('free_entry'),
-                'photo_spot' => $request->boolean('photo_spot'),
-                'accessible' => $request->boolean('accessible'),
-                'student_discount' => $request->boolean('student_discount')
-            ]);
-
-            foreach ($request->file('place_images') as $file) {
-                $name = $file->getClientOriginalName();
-                $mime = $file->getClientMimeType();
-                $size = $file->getSize();
-                $saveAs = time() . '_' . $name;
-                $destinationPath = public_path('images');
-
-                $file->move($destinationPath, $saveAs);
-
-                $place->multimedias()->create([
-                    'place_id' => $place->id,
-                    'user_id' => auth()->id(),
-                    'file_path' => 'images/' . $saveAs,
-                    'file_name' => $name,
-                    'mime_type' => $mime,
-                    'file_size' => $size
-                ]);
-            }
+            $place = Place::create($data);
+            $place->uploadImages($request->file('place_images'));
         }
         return redirect()->route('places.index')->with('success', 'Sikeres mentés!');
     }
@@ -125,20 +67,13 @@ class PlaceController extends Controller
         }
 
         $favourite = Favourite::where('place_id', $place->id)->get();
-        $userId = auth()->id();
-        $placeId = $place->id;
-        $hasRated = false;
         $place->increment('clicks');
 
-        $review = Review::where('user_id', $userId)
-            ->where('place_id', $placeId)
-            ->first();
+        $hasRated = Review::where('user_id', auth()->id())
+        ->where('place_id', $place->id)
+        ->exists();
 
-        if ($review) {
-            $hasRated = true;
-        }
-
-        return view('places.show', ['place' => $place, 'favourite' => $favourite, 'userId' => $userId, 'hasRated' => $hasRated]);
+        return view('places.show', ['place' => $place, 'favourite' => $favourite, 'hasRated' => $hasRated]);
     }
 
     /**
@@ -152,6 +87,7 @@ class PlaceController extends Controller
 
         return view('places.edit', [
             'place' => $place,
+            'multimedias' => $place->multimedias,
             'categories' => $categories
         ]);
     }
@@ -159,54 +95,29 @@ class PlaceController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdatePlaceRequest $request, Place $place) // a routebol valamiert nem erkezik meg valamelyik objektum
+    public function update(UpdatePlaceRequest $request, Place $place)
     {
-        $this->authorize('update', Place::class);
+        $this->authorize('update', $place);
         
         $data = $request->validated();
 
+        $data['address'] = str_starts_with($data['address'], 'Budapest, ') ? $data['address'] : 'Budapest, ' . $data['address'];
+        $place->update($data);
 
-        $place->update([
-            'name' => $data['name'],
-            'slug' => $data['slug'],
-            'category_id' => $data['category_id'],
-            'post_code' => $data['post_code'],
-            'address' => $data['address'],
-            'phone' => $data['phone'],
-            'email' => $data['email'],
-            'website' => $data['website'] ?? null,
-            'description' => $data['description'],
-            'outdoor_seating' => $request->boolean('outdoor_seating'),
-            'wifi' => $request->boolean('wifi'),
-            'pet_friendly' => $request->boolean('pet_friendly'),
-            'family_friendly' => $request->boolean('family_friendly'),
-            'card_payment' => $request->boolean('card_payment'),
-            'free_parking' => $request->boolean('free_parking'),
-            'free_entry' => $request->boolean('free_entry'),
-            'photo_spot' => $request->boolean('photo_spot'),
-            'accessible' => $request->boolean('accessible'),
-            'student_discount' => $request->boolean('student_discount')
-        ]);
+        if ($request->has('delete_images')) {
+            foreach ($request->delete_images as $imageId) {
+                $media = Multimedia::find($imageId);
+                if ($media) {
+                    if (file_exists(public_path($media->file_path))) {
+                        unlink(public_path($media->file_path));
+                    }
+                    $media->delete();
+                }
+            }
+        }
 
         if ($request->hasFile('place_images')) {
-            foreach ($request->file('place_images') as $file) {
-                $name = $file->getClientOriginalName();
-                $mime = $file->getClientMimeType();
-                $size = $file->getSize();
-                $saveAs = time() . '_' . $name;
-                $destinationPath = public_path('images');
-
-                $file->move($destinationPath, $saveAs);
-
-                $place->multimedias()->create([
-                    'place_id' => $place->id,
-                    'user_id' => auth()->id(),
-                    'file_path' => 'images/' . $saveAs,
-                    'file_name' => $name,
-                    'mime_type' => $mime,
-                    'file_size' => $size
-                ]);
-            }
+            $place->uploadImages($request->file('place_images'));
         }
 
         return redirect()

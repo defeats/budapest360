@@ -3,8 +3,8 @@
 @section('content')
 <div class="container profile-container">
     <div style="text-align: center">
-        <h1>{{ __('Szia, ') }} <span class="highlight">{{ Auth::user()->name }}</span>!</h1>
-        <p class="subtitle">{{ __('Itt kezelheted a profilodat és a mentett helyeidet.') }}</p>
+        <h1>{{ __('Szia, ') }} <span class="highlight">{{ Auth::user()->name }}</span>.</h1>
+        <p class="subtitle">{{ __('Itt kezelheted a profilodat és a kedvenc helyeidet.') }}</p>
     </div>
 
     <div class="profile-grid">

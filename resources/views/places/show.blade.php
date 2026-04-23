@@ -13,21 +13,24 @@
                             <i class="fa-star {{ $i <= $place->reviews->avg('star') ? 'fa-solid' : 'fa-regular' }}"></i>
                         @endfor
                     </div>
-                @endif       
+                @endif
+                @can('update', $place)
+                    <a href="{{ route('places.edit', $place) }}" class="btn btn-secondary btn-full" style="margin-top: 0.5rem;">
+                        <i class="fa-solid fa-pen-to-square"></i> {{ __('Hely szerkesztése') }}
+                    </a>
+                @endcan
             </div>
         </div>
 
         <div style="margin-bottom: 3rem;">
             @php
-                $validMedia = $place->multimedias ? $place->multimedias->filter(function ($media) {
+                $validMedia = $place->multimedias->filter(function ($media) {
                 if (!empty($media->file_path) && file_exists(public_path($media->file_path))) {
                     return true;
                 }
                 if (!empty($media->file_name) && file_exists(public_path('images/' . $media->file_name))) {
                     return true;
-                }
-                return false;
-            }) : collect();
+                }});
 
             $mediaCount = $validMedia->count();
             @endphp
@@ -102,6 +105,7 @@
                             <form action="{{ route('reviews.store') }}" method="post">
                                 @csrf
                                 <input type="hidden" name="place_id" value="{{ $place->id }}">
+                                <input type="hidden" name="user_id" value="{{ auth()->id() }}">
                                 <div class="place-review-card">
                                     <span style="color: red">{{ $errors->first('star') }}</span>
                                     <div class="review-stars">
@@ -171,14 +175,14 @@
                                 src="https://maps.google.com/maps?q={{ urlencode($place->address) }}&t=&z=14&ie=UTF8&iwloc=&output=embed">
                             </iframe>
                         </div>
-
+                        @auth
                         <form action="{{ route('favourites.store') }}" method="POST">
                             @csrf
                             <input type="hidden" name="place_id" value="{{ $place->id }}">
 
                             @php
                                 $isFavourite =
-                                    auth()->check() && auth()->user()->favourites->contains('place_id', $place->id);
+                                    auth()->user()->favourites->contains('place_id', $place->id);
                             @endphp
 
                             <button type="submit" class="btn {{ $isFavourite ? 'btn-danger' : 'btn-primary' }} btn-full">
@@ -186,6 +190,7 @@
                                 {{ $isFavourite ? __('Eltávolítás a kedvencekből') : __('Mentés a kedvencekhez') }}
                             </button>
                         </form>
+                        @endauth
                     </div>
                 </div>
             </aside>

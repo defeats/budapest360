@@ -8,11 +8,12 @@ use Illuminate\Auth\Access\Response;
 
 class PlacePolicy
 {
-    public function before(User $user, $ability)
+    public function before(User $user): bool|null
     {
         if ($user->role === 'admin') {
             return true;
         }
+        return null;
     }
 
     /**
@@ -48,10 +49,11 @@ class PlacePolicy
      */
     public function update(User $user, Place $place): bool
     {
-        if ($user->role === "owner" && $place->created_by === $user->id) {
-            return true;
-        } 
-        return false;
+        if ($user->role === "owner") {
+            return $user->id === $place->created_by;
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -59,8 +61,8 @@ class PlacePolicy
      */
     public function delete(User $user, Place $place): bool
     {
-        if ($user->role === "owner" && $place->created_by === $user->id) {
-            return true;
+        if ($user->role === "owner") {
+            return $user->id === $place->created_by;
         } else {
             return false;
         }

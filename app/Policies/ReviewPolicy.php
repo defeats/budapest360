@@ -8,10 +8,12 @@ use Illuminate\Auth\Access\Response;
 
 class ReviewPolicy
 {
-        public function before(User $user, $ability)
+    public function before(User $user): bool|null
     {
         if ($user->role === 'admin') {
             return true;
+        } else {
+            return null;
         }
     }
     
@@ -36,11 +38,7 @@ class ReviewPolicy
      */
     public function create(User $user): bool
     {
-        if ($user->role === "user") {
-            return true;
-        } else {
-            return false;
-        }
+        return auth()->check();
     }
 
     /**

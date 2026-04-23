@@ -11,11 +11,7 @@ class UpdateCategoryRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        if ($this->user()->role === 'admin') {
-            return true;
-        } else {
-            return false;
-        }
+        return auth()->user()->role === 'admin';
     }
 
     /**

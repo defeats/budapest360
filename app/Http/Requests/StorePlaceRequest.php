@@ -13,11 +13,7 @@ class StorePlaceRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        if (auth()->check() && auth()->user()->can('create', Place::class)) {
-            return true;
-        } else {
-            return false;
-        }
+        return auth()->user()->can('create', Place::class);
     }
 
     /**
@@ -77,5 +73,20 @@ class StorePlaceRequest extends FormRequest
             "place_images.*.mimes" => "Helytelen fájltípus! Csak JPEG, PNG és JPG képek engedélyezettek.",
             "place_images.*.max" => "A fájl mérete nem haladhatja meg az 5 MB-ot.",
         ];
+    }
+
+    public function prepareForValidation()
+    {
+        $booleanFields = [
+            'outdoor_seating', 'wifi', 'pet_friendly', 'family_friendly', 'card_payment', 
+            'free_parking', 'free_entry', 'photo_spot', 'accessible', 'student_discount'
+        ];
+
+        $stores = [];
+        foreach ($booleanFields as $field) {
+            $stores[$field] = $this->boolean($field);
+        }
+
+        $this->merge($stores);
     }
 }

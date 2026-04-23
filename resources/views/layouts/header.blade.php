@@ -42,11 +42,11 @@
                             <a href="/favourites" class="dropdown-item">
                                 <i class="fa-solid fa-heart"></i> {{ __('Kedvencek') }}
                             </a>
-                            @if (auth()->user()->role === 'admin' || auth()->user()->role === 'owner')
+                            @can('create', App\Models\Place::class)
                             <a href="{{ route('places.create') }}" class="dropdown-item">
                                 <i class="fa-solid fa-location-dot" style="padding-left: 0.15rem"></i> {{ __('Új hely') }}
                             </a>
-                            @endif
+                            @endcan
                             <div class="divider"></div>
                             <form action="{{ route('logout') }}" method="POST">
                                 @csrf

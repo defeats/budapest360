@@ -13,11 +13,7 @@ class StoreFavouriteRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        if (auth()->check() && auth()->user()->can('create', Favourite::class)) {
-            return true;
-        } else {
-            return false;
-        }
+        return auth()->user()->can('create', Favourite::class);
     }
 
     /**

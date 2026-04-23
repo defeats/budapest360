@@ -13,11 +13,7 @@ class StoreReviewRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        if (auth()->check() && auth()->user()->can('create', Review::class)) {
-            return true;
-        } else {
-            return false;
-        }
+        return auth()->user()->can('create', Review::class);
     }
 
     /**

@@ -8,6 +8,14 @@ use Illuminate\Auth\Access\Response;
 
 class CategoryPolicy
 {
+    public function before(User $user): bool|null
+    {
+        if ($user->role === "admin") {
+            return true;
+        }
+        return null;
+    }
+
     /**
      * Determine whether the user can view any models.
      */
@@ -29,11 +37,7 @@ class CategoryPolicy
      */
     public function create(User $user): bool
     {
-        if ($user->role === "admin") {
-            return true;
-        } else {
-            return false;
-        }
+        return false;
     }
 
     /**
@@ -41,11 +45,7 @@ class CategoryPolicy
      */
     public function update(User $user, Category $category): bool
     {
-        if ($user->role === "admin") {
-            return true;
-        } else {
-            return false;
-        }
+        return false;
     }
 
     /**
@@ -53,11 +53,7 @@ class CategoryPolicy
      */
     public function delete(User $user, Category $category): bool
     {
-        if ($user->role === "admin") {
-            return true;
-        } else {
-            return false;
-        }
+        return false;
     }
 
     /**
@@ -65,11 +61,7 @@ class CategoryPolicy
      */
     public function restore(User $user, Category $category): bool
     {
-        if ($user->role === "admin") {
-            return true;
-        } else {
-            return false;
-        }
+        return false;
     }
 
     /**
@@ -77,10 +69,6 @@ class CategoryPolicy
      */
     public function forceDelete(User $user, Category $category): bool
     {
-        if ($user->role === "admin") {
-            return true;
-        } else {
-            return false;
-        }
+        return false;
     }
 }

@@ -13,11 +13,8 @@ class UpdateReviewRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        if (auth()->check() && auth()->user()->can('update', Review::class)) {
-            return true;
-        } else {
-            return false;
-        }
+        $review = $this->route('review');
+        return auth()->user()->can('update', $review);
     }
 
     /**

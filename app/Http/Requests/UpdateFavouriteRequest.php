@@ -13,11 +13,7 @@ class UpdateFavouriteRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        if (auth()->check() && auth()->user()->can('update', Favourite::class)) {
-            return true;
-        } else {
-            return false;
-        }
+        return true;
     }
 
     /**

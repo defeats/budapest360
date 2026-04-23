@@ -31,14 +31,14 @@ class ReviewController extends Controller
     {
         $this->authorize('create', Review::class);
         $data = $request->validated();
-        $userId = auth()->id();
+        Review::create($data);
 
-        $review = new Review();
+        /* $review = new Review();
         $review->user_id = $userId;
         $review->place_id = $data['place_id'];
         $review->comment = $data['comment'];
         $review->star = $data['star'];
-        $review->save();
+        $review->save(); */
 
         return redirect()->back()->with('success', 'Vélemény sikeresen elküldve!');
     }

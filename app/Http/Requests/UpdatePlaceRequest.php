@@ -13,11 +13,8 @@ class UpdatePlaceRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        if (auth()->check() && auth()->user()->can('update', Place::class)) {
-            return true;
-        } else {
-            return false;
-        }
+        $place = $this->route('place');
+        return $this->user()->can('update', $place);
     }
 
     /**
@@ -27,9 +24,11 @@ class UpdatePlaceRequest extends FormRequest
      */
     public function rules(): array
     {
+        $place = $this->route('place');
+        
         return [
             'name' => 'required|string|max:255',
-            'slug' => 'nullable|string|max:255|unique:places,slug',
+            'slug' => 'nullable|string|max:255|unique:places,slug,' . $place->id,
             'category_id' => 'required|exists:categories,id',
             'post_code' => 'required|integer|min:1007|max:1239',
             'address' => 'required|string|max:50|regex:/^[a-zA-ZáéíóöőúüűÁÉÍÓÖŐÚÜŰ\s]+[0-9]+\.$/',
@@ -47,7 +46,7 @@ class UpdatePlaceRequest extends FormRequest
             'photo_spot' => 'boolean',
             'accessible' => 'boolean',
             'student_discount' => 'boolean',
-            'place_images'   => 'required|array',
+            'place_images'   => 'nullable|array',
             'place_images.*' => 'image|mimes:jpeg,png,jpg|max:5096'
         ];
     }
@@ -75,9 +74,24 @@ class UpdatePlaceRequest extends FormRequest
             "website.max" => "Az weboldal cím nem lehet hosszabb 255 karakternél.",
             "description.required" => "A leírás megadása kötelező.",
             "description.max" => "A leírás nem lehet hosszabb 1000 karakternél.",
-            "place_images.required" => "Legalább egy képet fel kell tölteni.",
             "place_images.*.mimes" => "Helytelen fájltípus! Csak JPEG, PNG és JPG képek engedélyezettek.",
             "place_images.*.max" => "A fájl mérete nem haladhatja meg az 5 MB-ot.",
+            "place_images.min" => "Legalább 1 képet fel kell tölteni.",
         ];
+    }
+
+    protected function prepareForValidation()
+    {
+        $booleanFields = [
+            'outdoor_seating', 'wifi', 'pet_friendly', 'family_friendly', 'card_payment', 
+            'free_parking', 'free_entry', 'photo_spot', 'accessible', 'student_discount'
+        ];
+
+        $updates = [];
+        foreach ($booleanFields as $field) {
+            $updates[$field] = $this->boolean($field);
+        }
+
+        $this->merge($updates);
     }
 }

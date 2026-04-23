@@ -8,16 +8,20 @@ use Illuminate\Auth\Access\Response;
 
 class FavouritePolicy
 {
+    public function before(User $user): bool|null
+    {
+        if ($user->role === "admin") {
+            return true;
+        } 
+        return null;
+    }
+
     /**
      * Determine whether the user can view any models.
      */
     public function viewAny(User $user): bool
     {
-        if ($user->role === "user" || $user->role === "admin" || $user->role === "owner") {
-            return true;
-        } else {
-            return false;
-        }
+        return auth()->check();
     }
 
     /**
@@ -25,11 +29,7 @@ class FavouritePolicy
      */
     public function view(User $user, Favourite $favourite): bool
     {
-        if ($user->role === "user" || $user->role === "admin" || $user->role === "owner") {
-            return true;
-        } else {
-            return false;
-        }
+        return auth()->check();
     }
 
     /**
@@ -37,11 +37,7 @@ class FavouritePolicy
      */
     public function create(User $user): bool
     {
-        if ($user->role === "user" || $user->role === "admin" || $user->role === "owner") {
-            return true;
-        } else {
-            return false;
-        }
+        return auth()->check();
     }
 
     /**
@@ -49,15 +45,10 @@ class FavouritePolicy
      */
     public function update(User $user, Favourite $favourite): bool
     {
-        if ($user->role === "user" || $user->role === "admin" || $user->role === "owner") {
-            if ($user->id === $favourite->user_id) {
-            return true;
-            } else {
-                return false;
-            }
-        } else {
-            return false;
+        if (auth()->check()) {
+            return $user->id === $favourite->user_id;
         }
+        return false;
     }
 
     /**
@@ -65,15 +56,10 @@ class FavouritePolicy
      */
     public function delete(User $user, Favourite $favourite): bool
     {
-        if ($user->role === "user" || $user->role === "admin" || $user->role === "owner") {
-            if ($user->id === $favourite->user_id) {
-            return true;
-            } else {
-                return false;
-            }
-        } else {
-            return false;
+        if (auth()->check()) {
+            return $user->id === $favourite->user_id;
         }
+        return false;
     }
 
     /**
@@ -81,11 +67,7 @@ class FavouritePolicy
      */
     public function restore(User $user, Favourite $favourite): bool
     {
-        if ($user->role === "admin") {
-            return true;
-        } else {
-            return false;
-        }
+        return false;
     }
 
     /**
@@ -93,10 +75,6 @@ class FavouritePolicy
      */
     public function forceDelete(User $user, Favourite $favourite): bool
     {
-        if ($user->role === "admin") {
-            return true;
-        } else {
-            return false;
-        }
+        return false;
     }
 }
