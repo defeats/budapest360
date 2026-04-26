@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="swiper popular-places-slider">
+    <div class="swiper welcome-slider popular-places-slider">
         <div class="hero-overlay">
             <div class="hero-content">
                 <h1>Budapest<span class="highlight">360</span></h1>

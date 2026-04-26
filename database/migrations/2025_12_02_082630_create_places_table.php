@@ -16,13 +16,12 @@ return new class extends Migration {
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
             $table->string("name");
             $table->string('slug')->unique();
-            $table->string("old_name")->nullable();
             $table->integer('post_code');
             $table->string("address");
-            $table->string("phone")->unique()->nullable(); //->default('+36 1 234 5678')
-            $table->string("email")->unique()->nullable(); //->default('info@bp360.hu')
+            $table->string("phone")->unique();
+            $table->string("email")->unique()->nullable();
             $table->string("website")->nullable();
-            $table->longText("description")->default('Ehhez a helyhez még nem érkezett leírás. Ha ismered, oszd meg velünk!');
+            $table->longText("description");
             $table->boolean("outdoor_seating")->default(false);
             $table->boolean("wifi")->default(false);
             $table->boolean("pet_friendly")->default(false);

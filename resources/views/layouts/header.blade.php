@@ -18,12 +18,20 @@
                 <a href="{{ route('categories.show', ['category' => 'malls']) }}">{{ __('Plázák') }}</a>
                 <a href="{{ route('categories.show', ['category' => 'culture']) }}">{{ __('Kultúra') }}</a>
                 <a href="{{ route('places.index') }}">{{ __('Összes') }}</a>
-            </div>
+                <form action="{{ route('locale.change') }}" method="POST" id="lang-form">
+                    @csrf
+                    <input type="hidden" name="locale" value="{{ app()->getLocale() === 'hu' ? 'en' : 'hu' }}">
 
+                    <button type="submit" style="background: none; border: none; cursor: pointer; color: inherit;">
+                        <i class="fa-solid fa-language"></i>
+                        <span>{{ app()->getLocale() === 'hu' ? 'EN' : 'HU' }}</span>
+                    </button>
+                </form>
+            </div>
 
             <div class="nav-auth">
                 @guest
-                    <a href="{{ route('login')}}" class="btn btn-outline">{{ __('Belépés') }}</a>
+                    <a href="{{ route('login') }}" class="btn btn-outline">{{ __('Belépés') }}</a>
                     <a href="{{ route('register') }}" class="btn btn-primary">{{ __('Regisztráció') }}</a>
                 @endguest
 

@@ -24,14 +24,14 @@ class StorePlaceRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|string|max:255',
+            'name' => 'required|string|min:3|max:255',
             'slug' => 'nullable|string|max:255|unique:places,slug',
             'category_id' => 'required|exists:categories,id',
             'post_code' => 'required|integer|min:1007|max:1239',
             'address' => 'required|string|max:50|regex:/^[a-zA-ZáéíóöőúüűÁÉÍÓÖŐÚÜŰ\s]+[0-9]+\.$/',
             'phone' => 'required|string|max:20|regex:/^\+?[0-9]{10,15}$/',
             'email' => 'required|string|email|max:255',
-            'website' => 'nullable|string|url|max:255',
+            'website' => 'nullable|string|max:255|regex:/^(https?:\/\/)?([\w\d-]+\.)+[\w-]{2,}(\/.*)*$/i',
             'description' => 'required|string|max:1000',
             'outdoor_seating' => 'boolean',
             'wifi' => 'boolean',
@@ -51,6 +51,7 @@ class StorePlaceRequest extends FormRequest
         return [
             "name.required" => "A hely neve megadása kötelező.",
             "name.max" => "A hely neve nem lehet hosszabb 255 karakternél.",
+            "name.min" => "A hely neve nem lehet rövidebb 3 karakternél.",
             "category_id.required" => "A kategória megadása kötelező.",
             "post_code.required" => "Az irányítószám megadása kötelező.",
             "post_code.integer" => "Az irányítószámnak egész számnak kell lennie.",
@@ -65,7 +66,7 @@ class StorePlaceRequest extends FormRequest
             "email.required" => "Az email cím megadása kötelező.",
             "email.email" => "Érvénytelen email formátum. Kérjük, adjon meg egy érvényes email címet.",
             "email.max" => "Az email cím nem lehet hosszabb 255 karakternél.",
-            "website.url" => "Érvénytelen URL formátum. Kérjük, adjon meg egy érvényes weboldal címet.",
+            "website.regex" => "Érvénytelen URL formátum. Kérjük, adjon meg egy érvényes weboldal címet.",
             "website.max" => "Az weboldal cím nem lehet hosszabb 255 karakternél.",
             "description.required" => "A leírás megadása kötelező.",
             "description.max" => "A leírás nem lehet hosszabb 1000 karakternél.",

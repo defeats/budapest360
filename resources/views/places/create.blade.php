@@ -12,7 +12,7 @@
                 <div class="form-columns">
                     <div class="input-group">
                         <div>
-                            <label for="name">{{ __('Hely neve') }}</label>
+                            <label for="name">{{ __('Hely neve') }} <span style="font-size: 1.3em;" class="highlight">*</span></label>
                             <span style="color: red;">{{ $errors->first('name') }}</span>
                             <input id="name" type="text" name="name" value="{{ old('name') }}" required>
                         </div>
@@ -20,7 +20,7 @@
                         <input id="slug" type="hidden" name="slug" value="{{ old('slug') }}">
 
                         <div>
-                            <label for="category_id">{{ __('Kategória') }}</label>
+                            <label for="category_id">{{ __('Kategória') }} <span style="font-size: 1.3em;" class="highlight">*</span></label>
                             <span style="color: red;">{{ $errors->first('category_id') }}</span>
                             <select id="category_id" name="category_id" required>
                                 @foreach ($categories as $category)
@@ -33,22 +33,22 @@
                         </div>
 
                         <div>
-                            <label for="post_code">{{ __('Irányítószám') }}</label>
+                            <label for="post_code">{{ __('Irányítószám') }} <span style="font-size: 1.3em;" class="highlight">*</span></label>
                             <span style="color: red;">{{ $errors->first('post_code') }}</span>
                             <input type="number" id="post_code" name="post_code" value="{{ old('post_code') }}" required>
                         </div>
 
                         <div>
-                            <label for="address">{{ __('Cím') }}</label>
+                            <label for="address">{{ __('Cím') }} <span style="font-size: 1.3em;" class="highlight">*</span></label>
                             <span style="color: red;">{{ $errors->first('address') }}</span>
                             <input type="text" id="address" name="address" placeholder="{{ __('Pl. Fő utca 1.') }}"
                                 value="{{ old('address') }}" required>
                         </div>
 
                         <div>
-                            <label for="phone">{{ __('Telefonszám') }}</label>
+                            <label for="phone">{{ __('Telefonszám') }} <span style="font-size: 1.3em;" class="highlight">*</span></label>
                             <span style="color: red;">{{ $errors->first('phone') }}</span>
-                            <input type="text" id="phone" name="phone" value="{{ old('phone') }}">
+                            <input type="text" id="phone" name="phone" placeholder="{{ __('Pl. +36301234567') }}" value="{{ old('phone') }}" required>
                         </div>
 
                         <div>
@@ -60,19 +60,19 @@
                         <div>
                             <label for="website">{{ __('Weboldal') }}</label>
                             <span style="color: red;">{{ $errors->first('website') }}</span>
-                            <input type="url" id="website" name="website" value="{{ old('website') }}">
+                            <input type="text" id="website" name="website" placeholder="{{ __('Pl. pelda.hu') }}" value="{{ old('website') }}">
                         </div>
 
                         <div>
-                            <label for="description">{{ __('Leírás') }}</label>
+                            <label for="description">{{ __('Leírás') }} <span style="font-size: 1.3em;" class="highlight">*</span></label>
                             <span style="color: red;">{{ $errors->first('description') }}</span>
-                            <textarea class="form-textarea" id="description" name="description" rows="4">{{ old('description') }}</textarea>
+                            <textarea class="form-textarea" id="description" name="description" placeholder="(max. 1000 karakter)" rows="4" required>{{ old('description') }}</textarea>
                         </div>
 
                         <div>
-                            <label>{{ __('Galéria') }}</label>
+                            <label>{{ __('Galéria') }} <span style="font-size: 1.3em;" class="highlight">*</span></label>
                             <span style="color: red;">{{ $errors->first('place_images') }}</span>
-                            <input type="file" name="place_images[]" accept="image/*" multiple>
+                            <input type="file" name="place_images[]" accept="image/*" multiple required>
                             <div id="preview-container" style="margin-top: 10px;"></div>
                         </div>
                     </div>

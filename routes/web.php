@@ -10,8 +10,15 @@ use App\Models\Place;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Http\Request;
 
-App::setLocale('en'); //test
+Route::post('/locale-change', function (Request $request) {
+    $locale = $request->input('locale');
+    if (in_array($locale, ['en', 'hu'])) {
+        Session::put('locale', $locale);
+    }
+    return back();
+})->name('locale.change');
 
 Route::get('/', function () {
     $popularPlaces = Place::where('status', 'approved')
@@ -20,7 +27,7 @@ Route::get('/', function () {
         ->take(5)
         ->get();
 
-    return view('welcome', compact('popularPlaces'));
+    return view('welcome', ['popularPlaces' => $popularPlaces]);
 });
 
 /* AUTH */
