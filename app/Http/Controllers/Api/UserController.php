@@ -11,12 +11,17 @@ use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
-    public function register(Request $request){
+    public function register(Request $request)
+    {
         $validated = $request->validate([
             'name' => ['required', 'string', 'max:20', 'min:4', 'unique:users,name'],
             'email' => ['required', 'email', 'max:255', 'unique:users,email'],
-            'password' => ['required', 'string', 'confirmed',
-                            Password::min(8)->letters()->mixedCase()->numbers()],
+            'password' => [
+                'required',
+                'string',
+                'confirmed',
+                Password::min(8)->letters()->mixedCase()->numbers()
+            ],
         ]);
 
         $user = User::create([
@@ -33,7 +38,8 @@ class UserController extends Controller
         ], 201);
     }
 
-    public function login(Request $request){
+    public function login(Request $request)
+    {
         $request->validate([
             'email' => ['required', 'email'],
             'password' => ['required', 'string'],
@@ -52,13 +58,13 @@ class UserController extends Controller
 
         $user = auth()->user();
 
-        $existingToken = $user->tokens()->where('name', $request->device_id ." | ". $request->userAgent())->first();
+        $existingToken = $user->tokens()->where('name', $request->device_id . " | " . $request->userAgent())->first();
 
         if ($existingToken) {
             $existingToken->delete();
         }
 
-        $token = $user->createToken($request->device_id ." | ". $request->userAgent(), ['*'], now()->addWeek())->plainTextToken;
+        $token = $user->createToken($request->device_id . " | " . $request->userAgent(), ['*'], now()->addWeek())->plainTextToken;
 
         return response()->json([
             'user' => $user,
@@ -66,20 +72,58 @@ class UserController extends Controller
         ], 200);
     }
 
-    public function logout(Request $request){
+    public function logout(Request $request)
+    {
         $request->user()->currentAccessToken()->delete();
 
         return response()->json(['msg' => 'Logged out successfully'], 200);
     }
 
-    public function user(Request $request) {
+    public function user(Request $request)
+    {
         return response()->json($request->user(), 200);
     }
 
-    public function checkAdminToken(Request $request) {
-        if ($request->bearerToken()) {
-            return response()->json(['msg' => 'Token is valid'], 200);
+    public function index(Request $request)
+    {
+        if (auth()->user()->role === "admin") {
+            $users = User::all();
+            if (isset($users) && $users->count() > 0) {
+                return response()->json(['users' => $users]);
+            }
+            return response()->json(['msg' => 'There are no users in the DB']);
+        } else {
+            return response()->json(["msg" => "You do not have permission to update this place"], 403);
         }
-        return response()->json(['msg' => 'Unauthorized'], 401);
+    }
+
+    public function checkTokenExpiryDate(Request $request)
+    {
+        $user = auth()->user();
+
+        if (!$user->tokens()->exists()) {
+            return response()->json([
+                'has_tokens' => false,
+                'tokens' => []
+            ], 200);
+        }
+
+        $tokens = $user->tokens()->get()->map(function ($token) {
+            return [
+                'id' => $token->id,
+                'name' => $token->name,
+                'last_used_at' => $token->last_used_at,
+                'expires_at' => $token->expires_at,
+                // Logikai mező a MAUI-nak: true, ha a lejárati idő a múltban van
+                'is_expired' => $token->expires_at ? $token->expires_at->isPast() : false,
+                'days_until_expiry' => $token->expires_at ? now()->diffInDays($token->expires_at, false) : null,
+            ];
+        });
+
+        return response()->json([
+            'has_tokens' => true,
+            'user_id' => $user->id,
+            'tokens' => $tokens
+        ], 200);
     }
 }

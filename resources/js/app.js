@@ -1,13 +1,19 @@
 import "./bootstrap";
 import Swiper from "swiper";
-import { Navigation, Pagination, Autoplay } from "swiper/modules";
+import { Navigation, Pagination, Autoplay, EffectFade } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 
 if (document.querySelector('.welcome-slider')) {
     const welcomeSwiper = new Swiper(".welcome-slider", {
-        modules: [Navigation, Pagination, Autoplay],
+        modules: [Navigation, Pagination, Autoplay, EffectFade],
+        slidesPerView: 1,
+        spaceBetween: 0,
+        effect: 'fade',
+        fadeEffect: {
+            crossFade: true
+        },
         loop: true,
         autoplay: {
             delay: 3000,

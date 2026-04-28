@@ -51,7 +51,7 @@
                                         <span class="stat-number">{{ $place->clicks }}</span>
                                     </a>
                                     <a href="{{ route('places.show', $place->slug) }}" class="stat-box">
-                                        <span class="stat-label">{{ __("Kedvencek") }}</span>
+                                        <span class="stat-label">{{ __("Kedvencekhez adva") }}</span>
                                         <span class="stat-number">{{ $place->favourites->count() }}</span>
                                     </a>
                                     <a href="{{ route('places.show', $place->slug) }}" class="stat-box">

@@ -1,58 +1,286 @@
-/* Layout Container */
-.welcome-container {
-    background-color: var(--bg-dark);
-    padding: 50px 0;
-    min-height: 100vh;
+/* =========================================
+   LANDING HERO SECTION
+   ========================================= */
+.popular-places-slider .swiper-slide {
+    position: relative;
+    background-color: var(--bg-dark); 
 }
 
-/* Individual Card Styling */
-.welcome-place-card {
-    background-color: var(--bg-card);
-    border: none;
-    overflow: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+.popular-places-slider .image-wrapper {
+    width: 100%;
     height: 100%;
-    display: flex;
-    flex-direction: column;
+}
+
+.landing-hero-section {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    min-height: 600px;
+    overflow: hidden;
+    background-color: var(--bg-dark);
+}
+
+.background-slider {
+    width: 100%;
+    height: 100%;
+    overflow: hidden !important; 
+}
+
+.background-slider .swiper-slide {
+    width: 100% !important; 
+    overflow: hidden;
+    position: relative;
+}
+
+.background-slider .image-wrapper {
+    width: 100%;
+    height: 100%;
+    transform: scale(1.02); 
 }
 
 .image-wrapper {
-    width: 100%;
-    height: 90vh;
-    overflow: hidden;
-}
-
-.image-wrapper::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
+    position: relative;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.6);
 }
 
 .place-image {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: scale 0.5s ease;
+    animation: slowZoom 20s infinite alternate linear; 
 }
 
-.place-info {
-    padding: 1.5rem;
+.dark-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 5;
+    pointer-events: none;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.8) 100%);
+    backdrop-filter: blur(10px); 
+    -webkit-backdrop-filter: blur(10px); 
+    transform: scale(1.1);
 }
 
-.place-title {
-    color: var(--primary);
-    font-size: 1.25rem;
-    font-weight: 700;
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+    pointer-events: none;
+}
+
+.hero-overlay > * {
+    pointer-events: auto;
+}
+
+.hero-content {
+    position: relative; 
+    z-index: 20;        
+    text-align: center;
+    max-width: 800px;
+    padding: 0 20px;
+    width: 100%;
+    pointer-events: auto; 
+}
+
+.hero-content h1 {
+    font-size: clamp(3rem, 8vw, 5.5rem);
+    font-weight: 800;
     margin-bottom: 0.5rem;
+    line-height: 1.1;
+    color: #ffffff;
+    letter-spacing: -1px;
 }
 
-.place-address {
-    color: var(--text-muted);
-    font-size: 0.9rem;
-    line-height: 1.4;
+.highlight {
+    color: var(--primary, #f59e0b);
 }
 
+.subtitle {
+    font-size: clamp(1.1rem, 3vw, 1.4rem);
+    color: rgba(255, 255, 255, 0.85);
+    margin-bottom: 3rem;
+    font-weight: 300;
+}
+
+.hero-actions {
+    display: flex;
+    position: relative;
+    z-index: 25;
+    pointer-events: auto !important;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    width: 100%;
+}
+
+.search-glass-container {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50px;
+    padding: 8px;
+    width: 100%;
+    max-width: 600px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.hero-search-form {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.search-icon {
+    color: rgba(255, 255, 255, 0.6);
+    padding: 0 15px;
+    font-size: 1.1rem;
+}
+
+.hero-search-input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    color: #fff;
+    font-size: 1rem;
+    outline: none;
+    padding: 10px 0;
+}
+
+.hero-search-input::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.search-btn {
+    background-color: var(--primary, #f59e0b);
+    color: #fff; 
+    border: none;
+    border-radius: 40px;
+    padding: 12px 30px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.search-btn:hover {
+    transform: translateY(-2px);
+    background-color: #d97706; 
+}
+
+.hero-quick-links {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.btn-glass {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.btn-glass:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+}
+
+.scroll-indicator {
+    position: absolute;
+    bottom: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: rgba(255, 255, 255, 0.6);
+    gap: 8px;
+}
+
+.scroll-text {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* =========================================
+   ANIMÁCIÓK
+   ========================================= */
+.animate-fade-in {
+    animation: fadeIn 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.animate-slide-up {
+    opacity: 0;
+    animation: slideUp 1s cubic-bezier(0.4, 0, 0.2, 1) 0.3s forwards;
+}
+
+.animate-slide-up-delayed {
+    opacity: 0;
+    animation: slideUp 1s cubic-bezier(0.4, 0, 0.2, 1) 0.6s forwards;
+}
+
+.animate-bounce {
+    animation: bounce 2s infinite;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+    40% { transform: translateY(-10px); }
+    60% { transform: translateY(-5px); }
+}
+
+@keyframes slowZoom {
+    from { transform: scale(1); }
+    to { transform: scale(1.1); }
+}
+
+/* =========================================
+   RESPONSZÍV BEÁLLÍTÁSOK
+   ========================================= */
+@media (max-width: 600px) {
+    .search-btn {
+        padding: 10px 15px;
+    }
+    .search-icon {
+        padding: 0 10px;
+    }
+    .hero-search-input {
+        font-size: 0.9rem;
+    }
+}
