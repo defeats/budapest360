@@ -1,6 +1,5 @@
 @import url('variables.css');
 @import url('base.css');
-@import url('utilities.css');
 @import url('components/buttons.css');
 @import url('components/forms.css');
 @import url('components/cards.css');
@@ -14,3 +13,4 @@
 @import url('pages/favorites.css');
 @import url('pages/login.css');
 @import url('pages/welcome.css');
+@import url('utilities.css');

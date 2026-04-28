@@ -7,6 +7,7 @@ use App\Http\Controllers\PlaceController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\HomeController;
 use App\Models\Place;
+use App\Models\Category;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
@@ -22,12 +23,14 @@ Route::post('/locale-change', function (Request $request) {
 
 Route::get('/', function () {
     $popularPlaces = Place::where('status', 'approved')
-        ->with('multimedias')
         ->orderByDesc('clicks')
-        ->take(5)
+        ->take(6)
         ->get();
 
-    return view('welcome', ['popularPlaces' => $popularPlaces]);
+    $categories = Category::all();
+    $events = Place::where('category_id', '7')->get();
+
+    return view('welcome', ['popularPlaces' => $popularPlaces, 'categories' => $categories, 'events' => $events]);
 });
 
 /* AUTH */

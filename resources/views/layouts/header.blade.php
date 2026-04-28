@@ -68,4 +68,32 @@
             </div>
         </nav>
     </div>
+    <script>
+    //MÉG NEM MŰKÖDIK TODOOOOOOOOOO
+    document.addEventListener('DOMContentLoaded', () => {
+    // Elemek kiválasztása
+    const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+    const navLinks = document.querySelector('.nav-links');
+
+    // Ha léteznek az elemek az oldalon, akkor rátesszük az eseményfigyelőt
+    if (mobileMenuBtn && navLinks) {
+        mobileMenuBtn.addEventListener('click', () => {
+            // A gomb megnyomásakor hozzáadja vagy leveszi az 'active' osztályt
+            navLinks.classList.toggle('active');
+            
+            // Opcionális: Ha van benne ikon cserélhetjük a menü/X ikont
+            const icon = mobileMenuBtn.querySelector('i');
+            if (icon) {
+                if (navLinks.classList.contains('active')) {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-times'); // X ikon bezáráshoz
+                } else {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars'); // Vissza a hamburger ikonra
+                }
+            }
+        });
+    }
+});
+    </script>
 </header>
