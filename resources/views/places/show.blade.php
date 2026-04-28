@@ -5,7 +5,7 @@
 
         <div class="place-header">
             <div style="margin-bottom: 1rem;">
-                <span class="highlight category-badge">{{ __($place->category->name) }}</span>
+                <span class="category-badge">{{ __($place->category->name) }}</span>
                 <h1>{{ $place->name }}</h1>
                 @if ($place->reviews->count() > 0)
                     <div>
@@ -63,34 +63,34 @@
 
                     <div class="features-row">
                         @if ($place->outdoor_seating)
-                            <span><i class="fa-solid fa-chair"></i> {{ __('Kültéri asztalok') }}</span>
+                            <span><i class="fa-solid fa-chair highlight"></i> {{ __('Kültéri asztalok') }}</span>
                         @endif
                         @if ($place->wifi)
-                            <span><i class="fa-solid fa-wifi"></i> {{ __('Wifi') }}</span>
+                            <span><i class="fa-solid fa-wifi highlight"></i> {{ __('Wifi') }}</span>
                         @endif
                         @if ($place->pet_friendly)
-                            <span><i class="fa-solid fa-dog"></i> {{ __('Kutyabarát') }}</span>
+                            <span><i class="fa-solid fa-dog highlight"></i> {{ __('Kutyabarát') }}</span>
                         @endif
                         @if ($place->card_payment)
-                            <span><i class="fa-solid fa-credit-card"></i> {{ __('Bankkártyás fizetés') }}</span>
+                            <span><i class="fa-solid fa-credit-card highlight"></i> {{ __('Bankkártyás fizetés') }}</span>
                         @endif
                         @if ($place->photo_spot)
-                            <span><i class="fa-solid fa-camera-retro"></i> {{ __('Fotó pont') }}</span>
+                            <span><i class="fa-solid fa-camera-retro highlight"></i> {{ __('Fotó pont') }}</span>
                         @endif
                         @if ($place->family_friendly)
-                            <span><i class="fa fa-child"></i> {{ __('Családbarát') }}</span>
+                            <span><i class="fa fa-child highlight"></i> {{ __('Családbarát') }}</span>
                         @endif
                         @if ($place->accessible)
-                            <span><i class="fa fa-wheelchair"></i> {{ __('Akadálymentesített') }}</span>
+                            <span><i class="fa fa-wheelchair highlight"></i> {{ __('Akadálymentesített') }}</span>
                         @endif
                         @if ($place->student_discount)
-                            <span><i class="fa-solid fa-id-card"></i> {{ __('Diákkedvezmény') }}</span>
+                            <span><i class="fa-solid fa-id-card highlight"></i> {{ __('Diákkedvezmény') }}</span>
                         @endif
                         @if ($place->free_parking)
-                            <span><i class="fa fa-car"></i> {{ __('Ingyenes parkolás') }}</span>
+                            <span><i class="fa fa-car highlight"></i> {{ __('Ingyenes parkolás') }}</span>
                         @endif
                         @if ($place->free_entry)
-                            <span><i class="fa-ticket-alt"></i> {{ __('Ingyenes belépés') }}</span>
+                            <span><i class="fa-ticket-alt highlight"></i> {{ __('Ingyenes belépés') }}</span>
                         @endif
                     </div>
                 </div>
@@ -160,7 +160,7 @@
                         <h3 style="margin-bottom: 0.5rem;">{{ __('Adatok') }}</h3>
                         <hr class="divider">
                         <p><i class="fa-regular fa-clock"></i> <span>{{ __('Nyitva') }}: 10:00 - 22:00</span></p>
-                        <p style="margin-bottom: 0.2rem"><i class="fa-solid fa-location-dot"></i> {{ $place->address }}</p>
+                        <p style="margin-bottom: 0.2rem"><i class="fa-solid fa-location-dot"></i> {{ $place->address }} {{ $place->post_code }}</p>
                         <p><i class="fa-solid fa-phone"></i> <span>{{ $place->phone }}</span></p>
                         <p><i class="fa-solid fa-envelope"></i> <span>{{ $place->email }}</span></p>
                         @if ($place->website)
@@ -172,7 +172,7 @@
                         <div style="margin-bottom: 1rem;">
                             <iframe width="100%" height="250" style="border: 1px solid #eee; border-radius: 12px;"
                                 frameborder="0" scrolling="no" marginheight="0" marginwidth="0"
-                                src="https://maps.google.com/maps?q={{ urlencode($place->address) }}&t=&z=14&ie=UTF8&iwloc=&output=embed">
+                                src="https://maps.google.com/maps?q={{ urlencode($place->address ."+". $place->post_code) }}&t=&z=14&ie=UTF8&iwloc=&output=embed">
                             </iframe>
                         </div>
                         @auth
