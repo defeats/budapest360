@@ -19,13 +19,13 @@ class PlaceController extends Controller
         if (isset($places) && $places->count() > 0) {
             return response()->json(['places' => $places]);
         }
-        return response()->json(["msg" => "There are no places in the DB"]);
+        return response()->json(['msg' => 'There are no places in the DB']);
     }
 
     public function store(StorePlaceRequest $request)
     {
         $place = Place::create($request->all());
-        return response()->json(["msg" => "Place created successfully", "place" => $place]);
+        return response()->json(['msg' => 'Place created successfully', 'place' => $place]);
     }
 
     public function update(UpdatePlaceRequest $request, Place $place)
@@ -35,17 +35,17 @@ class PlaceController extends Controller
             $data['address'] = str_starts_with($data['address'], 'Budapest, ') ? $data['address'] : 'Budapest, ' . $data['address'];
             $place->update($data);
 
-            return response()->json(["msg" => "Place was updated successfully", "place" => $place]);
+            return response()->json(['msg' => 'Place was updated successfully', 'place' => $place]);
         }
-        return response()->json(["msg" => "You do not have permission to update this place"], 403);
+        return response()->json(['msg' => 'You do not have permission to update this place'], 403);
     }
 
     public function destroy(Place $place)
     {
         if (auth()->user()->tokenCan('delete:places')) {
             $place->delete();
-            return response()->json(["msg" => "Place was deleted successfully"]);
+            return response()->json(['msg' => 'Place was deleted successfully']);
         }
-        return response()->json(["msg" => "You do not have permission to delete this place"], 403);
+        return response()->json(['msg' => 'You do not have permission to delete this place'], 403);
     }
 }

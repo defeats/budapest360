@@ -85,7 +85,7 @@ class UserController extends Controller
 
     public function index(Request $request)
     {
-        if (auth()->user()->role === "admin") {
+        if (auth()->user()->role === 'admin') {
             $users = User::all();
             if (isset($users) && $users->count() > 0) {
                 return response()->json(['users' => $users]);
@@ -97,7 +97,7 @@ class UserController extends Controller
     }
 
     public function update(Request $request, User $user) {
-        if (auth()->user()->role === "admin") {
+        if (auth()->user()->role === 'admin') {
             $validated = $request->validate([
                 'name' => ['required', 'string', 'max:20', 'min:4', 'unique:users,name,' . $user->id],
                 'email' => ['required', 'email', 'max:255', 'unique:users,email,' . $user->id],
@@ -117,7 +117,7 @@ class UserController extends Controller
 
     public function destroy(Request $request, User $user)
     {
-        if (auth()->user()->role === "admin") {
+        if (auth()->user()->role === 'admin') {
             $user->delete();
             return response()->json(['msg' => 'User was deleted successfully'], 201);
         } else {

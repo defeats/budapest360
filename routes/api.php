@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\PlaceController;
+use App\Http\Controllers\Api\ReviewController;
 use App\Http\Controllers\Api\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -26,5 +27,11 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::post('/places', 'store');
         Route::put('/places/{place}', 'update');
         Route::delete('/places/{place}', 'destroy');
+    });
+
+    Route::controller(ReviewController::class)->group(function () {
+        Route::get('/reviews', 'index')->withoutMiddleware('auth:sanctum');
+        Route::put('/reviews/{review}', 'update');
+        Route::delete('/reviews/{review}', 'destroy');
     });
 });
