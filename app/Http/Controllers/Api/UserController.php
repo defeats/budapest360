@@ -19,9 +19,8 @@ class UserController extends Controller
             'password' => [
                 'required',
                 'string',
-                'confirmed',
                 Password::min(8)->letters()->mixedCase()->numbers()
-            ],
+            ]
         ]);
 
         $user = User::create([
@@ -53,7 +52,7 @@ class UserController extends Controller
         ];
 
         if (!Auth::attempt($credentials)) {
-            return response()->json(['message' => 'Invalid credentials'], 418);
+            return response()->json(['msg' => 'Invalid credentials'], 418);
         }
 
         $user = auth()->user();
@@ -91,9 +90,38 @@ class UserController extends Controller
             if (isset($users) && $users->count() > 0) {
                 return response()->json(['users' => $users]);
             }
-            return response()->json(['msg' => 'There are no users in the DB']);
+            return response()->json(['msg' => 'There are no users in the DB'], 404);
         } else {
-            return response()->json(["msg" => "You do not have permission to update this place"], 403);
+            return response()->json(['msg' => 'You do not have permission to update this place'], 403);
+        }
+    }
+
+    public function update(Request $request, User $user) {
+        if (auth()->user()->role === "admin") {
+            $validated = $request->validate([
+                'name' => ['required', 'string', 'max:20', 'min:4', 'unique:users,name,' . $user->id],
+                'email' => ['required', 'email', 'max:255', 'unique:users,email,' . $user->id],
+                'role' => ['required', 'string']
+            ]);
+
+            $user->update([
+                'name' => $validated['name'],
+                'email' => $validated['email'],
+                'role' => $validated['role']
+            ]);
+
+            return response()->json(['msg' => 'User was updated successfully'], 201);
+        }
+        return response()->json(['msg' => 'You do not have permission to update this place'], 403);
+    }
+
+    public function destroy(Request $request, User $user)
+    {
+        if (auth()->user()->role === "admin") {
+            $user->delete();
+            return response()->json(['msg' => 'User was deleted successfully'], 201);
+        } else {
+            return response()->json(['msg' => 'You do not have permission to update this place'], 403);
         }
     }
 
@@ -114,7 +142,6 @@ class UserController extends Controller
                 'name' => $token->name,
                 'last_used_at' => $token->last_used_at,
                 'expires_at' => $token->expires_at,
-                // Logikai mező a MAUI-nak: true, ha a lejárati idő a múltban van
                 'is_expired' => $token->expires_at ? $token->expires_at->isPast() : false,
                 'days_until_expiry' => $token->expires_at ? now()->diffInDays($token->expires_at, false) : null,
             ];

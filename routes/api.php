@@ -8,11 +8,16 @@ use App\Models\Place;
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::controller(UserController::class)->group(function () {
-        Route::post('/register', [UserController::class, 'register'])->middleware('throttle:2,1440')->withoutMiddleware('auth:sanctum');
-        Route::post('/login', [UserController::class, 'login'])->middleware('throttle:5,1')->withoutMiddleware('auth:sanctum');
-        Route::get('/checkTokenExpiryDate', [UserController::class, 'checkTokenExpiryDate']);
-        Route::get('/user', 'user');
+        Route::post('/register', 'register')->middleware('throttle:2,1440')->withoutMiddleware('auth:sanctum');
+        Route::post('/login', 'login')->middleware('throttle:5,1')->withoutMiddleware('auth:sanctum');
+        
+        Route::get('/checkTokenExpiryDate', 'checkTokenExpiryDate');
+
         Route::get('/users', 'index');
+        Route::put('/users/{user}', 'update');
+        Route::delete('/users/{user}', 'destroy');
+        
+        Route::get('/user', 'user');
         Route::post('/logout', 'logout');
     });
 
