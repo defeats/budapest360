@@ -143,7 +143,7 @@ class UserController extends Controller
                 'last_used_at' => $token->last_used_at,
                 'expires_at' => $token->expires_at,
                 'is_expired' => $token->expires_at ? $token->expires_at->isPast() : false,
-                'days_until_expiry' => $token->expires_at ? now()->diffInDays($token->expires_at, false) : null,
+                'days_until_expiry' => $token->expires_at ? round(now()->diffInDays($token->expires_at, false)) : null,
             ];
         });
 

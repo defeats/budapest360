@@ -15,7 +15,7 @@ class PlaceController extends Controller
 {
     public function index()
     {
-        $places = Place::all();
+        $places = Place::where('status', 'approved')->get();
         if (isset($places) && $places->count() > 0) {
             return response()->json(['places' => $places]);
         }
@@ -36,6 +36,35 @@ class PlaceController extends Controller
             $place->update($data);
 
             return response()->json(['msg' => 'Place was updated successfully', 'place' => $place]);
+        }
+        return response()->json(['msg' => 'You do not have permission to update this place'], 403);
+    }
+
+    public function pending() {
+        if (auth()->user()->role === 'admin') {
+            $places = Place::where('status', 'pending')->get();
+            if (isset($places) && $places->count() > 0) {
+                return response()->json(['places' => $places]);
+            }
+            return response()->json(['msg' => 'There are no pending places in the DB'], 404);
+        }
+        return response()->json(['msg' => 'You do not have permission to update this place'], 403);
+    }
+
+    public function approve(Place $place) {
+        if (auth()->user()->tokenCan('update:places')) {
+            $place->status = 'approved';
+            $place->update();
+            return response()->json(['msg' => 'Place has been approved'], 201);
+        }
+        return response()->json(['msg' => 'You do not have permission to update this place'], 403);
+    }
+
+    public function reject(Place $place) {
+        if (auth()->user()->tokenCan('update:places')) {
+            $place->status = 'rejected';
+            $place->update();
+            return response()->json(['msg' => 'Place has been rejected'], 201);
         }
         return response()->json(['msg' => 'You do not have permission to update this place'], 403);
     }
