@@ -10,7 +10,7 @@ use App\Models\Place;
 Route::middleware('auth:sanctum')->group(function () {
     Route::controller(UserController::class)->group(function () {
         Route::post('/register', 'register')->middleware('throttle:2,1440')->withoutMiddleware('auth:sanctum');
-        Route::post('/login', 'login')->middleware('throttle:5,1')->withoutMiddleware('auth:sanctum');
+        Route::post('/login', 'login')->withoutMiddleware('auth:sanctum');
         
         Route::get('/checkTokenExpiryDate', 'checkTokenExpiryDate');
 
@@ -27,6 +27,10 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::post('/places', 'store');
         Route::put('/places/{place}', 'update');
         Route::delete('/places/{place}', 'destroy');
+
+        Route::get('/pendingPlaces', 'pending');
+        Route::put('/approvePlace/{place}', 'approve');
+        Route::put('/rejectPlace/{place}', 'reject');
     });
 
     Route::controller(ReviewController::class)->group(function () {
