@@ -107,7 +107,7 @@
 
 
         <div class="card-grid">
-            @forelse($places ?? [] as $place)
+            @forelse($places ?? [] as $place) 
                 <div class="place-card">
                     <div class="card-image" style="background-image: url('{{ $place->getThumbnailUrl() }}');">
                     </div>
@@ -129,7 +129,6 @@
                         </div>
                     </div>
                 </div>
-
             @empty
                 <div class="empty">
                     <div class="empty-icon"><i class="fa-solid fa-map-pin"></i></div>

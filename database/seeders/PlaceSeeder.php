@@ -18,7 +18,7 @@ class PlaceSeeder extends Seeder
         // user_id <=> multimedia
         $user = User::first() ?? User::factory()->create();
 
-        // etterem teszt
+        // etterem dummies
         $restaurantCat = Category::where('slug', 'restaurants')->first();
         if ($restaurantCat) {
             $gundel = Place::updateOrCreate(
@@ -37,7 +37,8 @@ class PlaceSeeder extends Seeder
                     'accessible' => true,
                     'photo_spot' => true,
                     'free_parking' => true,
-                    'pet_friendly' => true
+                    'pet_friendly' => true,
+                    'status' => 'approved'
                     ]
             );
 
@@ -60,12 +61,16 @@ class PlaceSeeder extends Seeder
                     'address' => 'Budapest, Dombóvári út 28.',
                     'category_id' => $restaurantCat->id,
                     'description' => 'Budapest egyik legikonikusabb, Michelin-kalauzban ajánlott étterme, a város legmagasabb épületének tetején.',
-                    'accessible' => true
+                    'wifi' => true,
+                    'card_payment' => true,
+                    'accessible' => true,
+                    'free_parking' => false,
+                    'status' => 'approved'
                 ]
             );
 
             $virtu->multimedias()->updateOrCreate(
-                ['file_name' => 'virtu_main.jpg'], // fix fajlnev /* TODO: dinamikusra megcsinalni az API szerint
+                ['file_name' => 'virtu_main.jpg'],
                 [
                     'user_id' => $user->id,
                     'file_path' => 'public/images',
@@ -81,7 +86,12 @@ class PlaceSeeder extends Seeder
                     'post_code' => '1061',
                     'address' => 'Budapest, Székely Mihály utca 2.',
                     'category_id' => $restaurantCat->id,
-                    'description' => 'Két Michelin-csillagos étterem, amely a magyar gasztronómia klasszikusait gondolja újra modern köntösben, a legkiválóbb hazai alapanyagokra építve.'
+                    'description' => 'Két Michelin-csillagos étterem, amely a magyar gasztronómia klasszikusait gondolja újra modern köntösben, a legkiválóbb hazai alapanyagokra építve.',
+                    'wifi' => true,
+                    'card_payment' => true,
+                    'accessible' => true,
+                    'free_parking' => false,
+                    'status' => 'approved'
                 ]
             );
 
@@ -102,7 +112,12 @@ class PlaceSeeder extends Seeder
                     'post_code' => '1053',
                     'address' => 'Budapest, Királyi Pál utca 4.',
                     'category_id' => $restaurantCat->id,
-                    'description' => 'Michelin-csillagos élményétterem a Hotel Rum aljában, ahol a természet és a hagyományok találkoznak. Ételeikben a vadon termő gyógynövények kapnak főszerepet.'
+                    'description' => 'Michelin-csillagos élményétterem a Hotel Rum aljában, ahol a természet és a hagyományok találkoznak. Ételeikben a vadon termő gyógynövények kapnak főszerepet.',
+                    'wifi' => true,
+                    'card_payment' => true,
+                    'accessible' => true,
+                    'free_parking' => false,
+                    'status' => 'approved'
                 ]
             );
 
@@ -123,7 +138,12 @@ class PlaceSeeder extends Seeder
                     'post_code' => '1087',
                     'address' => 'Budapest, Mosonyi u. 3.',
                     'category_id' => $restaurantCat->id,
-                    'description' => 'Családi tulajdonban lévő, kultikus vendéglő a Keleti pályaudvar közelében, amely a hagyományos magyar és zsidó konyha remekeit kínálja házias, mégis elegáns környezetben.'
+                    'description' => 'Családi tulajdonban lévő, kultikus vendéglő a Keleti pályaudvar közelében, amely a hagyományos magyar és zsidó konyha remekeit kínálja házias, mégis elegáns környezetben.',
+                    'wifi' => true,
+                    'card_payment' => true,
+                    'accessible' => true,
+                    'free_parking' => false,
+                    'status' => 'approved'
                 ]
             );
 
@@ -144,7 +164,12 @@ class PlaceSeeder extends Seeder
                     'post_code' => '1051',
                     'address' => 'Budapest, Sas utca 3.',
                     'category_id' => $restaurantCat->id,
-                    'description' => 'Michelin-csillagos étterem és borbár fúziója a Bazilika közelében. A francia bisztrókonyha és a magyar családi vendéglők hangulatát ötvözi, több mint 200 féle borral.'
+                    'description' => 'Michelin-csillagos étterem és borbár fúziója a Bazilika közelében. A francia bisztrókonyha és a magyar családi vendéglők hangulatát ötvözi, több mint 200 féle borral.',
+                    'wifi' => true,
+                    'card_payment' => true,
+                    'accessible' => true,
+                    'free_parking' => false,
+                    'status' => 'approved'
                 ]
             );
 
@@ -165,7 +190,12 @@ class PlaceSeeder extends Seeder
                     'post_code' => '1052',
                     'address' => 'Budapest, Piarista köz 2.',
                     'category_id' => $restaurantCat->id,
-                    'description' => 'A magyar és erdélyi hagyományokat kortárs szellemben bemutató Michelin-csillagos étterem. Exkluzív belső tere és természetközeli filozófiája egyedülálló élményt nyújt.'
+                    'description' => 'A magyar és erdélyi hagyományokat kortárs szellemben bemutató Michelin-csillagos étterem. Exkluzív belső tere és természetközeli filozófiája egyedülálló élményt nyújt.',
+                    'wifi' => true,
+                    'card_payment' => true,
+                    'accessible' => true,
+                    'free_parking' => false,
+                    'status' => 'approved'
                 ]
             );
 
@@ -186,7 +216,12 @@ class PlaceSeeder extends Seeder
                     'post_code' => '1052',
                     'address' => 'Budapest, Petőfi tér 3-5.',
                     'category_id' => $restaurantCat->id,
-                    'description' => 'Rácz Jenő Michelin-csillagos étterme, amely a "Chef\'s Table" koncepciót honosította meg itthon. A vendégek egy pult körül ülve, színházi előadásként élvezhetik a vacsorát.'
+                    'description' => 'Rácz Jenő Michelin-csillagos étterme, amely a "Chef\'s Table" koncepciót honosította meg itthon. A vendégek egy pult körül ülve, színházi előadásként élvezhetik a vacsorát.',
+                    'wifi' => true,
+                    'card_payment' => true,
+                    'accessible' => true,
+                    'free_parking' => false,
+                    'status' => 'approved'
                 ]
             );
 
@@ -207,7 +242,12 @@ class PlaceSeeder extends Seeder
                     'post_code' => '1092',
                     'address' => 'Budapest, Ráday utca 4.',
                     'category_id' => $restaurantCat->id,
-                    'description' => 'Hazánk első Michelin-csillagos étterme a Ráday utcában. A kompromisszumok nélküli minőség és a nemzetközi színvonalú fine dining úttörője Magyarországon.'
+                    'description' => 'Hazánk első Michelin-csillagos étterme a Ráday utcában. A kompromisszumok nélküli minőség és a nemzetközi színvonalú fine dining úttörője Magyarországon.',
+                    'wifi' => true,
+                    'card_payment' => true,
+                    'accessible' => true,
+                    'free_parking' => false,
+                    'status' => 'approved'
                 ]
             );
 
@@ -232,7 +272,12 @@ class PlaceSeeder extends Seeder
                     'post_code' => '1014',
                     'address' => 'Budapest, Szentháromság tér',
                     'category_id' => $sightsCat->id,
-                    'description' => 'Lenyűgöző panoráma és neogótikus építészet a Budai Várnegyedben.'
+                    'description' => 'Lenyűgöző panoráma és neogótikus építészet a Budai Várnegyedben.',
+                    'wifi' => true,
+                    'accessible' => true,
+                    'photo_spot' => true,
+                    'free_parking' => false,
+                    'status' => 'approved'
                 ]
             );
 
@@ -253,7 +298,12 @@ class PlaceSeeder extends Seeder
                     'post_code' => '1055',
                     'address' => 'Budapest, Kossuth Lajos tér 1-3',
                     'category_id' => $sightsCat->id,
-                    'description' => 'Magyarország legnagyobb épülete, a törvényhozás központja és a Szent Korona őrzőhelye.'
+                    'description' => 'Magyarország legnagyobb épülete, a törvényhozás központja és a Szent Korona őrzőhelye.',
+                    'wifi' => true,
+                    'accessible' => true,
+                    'photo_spot' => true,
+                    'free_parking' => false,
+                    'status' => 'approved'
                 ]
             );
 
@@ -274,7 +324,12 @@ class PlaceSeeder extends Seeder
                     'post_code' => '1051',
                     'address' => 'Budapest, Szent István tér 1',
                     'category_id' => $sightsCat->id,
-                    'description' => 'Budapest egyik legmagasabb épülete, klasszicista stílusú katolikus bazilika és körkilátó.'
+                    'description' => 'Budapest egyik legmagasabb épülete, klasszicista stílusú katolikus bazilika és körkilátó.',
+                    'wifi' => true,
+                    'accessible' => true,
+                    'photo_spot' => true,
+                    'free_parking' => false,
+                    'status' => 'approved'
                 ]
             );
 
@@ -295,7 +350,12 @@ class PlaceSeeder extends Seeder
                     'post_code' => '1146',
                     'address' => 'Budapest, Hősök tere',
                     'category_id' => $sightsCat->id,
-                    'description' => 'A világörökség része, a Millenniumi emlékművel és a hét vezér szobrával.'
+                    'description' => 'A világörökség része, a Millenniumi emlékművel és a hét vezér szobrával.',
+                    'wifi' => true,
+                    'accessible' => true,
+                    'photo_spot' => true,
+                    'free_parking' => true,
+                    'status' => 'approved'
                 ]
             );
 
@@ -316,7 +376,12 @@ class PlaceSeeder extends Seeder
                     'post_code' => '1014',
                     'address' => 'Budapest, Szentháromság tér 2',
                     'category_id' => $sightsCat->id,
-                    'description' => 'Történelmi koronázótemplom gótikus stílusban, a Budai Várnegyed szívében.'
+                    'description' => 'Történelmi koronázótemplom gótikus stílusban, a Budai Várnegyed szívében.',
+                    'wifi' => true,
+                    'accessible' => true,
+                    'photo_spot' => true,
+                    'free_parking' => false,
+                    'status' => 'approved'
                 ]
             );
 
@@ -337,7 +402,12 @@ class PlaceSeeder extends Seeder
                     'post_code' => '1051',
                     'address' => 'Budapest, Széchenyi István tér',
                     'category_id' => $sightsCat->id,
-                    'description' => 'A Duna első állandó kőhídja, amely összeköti Budát és Pestet, a város egyik legfontosabb jelképe.'
+                    'description' => 'A Duna első állandó kőhídja, amely összeköti Budát és Pestet, a város egyik legfontosabb jelképe.',
+                    'wifi' => true,
+                    'accessible' => true,
+                    'photo_spot' => true,
+                    'free_parking' => false,
+                    'status' => 'approved'
                 ]
             );
 
@@ -358,7 +428,12 @@ class PlaceSeeder extends Seeder
                     'post_code' => '1146',
                     'address' => 'Budapest, Állatkerti krt. 9-11',
                     'category_id' => $sightsCat->id,
-                    'description' => 'Európa egyik legnagyobb fürdőkomplexuma, neobarokk stílusú épületben, híres kültéri medencékkel.'
+                    'description' => 'Európa egyik legnagyobb fürdőkomplexuma, neobarokk stílusú épületben, híres kültéri medencékkel.',
+                    'wifi' => true,
+                    'accessible' => true,
+                    'photo_spot' => true,
+                    'free_parking' => true,
+                    'status' => 'approved'
                 ]
             );
 
@@ -379,7 +454,12 @@ class PlaceSeeder extends Seeder
                     'post_code' => '1061',
                     'address' => 'Budapest, Andrássy út 22',
                     'category_id' => $sightsCat->id,
-                    'description' => 'Ybl Miklós által tervezett neoreneszánsz épület, a magyar operajátszás fellegvára.'
+                    'description' => 'Ybl Miklós által tervezett neoreneszánsz épület, a magyar operajátszás fellegvára.',
+                    'wifi' => true,
+                    'accessible' => true,
+                    'photo_spot' => true,
+                    'free_parking' => false,
+                    'status' => 'approved'
                 ]
             );
 
@@ -400,7 +480,12 @@ class PlaceSeeder extends Seeder
                     'post_code' => '1074',
                     'address' => 'Budapest, Dohány u. 2',
                     'category_id' => $sightsCat->id,
-                    'description' => 'Európa legnagyobb, a világ második legnagyobb zsinagógája, a magyarországi neológ zsidóság központja.'
+                    'description' => 'Európa legnagyobb, a világ második legnagyobb zsinagógája, a magyarországi neológ zsidóság központja.',
+                    'wifi' => true,
+                    'accessible' => true,
+                    'photo_spot' => true,
+                    'free_parking' => false,
+                    'status' => 'approved'
                 ]
             );
 
@@ -423,7 +508,12 @@ class PlaceSeeder extends Seeder
                         'post_code' => '1073',
                         'address' => 'Budapest, Kertész u. 36',
                         'category_id' => $nightlifeCat->id,
-                        'description' => 'Népszerű éjszakai klub a belváros szívében, ismert DJ-kkel és élőzenés eseményekkel.'
+                        'description' => 'Népszerű éjszakai klub a belváros szívében, ismert DJ-kkel és élőzenés eseményekkel.',
+                        'wifi' => true,
+                        'card_payment' => true,
+                        'accessible' => false,
+                        'free_parking' => false,
+                        'status' => 'approved'
                     ]
                 );
 
@@ -444,7 +534,12 @@ class PlaceSeeder extends Seeder
                         'post_code' => '1073',
                         'address' => 'Budapest, Akácfa u. 49-51',
                         'category_id' => $nightlifeCat->id,
-                        'description' => 'Budapest legnagyobb parti-komplexuma, amely több romkocsmát és klubot egyesít. Számos tánctérrel, változatos zenei stílusokkal és egyedi, szürreális dekorációval várja a bulizókat.'
+                        'description' => 'Budapest legnagyobb parti-komplexuma, amely több romkocsmát és klubot egyesít. Számos tánctérrel, változatos zenei stílusokkal és egyedi, szürreális dekorációval várja a bulizókat.',
+                        'wifi' => true,
+                        'card_payment' => true,
+                        'accessible' => false,
+                        'free_parking' => false,
+                        'status' => 'approved'
                     ]
                 );
 
@@ -465,7 +560,12 @@ class PlaceSeeder extends Seeder
                         'post_code' => '1075',
                         'address' => 'Budapest, Kazinczy u. 14',
                         'category_id' => $nightlifeCat->id,
-                        'description' => 'A város legrégebbi és legismertebb romkocsmája. Eklektikus berendezés, labirintusszerű terek, élőzene és utánozhatatlan hangulat jellemzi a Kazinczy utcában.'
+                        'description' => 'A város legrégebbi és legismertebb romkocsmája. Eklektikus berendezés, labirintusszerű terek, élőzene és utánozhatatlan hangulat jellemzi a Kazinczy utcában.',
+                        'wifi' => true,
+                        'card_payment' => true,
+                        'accessible' => false,
+                        'free_parking' => false,
+                        'status' => 'approved'
                     ]
                 );
 
@@ -486,7 +586,12 @@ class PlaceSeeder extends Seeder
                         'post_code' => '1051',
                         'address' => 'Budapest, Erzsébet tér 12',
                         'category_id' => $nightlifeCat->id,
-                        'description' => 'Kulturális központ és szórakozóhely a város szívében, az Erzsébet tér alatt. Híres a kiváló koncertterméről, elektronikus zenei partijairól és a medence alatti teraszáról.'
+                        'description' => 'Kulturális központ és szórakozóhely a város szívében, az Erzsébet tér alatt. Híres a kiváló koncertterméről, elektronikus zenei partijairól és a medence alatti teraszáról.',
+                        'wifi' => true,
+                        'card_payment' => true,
+                        'accessible' => false,
+                        'free_parking' => false,
+                        'status' => 'approved'
                     ]
                 );
 
@@ -507,7 +612,12 @@ class PlaceSeeder extends Seeder
                         'post_code' => '1051',
                         'address' => 'Budapest, Zrínyi u. 4',
                         'category_id' => $nightlifeCat->id,
-                        'description' => 'Stílusos klub és bár a Bazilika közelében. Nyáron nyitott tetővel, télen fűtött terekkel, főként R&B, hip-hop és sláger zenékkel vonzza a közönséget.'
+                        'description' => 'Stílusos klub és bár a Bazilika közelében. Nyáron nyitott tetővel, télen fűtött terekkel, főként R&B, hip-hop és sláger zenékkel vonzza a közönséget.',
+                        'wifi' => true,
+                        'card_payment' => true,
+                        'accessible' => false,
+                        'free_parking' => false,
+                        'status' => 'approved'
                     ]
                 );
 
@@ -528,7 +638,12 @@ class PlaceSeeder extends Seeder
                         'post_code' => '1055',
                         'address' => 'Budapest, Szent István krt. 11',
                         'category_id' => $nightlifeCat->id,
-                        'description' => 'Budapest egyik legnagyobb romkocsma-klubja a Nyugati pályaudvar közelében. Híres arról, hogy a hét minden napján nyitva tart, 7 különböző tánctérrel, karaoke teremmel és hatalmas belső udvarral várja a vendégeket.'
+                        'description' => 'Budapest egyik legnagyobb romkocsma-klubja a Nyugati pályaudvar közelében. Híres arról, hogy a hét minden napján nyitva tart, 7 különböző tánctérrel, karaoke teremmel és hatalmas belső udvarral várja a vendégeket.',
+                        'wifi' => true,
+                        'card_payment' => true,
+                        'accessible' => false,
+                        'free_parking' => false,
+                        'status' => 'approved'
                     ]
                 );
 
@@ -549,7 +664,12 @@ class PlaceSeeder extends Seeder
                         'post_code' => '1117',
                         'address' => 'Budapest, Petőfi híd, budai hídfő',
                         'category_id' => $nightlifeCat->id,
-                        'description' => 'A világ egyik legjobb klubjának választott állóhajó a Dunán. Egykori kőszállító hajóból alakították át kulturális központtá, amely koncerteknek, partiknak és étteremnek ad otthont lenyűgöző panorámával.'
+                        'description' => 'A világ egyik legjobb klubjának választott állóhajó a Dunán. Egykori kőszállító hajóból alakították át kulturális központtá, amely koncerteknek, partiknak és étteremnek ad otthont lenyűgöző panorámával.',
+                        'wifi' => true,
+                        'card_payment' => true,
+                        'accessible' => false,
+                        'free_parking' => false,
+                        'status' => 'approved'
                     ]
                 );
 
@@ -570,7 +690,12 @@ class PlaceSeeder extends Seeder
                         'post_code' => '1082',
                         'address' => 'Budapest, Vajdahunyad u. 4',
                         'category_id' => $nightlifeCat->id,
-                        'description' => 'Multifunkcionális kulturális tér a 8. kerületben. Nappal kiállítótér és kávézó, éjszaka pedig az underground elektronikus zene egyik legfontosabb bázisa kiváló hangrendszerrel.'
+                        'description' => 'Multifunkcionális kulturális tér a 8. kerületben. Nappal kiállítótér és kávézó, éjszaka pedig az underground elektronikus zene egyik legfontosabb bázisa kiváló hangrendszerrel.',
+                        'wifi' => true,
+                        'card_payment' => true,
+                        'accessible' => false,
+                        'free_parking' => false,
+                        'status' => 'approved'
                     ]
                 );
 
@@ -591,7 +716,12 @@ class PlaceSeeder extends Seeder
                         'post_code' => '1072',
                         'address' => 'Budapest, Klauzál u. 10',
                         'category_id' => $nightlifeCat->id,
-                        'description' => 'Prémium kategóriás romkocsma és klub a Klauzál utcában. Különlegessége a belső udvaron található hatalmas, King Kongot ábrázoló fa szobor, valamint a két különböző zenei stílust (house, R&B) kínáló tánctér.'
+                        'description' => 'Prémium kategóriás romkocsma és klub a Klauzál utcában. Különlegessége a belső udvaron található hatalmas, King Kongot ábrázoló fa szobor, valamint a két különböző zenei stílust (house, R&B) kínáló tánctér.',
+                        'wifi' => true,
+                        'card_payment' => true,
+                        'accessible' => false,
+                        'free_parking' => false,
+                        'status' => 'approved'
                     ]
                 );
 
@@ -614,7 +744,12 @@ class PlaceSeeder extends Seeder
                             'post_code' => '1073',
                             'address' => 'Budapest, Erzsébet krt. 43-49',
                             'category_id' => $accomodationsCat->id,
-                            'description' => 'Luxus szálloda a belváros szívében, elegáns szobákkal, wellness központtal és kiváló éttermekkel.'
+                            'description' => 'Luxus szálloda a belváros szívében, elegáns szobákkal, wellness központtal és kiváló éttermekkel.',
+                            'wifi' => true,
+                            'accessible' => true,
+                            'card_payment' => true,
+                            'free_parking' => false,
+                            'status' => 'approved'
                         ]
                     );
                     $corinthia->multimedias()->updateOrCreate(
@@ -634,7 +769,12 @@ class PlaceSeeder extends Seeder
                             'post_code' => '1073',
                             'address' => 'Budapest, Erzsébet krt. 9-11',
                             'category_id' => $accomodationsCat->id,
-                            'description' => 'A világ legszebb kávéházának otthont adó luxusszálloda, ahol a történelmi elegancia találkozik a modern kényelemmel.'
+                            'description' => 'A világ legszebb kávéházának otthont adó luxusszálloda, ahol a történelmi elegancia találkozik a modern kényelemmel.',
+                            'wifi' => true,
+                            'accessible' => true,
+                            'card_payment' => true,
+                            'free_parking' => false,
+                            'status' => 'approved'
                         ]
                     );
                     $newYorkPalace->multimedias()->updateOrCreate(
@@ -654,7 +794,13 @@ class PlaceSeeder extends Seeder
                             'post_code' => '1051',
                             'address' => 'Budapest, Széchenyi István tér 5-6',
                             'category_id' => $accomodationsCat->id,
-                            'description' => 'Szecessziós műemléképület a Lánchíd lábánál, páratlan dunai panorámával és világszínvonalú szolgáltatásokkal.'
+                            'description' => 'Szecessziós műemléképület a Lánchíd lábánál, páratlan dunai panorámával és világszínvonalú szolgáltatásokkal.',
+                            'wifi' => true,
+                            'accessible' => true,
+                            'card_payment' => true,
+                            'free_parking' => false,
+                            'photo_spot' => true,
+                            'status' => 'approved'
                         ]
                     );
                     $fourSeasons->multimedias()->updateOrCreate(
@@ -674,7 +820,12 @@ class PlaceSeeder extends Seeder
                             'post_code' => '1051',
                             'address' => 'Budapest, Erzsébet tér 7-8',
                             'category_id' => $accomodationsCat->id,
-                            'description' => 'Modern luxus és gasztronómiai élmények a belváros szívében, karnyújtásnyira a Váci utcától és a Duna-parttól.'
+                            'description' => 'Modern luxus és gasztronómiai élmények a belváros szívében, karnyújtásnyira a Váci utcától és a Duna-parttól.',
+                            'wifi' => true,
+                            'accessible' => true,
+                            'card_payment' => true,
+                            'free_parking' => false,
+                            'status' => 'approved'
                         ]
                     );
                     $kempinski->multimedias()->updateOrCreate(
@@ -694,7 +845,13 @@ class PlaceSeeder extends Seeder
                             'post_code' => '1052',
                             'address' => 'Budapest, Petőfi Sándor u. 2-4',
                             'category_id' => $accomodationsCat->id,
-                            'description' => 'Exkluzív szálloda egy lenyűgöző, mór és gótikus stílusjegyeket ötvöző történelmi épületben, a város egyik legszebb passzázsával.'
+                            'description' => 'Exkluzív szálloda egy lenyűgöző, mór és gótikus stílusjegyeket ötvöző történelmi épületben, a város egyik legszebb passzázsával.',
+                            'wifi' => true,
+                            'accessible' => true,
+                            'card_payment' => true,
+                            'free_parking' => false,
+                            'photo_spot' => true,
+                            'status' => 'approved'
                         ]
                     );
                     $parisiUdvar->multimedias()->updateOrCreate(
@@ -714,7 +871,13 @@ class PlaceSeeder extends Seeder
                             'post_code' => '1051',
                             'address' => 'Budapest, Hercegprímás u. 5',
                             'category_id' => $accomodationsCat->id,
-                            'description' => 'Zenei tematikájú boutique hotel a Szent István Bazilika mellett, egyedülálló tetőtéri bárral és panorámával.'
+                            'description' => 'Zenei tematikájú boutique hotel a Szent István Bazilika mellett, egyedülálló tetőtéri bárral és panorámával.',
+                            'wifi' => true,
+                            'accessible' => true,
+                            'card_payment' => true,
+                            'free_parking' => false,
+                            'photo_spot' => true,
+                            'status' => 'approved'
                         ]
                     );
                     $ariaHotel->multimedias()->updateOrCreate(
@@ -734,7 +897,12 @@ class PlaceSeeder extends Seeder
                             'post_code' => '1051',
                             'address' => 'Budapest, Erzsébet tér 9-10',
                             'category_id' => $accomodationsCat->id,
-                            'description' => 'Időtlen elegancia és modern luxus találkozása a belváros központjában, pár lépésre a Fashion Street-től.'
+                            'description' => 'Időtlen elegancia és modern luxus találkozása a belváros központjában, pár lépésre a Fashion Street-től.',
+                            'wifi' => true,
+                            'accessible' => true,
+                            'card_payment' => true,
+                            'free_parking' => false,
+                            'status' => 'approved'
                         ]
                     );
                     $ritzCarlton->multimedias()->updateOrCreate(
@@ -754,7 +922,13 @@ class PlaceSeeder extends Seeder
                             'post_code' => '1014',
                             'address' => 'Budapest, Hess András tér 1-3',
                             'category_id' => $accomodationsCat->id,
-                            'description' => 'A Budai Várnegyed szívében, a Halászbástya és a Mátyás-templom közvetlen szomszédságában, lenyűgöző dunai kilátással.'
+                            'description' => 'A Budai Várnegyed szívében, a Halászbástya és a Mátyás-templom közvetlen szomszédságában, lenyűgöző dunai kilátással.',
+                            'wifi' => true,
+                            'accessible' => true,
+                            'card_payment' => true,
+                            'free_parking' => false,
+                            'photo_spot' => true,
+                            'status' => 'approved'
                         ]
                     );
                     $hilton->multimedias()->updateOrCreate(
@@ -774,7 +948,13 @@ class PlaceSeeder extends Seeder
                             'post_code' => '1056',
                             'address' => 'Budapest, Váci u. 36',
                             'category_id' => $accomodationsCat->id,
-                            'description' => 'Egy UNESCO világörökségi épület újjászületése, amely a Belle Époque hangulatát idézi modern köntösben.'
+                            'description' => 'Egy UNESCO világörökségi épület újjászületése, amely a Belle Époque hangulatát idézi modern köntösben.',
+                            'wifi' => true,
+                            'accessible' => true,
+                            'card_payment' => true,
+                            'free_parking' => false,
+                            'photo_spot' => true,
+                            'status' => 'approved'
                         ]
                     );
                     $matildPalace->multimedias()->updateOrCreate(
@@ -794,7 +974,13 @@ class PlaceSeeder extends Seeder
                             'post_code' => '1052',
                             'address' => 'Budapest, Apáczai Csere János u. 12-14',
                             'category_id' => $accomodationsCat->id,
-                            'description' => 'Közvetlenül a Duna-parton elhelyezkedő szálloda, ahonnan a Budai Várra nyíló egyik legszebb kilátás tárul a vendégek elé.'
+                            'description' => 'Közvetlenül a Duna-parton elhelyezkedő szálloda, ahonnan a Budai Várra nyíló egyik legszebb kilátás tárul a vendégek elé.',
+                            'wifi' => true,
+                            'accessible' => true,
+                            'card_payment' => true,
+                            'free_parking' => false,
+                            'photo_spot' => true,
+                            'status' => 'approved'
                         ]
                     );
                     $interContinental->multimedias()->updateOrCreate(
@@ -816,7 +1002,12 @@ class PlaceSeeder extends Seeder
                                 'post_code' => '1062',
                                 'address' => 'Budapest, Váci út 1-3',
                                 'category_id' => $mallsCat->id,
-                                'description' => 'Az egyik legnagyobb bevásárlóközpont Közép-Európában, több mint 400 üzlettel, éttermekkel és szórakozási lehetőségekkel.'
+                                'description' => 'Az egyik legnagyobb bevásárlóközpont Közép-Európában, több mint 400 üzlettel, éttermekkel és szórakozási lehetőségekkel.',
+                                'wifi' => true,
+                                'accessible' => true,
+                                'card_payment' => true,
+                                'free_parking' => false,
+                                'status' => 'approved'
                             ]
                         );
                         $westend->multimedias()->updateOrCreate(
@@ -836,7 +1027,12 @@ class PlaceSeeder extends Seeder
                                 'post_code' => '1087',
                                 'address' => 'Budapest, Kerepesi út 9',
                                 'category_id' => $mallsCat->id,
-                                'description' => 'Magyarország legnagyobb alapterületű bevásárlóközpontja, amely számos világmárkának és az ország első IMAX mozijának ad otthont.'
+                                'description' => 'Magyarország legnagyobb alapterületű bevásárlóközpontja, amely számos világmárkának és az ország első IMAX mozijának ad otthont.',
+                                'wifi' => true,
+                                'accessible' => true,
+                                'card_payment' => true,
+                                'free_parking' => false,
+                                'status' => 'approved'
                             ]
                         );
                         $arena->multimedias()->updateOrCreate(
@@ -856,7 +1052,12 @@ class PlaceSeeder extends Seeder
                                 'post_code' => '1117',
                                 'address' => 'Budapest, Október huszonharmadika utca 8-10',
                                 'category_id' => $mallsCat->id,
-                                'description' => 'Buda egyik legnépszerűbb plázája a XI. kerület szívében, széles divat- és gasztronómiai kínálattal.'
+                                'description' => 'Buda egyik legnépszerűbb plázája a XI. kerület szívében, széles divat- és gasztronómiai kínálattal.',
+                                'wifi' => true,
+                                'accessible' => true,
+                                'card_payment' => true,
+                                'free_parking' => false,
+                                'status' => 'approved'
                             ]
                         );
                         $allee->multimedias()->updateOrCreate(
@@ -876,7 +1077,12 @@ class PlaceSeeder extends Seeder
                                 'post_code' => '1106',
                                 'address' => 'Budapest, Örs vezér tere 25/a',
                                 'category_id' => $mallsCat->id,
-                                'description' => 'A pesti oldal egyik legforgalmasabb bevásárlóközpontja az Örs vezér terén, több mint 200 üzlettel.'
+                                'description' => 'A pesti oldal egyik legforgalmasabb bevásárlóközpontja az Örs vezér terén, több mint 200 üzlettel.',
+                                'wifi' => true,
+                                'accessible' => true,
+                                'card_payment' => true,
+                                'free_parking' => false,
+                                'status' => 'approved'
                             ]
                         );
                         $arkad->multimedias()->updateOrCreate(
@@ -896,7 +1102,12 @@ class PlaceSeeder extends Seeder
                                 'post_code' => '1024',
                                 'address' => 'Budapest, Lövőház u. 2-6',
                                 'category_id' => $mallsCat->id,
-                                'description' => 'A Széna téren található dupla épületes komplexum, amely mozijáról, éttermeiről és központi elhelyezkedéséről ismert.'
+                                'description' => 'A Széna téren található dupla épületes komplexum, amely mozijáról, éttermeiről és központi elhelyezkedéséről ismert.',
+                                'wifi' => true,
+                                'accessible' => true,
+                                'card_payment' => true,
+                                'free_parking' => false,
+                                'status' => 'approved'
                             ]
                         );
                         $mammut->multimedias()->updateOrCreate(
@@ -916,7 +1127,12 @@ class PlaceSeeder extends Seeder
                                 'post_code' => '1123',
                                 'address' => 'Budapest, Alkotás utca 53',
                                 'category_id' => $mallsCat->id,
-                                'description' => 'Prémium kategóriás bevásárlóközpont Budán, exkluzív márkákkal, elegáns környezettel és színvonalas szolgáltatásokkal.'
+                                'description' => 'Prémium kategóriás bevásárlóközpont Budán, exkluzív márkákkal, elegáns környezettel és színvonalas szolgáltatásokkal.',
+                                'wifi' => true,
+                                'accessible' => true,
+                                'card_payment' => true,
+                                'free_parking' => false,
+                                'status' => 'approved'
                             ]
                         );
                         $momPark->multimedias()->updateOrCreate(
@@ -936,7 +1152,12 @@ class PlaceSeeder extends Seeder
                                 'post_code' => '1083',
                                 'address' => 'Budapest, Futó utca 37-45',
                                 'category_id' => $mallsCat->id,
-                                'description' => 'A belvárosi Corvin Sétány része, modern építészettel és könnyű megközelíthetőséggel.'
+                                'description' => 'A belvárosi Corvin Sétány része, modern építészettel és könnyű megközelíthetőséggel.',
+                                'wifi' => true,
+                                'accessible' => true,
+                                'card_payment' => true,
+                                'free_parking' => false,
+                                'status' => 'approved'
                             ]
                         );
                         $corvin->multimedias()->updateOrCreate(
@@ -956,7 +1177,12 @@ class PlaceSeeder extends Seeder
                                 'post_code' => '1119',
                                 'address' => 'Budapest, Hadak útja 1',
                                 'category_id' => $mallsCat->id,
-                                'description' => 'Buda legnagyobb és legmodernebb "okosplázája" a Kelenföldi pályaudvar közvetlen szomszédságában.'
+                                'description' => 'Buda legnagyobb és legmodernebb "okosplázája" a Kelenföldi pályaudvar közvetlen szomszédságában.',
+                                'wifi' => true,
+                                'accessible' => true,
+                                'card_payment' => true,
+                                'free_parking' => false,
+                                'status' => 'approved'
                             ]
                         );
                         $etele->multimedias()->updateOrCreate(
@@ -976,7 +1202,12 @@ class PlaceSeeder extends Seeder
                                 'post_code' => '1138',
                                 'address' => 'Budapest, Váci út 178',
                                 'category_id' => $mallsCat->id,
-                                'description' => 'Magyarország első bevásárlóközpontja a Váci úti irodafolyosón, moziélménnyel és számos üzlettel.'
+                                'description' => 'Magyarország első bevásárlóközpontja a Váci úti irodafolyosón, moziélménnyel és számos üzlettel.',
+                                'wifi' => true,
+                                'accessible' => true,
+                                'card_payment' => true,
+                                'free_parking' => false,
+                                'status' => 'approved'
                             ]
                         );
                         $dunaPlaza->multimedias()->updateOrCreate(
@@ -996,7 +1227,12 @@ class PlaceSeeder extends Seeder
                                 'post_code' => '1222',
                                 'address' => 'Budapest, Nagytétényi út 37-43',
                                 'category_id' => $mallsCat->id,
-                                'description' => 'Családbarát bevásárlóközpont Dél-Budán, amely a Tropicariumnak és a Csodák Palotájának is otthont ad.'
+                                'description' => 'Családbarát bevásárlóközpont Dél-Budán, amely a Tropicariumnak és a Csodák Palotájának is otthont ad.',
+                                'wifi' => true,
+                                'accessible' => true,
+                                'card_payment' => true,
+                                'free_parking' => false,
+                                'status' => 'approved'
                             ]
                         );
                         $campona->multimedias()->updateOrCreate(
@@ -1016,7 +1252,12 @@ class PlaceSeeder extends Seeder
                                 'post_code' => '1191',
                                 'address' => 'Budapest, Vak Bottyán u. 75. A-C',
                                 'category_id' => $mallsCat->id,
-                                'description' => 'Közvetlen metrókapcsolattal rendelkező bevásárlóközpont Kőbánya-Kispesten, a reptérre vezető út mentén.'
+                                'description' => 'Közvetlen metrókapcsolattal rendelkező bevásárlóközpont Kőbánya-Kispesten, a reptérre vezető út mentén.',
+                                'wifi' => true,
+                                'accessible' => true,
+                                'card_payment' => true,
+                                'free_parking' => false,
+                                'status' => 'approved'
                             ]
                         );
                         $koki->multimedias()->updateOrCreate(
@@ -1038,7 +1279,11 @@ class PlaceSeeder extends Seeder
                                     'post_code' => '1146',
                                     'address' => 'Budapest, Dózsa György út 41',
                                     'category_id' => $cultureCat->id,
-                                    'description' => 'Impozáns épület a Hősök terén, gazdag európai művészeti gyűjteménnyel a középkortól a 20. századig.'
+                                    'description' => 'Impozáns épület a Hősök terén, gazdag európai művészeti gyűjteménnyel a középkortól a 20. századig.',
+                                    'wifi' => true,
+                                    'accessible' => true,
+                                    'free_parking' => true,
+                                    'status' => 'approved'
                                 ]
                             );
                             $szepmuveszeti->multimedias()->updateOrCreate(
@@ -1058,7 +1303,11 @@ class PlaceSeeder extends Seeder
                                     'post_code' => '1088',
                                     'address' => 'Budapest, Múzeum krt. 14-16.',
                                     'category_id' => $cultureCat->id,
-                                    'description' => 'Magyarország első nemzeti múzeuma, a magyar történelem tárgyi emlékeinek legfontosabb gyűjtőhelye a klasszicista stílusú palotában.'
+                                    'description' => 'Magyarország első nemzeti múzeuma, a magyar történelem tárgyi emlékeinek legfontosabb gyűjtőhelye a klasszicista stílusú palotában.',
+                                    'wifi' => true,
+                                    'accessible' => true,
+                                    'free_parking' => false,
+                                    'status' => 'approved'
                                 ]
                             );
                             $nemzetiMuzeum->multimedias()->updateOrCreate(
@@ -1078,7 +1327,11 @@ class PlaceSeeder extends Seeder
                                     'post_code' => '1061',
                                     'address' => 'Budapest, Andrássy út 22.',
                                     'category_id' => $cultureCat->id,
-                                    'description' => 'Ybl Miklós által tervezett neoreneszánsz épület, a magyar opera- és balettjátszás fellegvára az Andrássy úton.'
+                                    'description' => 'Ybl Miklós által tervezett neoreneszánsz épület, a magyar opera- és balettjátszás fellegvára az Andrássy úton.',
+                                    'wifi' => true,
+                                    'accessible' => true,
+                                    'free_parking' => false,
+                                    'status' => 'approved'
                                 ]
                             );
                             $operahaz->multimedias()->updateOrCreate(
@@ -1098,7 +1351,11 @@ class PlaceSeeder extends Seeder
                                     'post_code' => '1146',
                                     'address' => 'Budapest, Dózsa György út 35.',
                                     'category_id' => $cultureCat->id,
-                                    'description' => 'A Városliget kapujában álló, díjnyertes modern épület, amely a magyar és nemzetközi népi kultúra kincseit őrzi.'
+                                    'description' => 'A Városliget kapujában álló, díjnyertes modern épület, amely a magyar és nemzetközi népi kultúra kincseit őrzi.',
+                                    'wifi' => true,
+                                    'accessible' => true,
+                                    'free_parking' => true,
+                                    'status' => 'approved'
                                 ]
                             );
                             $neprajzi->multimedias()->updateOrCreate(
@@ -1118,7 +1375,11 @@ class PlaceSeeder extends Seeder
                                     'post_code' => '1146',
                                     'address' => 'Budapest, Olof Palme sétány 3.',
                                     'category_id' => $cultureCat->id,
-                                    'description' => 'A Sou Fujimoto által tervezett, természetbe simuló közösségi tér és koncerthelyszín a Városliget szívében.'
+                                    'description' => 'A Sou Fujimoto által tervezett, természetbe simuló közösségi tér és koncerthelyszín a Városliget szívében.',
+                                    'wifi' => true,
+                                    'accessible' => true,
+                                    'free_parking' => true,
+                                    'status' => 'approved'
                                 ]
                             );
                             $zeneHaza->multimedias()->updateOrCreate(
@@ -1140,7 +1401,11 @@ class PlaceSeeder extends Seeder
                                     'post_code' => '1014',
                                     'address' => 'Budapest, Szent György tér 2.',
                                     'category_id' => $cultureCat->id,
-                                    'description' => 'A Budavári Palotában található legnagyobb hazai képzőművészeti gyűjtemény, amely átfogó képet ad a magyar művészet történetéről.'
+                                    'description' => 'A Budavári Palotában található legnagyobb hazai képzőművészeti gyűjtemény, amely átfogó képet ad a magyar művészet történetéről.',
+                                    'wifi' => true,
+                                    'accessible' => true,
+                                    'free_parking' => false,
+                                    'status' => 'approved'
                                 ]
                             );
                             $nemzetiGaleria->multimedias()->updateOrCreate(

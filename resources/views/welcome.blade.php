@@ -51,7 +51,7 @@
                 <h2 class="section-title">{{ __('Kiemelt helyek Budapesten') }}</h2>
                 <p class="section-subtitle">{{ __('Ezeket a helyeket imádják a felhasználóink') }}</p>
             </div>
-            <a href="{{ route('places.index') }}" class="btn-outline">{{ __('Összes megtekintése') }} <i class="fa-solid fa-arrow-right"></i></a>
+            <a href="{{ route('places.index') }}" class="btn btn-outline">{{ __('Összes megtekintése') }} <i class="fa-solid fa-arrow-right"></i></a>
         </div>
 
         <div class="card-grid">
@@ -88,11 +88,10 @@
     <div class="cta-container">
         <div class="cta-content">
             <h2>{{ __('Vállalkozásod van Budapesten?') }}</h2>
-            <p>{{ __('Csatlakozz a Budapest360 hálózatához, és érj el több ezer potenciális vendéget naponta!') }}</p>
+            <p>{{ __('Csatlakozz a Budapest360 hálózatához, és érj el több száz potenciális vendéget naponta!') }}</p>
             <p>{{ __('Keress meg minket az admin@bp360.hu email címen!') }}</p>
             <div class="cta-buttons">
-                <a href="#" class="btn btn-primary btn-large">{{ __('Hely regisztrálása') }}</a>
-                <a href="" class="btn btn-outline-light btn-large">{{ __('Bővebb információ') }}</a>
+                <a href="{{ route('places.create') }}" class="btn btn-primary btn-large">{{ __('Hely regisztrálása') }}</a>
             </div>
         </div>
     </div>

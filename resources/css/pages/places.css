@@ -1,4 +1,7 @@
-
+.place-header{
+    display: flex;
+    justify-content: space-between;
+}
 
 .place-detail-wrapper {
     padding-top: 2rem;
@@ -6,8 +9,8 @@
 }
 
 .category-badge {
-    background: var(--primary);
-    color: white;
+    color: var(--text-main);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     padding: 4px 12px;
     border-radius: 20px;
     font-size: 0.85rem;

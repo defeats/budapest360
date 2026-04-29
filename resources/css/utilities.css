@@ -236,28 +236,49 @@
     }
 
     .search-glass-container {
-        padding: 15px;
-        border-radius: 20px;
+        padding: 5px !important; /* Nagyon vékony belső margó, hogy vékonyabb legyen a pirula */
+        border-radius: 50px !important; /* Extrém lekerekítés a pirula formához */
+        width: 100% !important;
+        max-width: 100% !important;
     }
 
+    /* 2. A FORM (BELSŐ ELRENDEZÉS) */
     .hero-search-form {
-        flex-direction: column;
-        gap: 10px;
+        display: flex !important;
+        flex-direction: row !important; /* EGYMÁS MELLETT tartjuk őket! */
+        align-items: center !important;
+        gap: 5px !important; /* Csak nagyon minimális hely a gomb és a szöveg között */
+        width: 100% !important;
+        margin: 0 !important;
     }
 
-    .hero-search-input {
-        width: 100%;
-        text-align: center;
-        padding: 15px 0;
-    }
-
+    /* 3. A KERESŐ IKON (A NAGYÍTÓ) */
     .search-icon {
-        display: none; 
+        display: block !important; /* Mobilon is látszódjon a nagyító */
+        padding: 0 0 0 12px !important; /* Csak bal oldali margó, hogy ne foglaljon sok helyet */
+        font-size: 0.9rem !important; /* Kisebb ikon */
     }
 
+    /* 4. A SZÖVEGBEVITELI MEZŐ (INPUT) */
+    .hero-search-input {
+        flex: 1 !important; /* Kitölti a maradék helyet a gomb mellett */
+        width: auto !important; /* A flex: 1 miatt ez kell */
+        text-align: left !important; /* Vissza balra zártra */
+        padding: 10px 5px !important; /* Kisebb magasság és vékonyabb belső térköz */
+        font-size: 16px !important; /* Minimum 16px kell, hogy az iOS ne zoomoljon! */
+        border-radius: 0 !important; /* Nem kell neki saját kerekítés, a konténer adja */
+        background: transparent !important;
+        border: none !important;
+    }
+
+    /* 5. A KERESÉS GOMB (KICSIBbÍTVE, JOBB OLDALRA IGAZÍTVA) */
     .search-btn {
-        width: 100%;
-        padding: 15px;
+        width: auto !important; /* Csak akkora legyen, amekkora a szöveg benne */
+        padding: 8px 16px !important; /* Kisebb, vékonyabb gomb */
+        border-radius: 40px !important; /* A gomb saját kis pirula formája */
+        font-size: 0.85rem !important; /* Kisebb betűméret */
+        margin: 0 !important;
+        white-space: nowrap !important; /* Megakadályozza, hogy a gomb szövege 2 sorba törjön */
     }
 
     .cta-buttons {
@@ -307,13 +328,29 @@
     }
 
     .hero-quick-links {
-        flex-direction: column;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        gap: 10px;
         width: 100%;
+        margin-top: 15px; 
+        flex-wrap: nowrap; 
     }
 
     .btn-glass {
-        width: 100%;
-        justify-content: center;
+        flex: 1;
+        display: flex ;
+        justify-content: center ;
+        align-items: center ;
+        padding: 8px 12px ;
+        font-size: 0.85rem ;
+        border-radius: 40px ; 
+        white-space: nowrap;
+        gap: 6px ;
+    }
+
+    .btn-glass i {
+        font-size: 0.9rem ;
     }
 
     .landing-hero-section {

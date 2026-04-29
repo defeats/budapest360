@@ -18,7 +18,7 @@ return new class extends Migration {
             $table->string('slug')->unique();
             $table->integer('post_code');
             $table->string("address");
-            $table->string("phone")->unique();
+            $table->string("phone")->unique()->nullable();
             $table->string("email")->unique()->nullable();
             $table->string("website")->nullable();
             $table->longText("description");
@@ -32,7 +32,7 @@ return new class extends Migration {
             $table->boolean("photo_spot")->default(false);
             $table->boolean("accessible")->default(false);
             $table->boolean("student_discount")->default(false);
-            $table->enum('status', ['pending', 'approved', 'rejected'])->default('approved'); //majd irjuk vissza pendingre
+            $table->enum('status', ['pending', 'approved', 'rejected'])->default('pending');
             $table->integer('clicks')->default(0);
             $table->softDeletes();
             $table->timestamps();

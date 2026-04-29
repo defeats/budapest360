@@ -1,14 +1,14 @@
 <header class="main-header">
-    <div class="container header-container">
+    <div class="header-container">
         <a href="/" class="logo">
             <img src="{{ asset('bp360logo.png') }}" alt="Budapest360 Logo">
         </a>
 
-        <button class="mobile-menu-btn" id="mobile-menu-btn">
+        <button class="mobile-menu-btn" id="main-mobile-btn" onclick="toggleMobileMenu(event)">
             <i class="fa-solid fa-bars"></i>
         </button>
 
-        <nav class="nav-links">
+        <nav class="nav-links" id="main-mobile-menu">
             <div class="nav-items">
                 <a href="{{ route('categories.show', ['category' => 'events']) }}">{{ __('Események') }}</a>
                 <a href="{{ route('categories.show', ['category' => 'restaurants']) }}">{{ __('Éttermek') }}</a>
@@ -18,10 +18,10 @@
                 <a href="{{ route('categories.show', ['category' => 'malls']) }}">{{ __('Plázák') }}</a>
                 <a href="{{ route('categories.show', ['category' => 'culture']) }}">{{ __('Kultúra') }}</a>
                 <a href="{{ route('places.index') }}">{{ __('Összes') }}</a>
+                
                 <form action="{{ route('locale.change') }}" method="POST" id="lang-form">
                     @csrf
                     <input type="hidden" name="locale" value="{{ app()->getLocale() === 'hu' ? 'en' : 'hu' }}">
-
                     <button type="submit" style="background: none; border: none; cursor: pointer; color: inherit;">
                         <i class="fa-solid fa-language"></i>
                         <span>{{ app()->getLocale() === 'hu' ? 'EN' : 'HU' }}</span>
@@ -32,7 +32,7 @@
             <div class="nav-auth">
                 @guest
                     <a href="{{ route('login') }}" class="btn btn-outline">{{ __('Belépés') }}</a>
-                    <a href="{{ route('register') }}" class="btn btn-primary">{{ __('Regisztráció') }}</a>
+                    <a href="{{ route('register') }}" class="btn btn-outline btn-primary">{{ __('Regisztráció') }}</a>
                 @endguest
 
                 @auth
@@ -68,32 +68,28 @@
             </div>
         </nav>
     </div>
-    <script>
-    //MÉG NEM MŰKÖDIK TODOOOOOOOOOO
-    document.addEventListener('DOMContentLoaded', () => {
-    // Elemek kiválasztása
-    const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-    const navLinks = document.querySelector('.nav-links');
 
-    // Ha léteznek az elemek az oldalon, akkor rátesszük az eseményfigyelőt
-    if (mobileMenuBtn && navLinks) {
-        mobileMenuBtn.addEventListener('click', () => {
-            // A gomb megnyomásakor hozzáadja vagy leveszi az 'active' osztályt
-            navLinks.classList.toggle('active');
-            
-            // Opcionális: Ha van benne ikon cserélhetjük a menü/X ikont
-            const icon = mobileMenuBtn.querySelector('i');
-            if (icon) {
-                if (navLinks.classList.contains('active')) {
-                    icon.classList.remove('fa-bars');
-                    icon.classList.add('fa-times'); // X ikon bezáráshoz
-                } else {
-                    icon.classList.remove('fa-times');
-                    icon.classList.add('fa-bars'); // Vissza a hamburger ikonra
+    <script>
+        function toggleMobileMenu(event) {
+            if(event) event.preventDefault();
+
+            const navLinks = document.getElementById('main-mobile-menu');
+            const mobileMenuBtn = document.getElementById('main-mobile-btn');
+
+            if (navLinks && mobileMenuBtn) {
+                navLinks.classList.toggle('active');
+
+                const icon = mobileMenuBtn.querySelector('i');
+                if (icon) {
+                    if (navLinks.classList.contains('active')) {
+                        icon.classList.remove('fa-bars');
+                        icon.classList.add('fa-times');
+                    } else {
+                        icon.classList.remove('fa-times');
+                        icon.classList.add('fa-bars');
+                    }
                 }
             }
-        });
-    }
-});
+        }
     </script>
 </header>

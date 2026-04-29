@@ -7,6 +7,7 @@ use App\Http\Requests\StoreCategoryRequest;
 use App\Http\Requests\UpdateCategoryRequest;
 use App\Models\Place;
 use Illuminate\Http\Request;
+use Psy\Command\WhereamiCommand;
 
 class CategoryController extends Controller
 {
@@ -15,8 +16,11 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::all();
-        return view('categories.index', ['categories' => $categories]);
+        $categories = Category::withCount('places')->get();
+
+        return view('categories.index', [
+            'categories' => $categories
+        ]);
     }
 
     /**
@@ -43,6 +47,7 @@ class CategoryController extends Controller
         $category = Category::where('slug', $slug)->firstOrFail();
 
         $places = $category->places()
+        ->where('status', 'approved')
         ->with(['reviews', 'category'])
         ->filter($request->all())
         ->get();

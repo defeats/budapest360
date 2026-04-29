@@ -5,6 +5,7 @@
 
         <div class="place-header">
             <div style="margin-bottom: 1rem;">
+
                 <span class="category-badge">{{ __($place->category->name) }}</span>
                 <h1>{{ $place->name }}</h1>
                 @if ($place->reviews->count() > 0)
@@ -15,9 +16,11 @@
                     </div>
                 @endif
                 @can('update', $place)
-                    <a href="{{ route('places.edit', $place) }}" class="btn btn-secondary btn-full" style="margin-top: 0.5rem;">
+                <div style="float: right; margin-bottom: 1rem">
+                    <a href="{{ route('places.edit', $place) }}" class="btn btn-primary"">
                         <i class="fa-solid fa-pen-to-square"></i> {{ __('Hely szerkesztése') }}
                     </a>
+                </div>
                 @endcan
             </div>
         </div>
